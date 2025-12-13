@@ -31,5 +31,5 @@ export interface DailySummary extends Macros {
   date: string; // YYYY-MM-DD
 }
 
-// FIXED: Switched to the stable model with 1,500 RPD quota
-export const DEFAULT_MODEL = 'gemini-1.5-flash';
+// FIXED: Updated to the current stable model
+export const DEFAULT_MODEL = 'gemini-2.5-flash';
