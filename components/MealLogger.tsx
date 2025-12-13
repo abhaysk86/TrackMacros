@@ -30,7 +30,7 @@ const MealLogger: React.FC<MealLoggerProps> = ({ settings, onLogAdded, savedMeal
       let logData: MealLog;
       
       // Check for saved meal match (simple string match case-insensitive)
-      // Only if no image is provided, as image implies a specific new portion/context
+      // Only if no image is provided
       const matchedSavedMeal = !selectedImage ? savedMeals.find(sm => 
         sm.name.toLowerCase() === inputText.trim().toLowerCase() ||
         sm.keywords.some(k => inputText.toLowerCase().includes(k.toLowerCase()))
@@ -41,16 +41,13 @@ const MealLogger: React.FC<MealLoggerProps> = ({ settings, onLogAdded, savedMeal
         logData = {
           ...matchedSavedMeal,
           id: crypto.randomUUID(),
-          timestamp: Date.now(), // Default to now, parsing time from text locally is harder without AI, but we can assume "now" for saved shortcuts
+          timestamp: Date.now(), 
         };
-        // Simple heuristic: if user typed "at 2pm", we might want to parse it. 
-        // For saved meals, let's keep it simple: matches are logged immediately. 
-        // If complex text + match, maybe we should still use AI but hint the macros?
-        // Let's stick to AI for everything NOT an exact name match, or rely on AI to confirm.
-        // Actually, requirement says "pull that from memory".
       } else {
         // Use AI
         const imageBase64 = selectedImage ? await fileToGenerativePart(selectedImage) : undefined;
+        
+        // Call the service (which now handles the Date context)
         const analysis = await GeminiService.analyzeMeal(
           settings.apiKey, 
           settings.activeModel, 
@@ -58,12 +55,11 @@ const MealLogger: React.FC<MealLoggerProps> = ({ settings, onLogAdded, savedMeal
           imageBase64
         );
 
+        // FIXED: Time Travel Logic
+        // We now rely on the AI's "detectedTimestamp" which calculates "Yesterday" or "10th Dec"
         let timestamp = Date.now();
-        if (analysis.detectedTime) {
-          const [hours, minutes] = analysis.detectedTime.split(':').map(Number);
-          const d = new Date();
-          d.setHours(hours, minutes, 0, 0);
-          timestamp = d.getTime();
+        if (analysis.detectedTimestamp) {
+            timestamp = new Date(analysis.detectedTimestamp).getTime();
         }
 
         logData = {
@@ -71,7 +67,9 @@ const MealLogger: React.FC<MealLoggerProps> = ({ settings, onLogAdded, savedMeal
           name: analysis.detectedName,
           ...analysis.macros,
           timestamp: timestamp,
-          imageUri: imageBase64 ? `data:image/jpeg;base64,${imageBase64}` : undefined
+          // FIXED: We purposely DO NOT save the image to storage to prevent bloat.
+          // The image is used for analysis and then discarded.
+          imageUri: undefined 
         };
       }
 
@@ -124,6 +122,7 @@ const MealLogger: React.FC<MealLoggerProps> = ({ settings, onLogAdded, savedMeal
             type="file" 
             ref={fileInputRef} 
             accept="image/*" 
+            // FIXED: Removed 'capture' attribute to allow Gallery access
             className="hidden" 
             onChange={handleImageSelect}
           />
