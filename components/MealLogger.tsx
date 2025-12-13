@@ -124,7 +124,6 @@ const MealLogger: React.FC<MealLoggerProps> = ({ settings, onLogAdded, savedMeal
             type="file" 
             ref={fileInputRef} 
             accept="image/*" 
-            capture="environment" 
             className="hidden" 
             onChange={handleImageSelect}
           />
