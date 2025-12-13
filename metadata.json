@@ -1,0 +1,7 @@
+{
+  "name": "TrackMacros",
+  "description": "A daily nutrition macro tracking application powered by AI. Log meals via text or photos, track trends, and manage saved recipes.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
