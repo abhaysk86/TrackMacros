@@ -17,20 +17,24 @@ export const fileToGenerativePart = async (file: File): Promise<string> => {
 interface AnalysisResult {
   macros: Macros;
   detectedName: string;
-  detectedTimestamp?: string; // CHANGED: Now expects full ISO string, not just HH:MM
+  detectedTimestamp?: string; // ISO String
 }
 
 export const GeminiService = {
   validateKey: async (apiKey: string, model: string): Promise<boolean> => {
     try {
+      // Use the stable model
+      const SAFE_MODEL = "gemini-2.5-flash"; 
+      
       const ai = new GoogleGenAI({ apiKey });
       await ai.models.generateContent({
-        model: model,
+        model: SAFE_MODEL,
         contents: "Hello",
       });
       return true;
-    } catch (e) {
+    } catch (e: any) {
       console.error("Key validation failed", e);
+      alert(`Debug Error: ${e.message || JSON.stringify(e)}`); 
       return false;
     }
   },
@@ -39,9 +43,9 @@ export const GeminiService = {
     apiKey: string,
     model: string,
     description: string,
-    imageBase64?: string,
-    currentTimeContext?: string // We will ignore this param in favor of dynamic calculation below
+    imageBase64?: string
   ): Promise<AnalysisResult> => {
+    const SAFE_MODEL = "gemini-2.5-flash";
     const ai = new GoogleGenAI({ apiKey });
 
     const parts: any[] = [];
@@ -59,35 +63,29 @@ export const GeminiService = {
       parts.push({ text: description });
     }
 
-    // NEW: Robust Date Calculation Context
     const now = new Date();
-    const dateContext = now.toDateString(); // e.g. "Sat Dec 13 2025"
-    const timeContext = now.toLocaleTimeString(); 
-
+    const dateContext = now.toDateString(); // "Sat Dec 13 2025"
+    
     const prompt = `
-      You are an expert nutritionist. Analyze the provided image (if any) and text description.
+      You are an expert nutritionist. Analyze the provided image and text.
       
       CONTEXT:
       - Today's Date: ${dateContext}
-      - Current System Time: ${timeContext}
       
       TASK:
       1. Identify the food items.
-      2. Estimate nutrition (Calories, Protein, Carbs, Fats, Added Sugar). 
-         IMPORTANT: Round ALL numbers to the nearest whole integer. No decimals.
-      3. TIME/DATE ANALYSIS: 
-         - If the user mentions a specific date (e.g., "Yesterday", "10th Dec", "Last Friday"), calculate the correct ISO Timestamp for that date.
-         - If the user mentions a time (e.g. "at 5pm"), combine it with the identified date.
-         - If no date/time is mentioned, use the "Current System Time".
-         - Return the final result as a valid ISO 8601 String (e.g., "2025-12-10T17:00:00.000Z").
-      4. Provide a short, descriptive name.
+      2. Estimate nutrition (Calories, P, C, F, Sugar). Round to nearest integer.
+      3. TIME EXTRACTION:
+         - extract "date_override": If user mentions "Yesterday", "10th Dec", return "YYYY-MM-DD". If today, return null.
+         - extract "time_override": If user mentions "at 5pm", "for breakfast", return "HH:MM" (24h). If not mentioned, return null.
+      4. Provide a descriptive name.
 
-      Return ONLY a JSON object.
+      Return ONLY JSON.
     `;
 
     try {
       const response = await ai.models.generateContent({
-        model: model,
+        model: SAFE_MODEL,
         contents: { parts: [{ text: prompt }, ...parts] },
         config: {
           responseMimeType: "application/json",
@@ -95,7 +93,8 @@ export const GeminiService = {
             type: Type.OBJECT,
             properties: {
               detectedName: { type: Type.STRING },
-              detectedTimestamp: { type: Type.STRING, description: "Full ISO 8601 Timestamp of the meal." },
+              date_override: { type: Type.STRING, nullable: true },
+              time_override: { type: Type.STRING, nullable: true },
               macros: {
                 type: Type.OBJECT,
                 properties: {
@@ -112,11 +111,36 @@ export const GeminiService = {
       });
 
       const text = response.text;
-      if (!text) throw new Error("No response from AI");
-      return JSON.parse(text) as AnalysisResult;
+      if (!text) throw new Error("No response");
+      
+      const result = JSON.parse(text);
 
-    } catch (error) {
-      console.error("Gemini Analysis Error:", error);
+      // --- CLIENT SIDE TIME LOGIC (THE FIX) ---
+      let finalDate = new Date(); // Start with "Now"
+
+      // 1. Apply Date Override
+      if (result.date_override) {
+        // Parse YYYY-MM-DD strictly to avoid UTC shifts
+        const [year, month, day] = result.date_override.split('-').map(Number);
+        finalDate.setFullYear(year, month - 1, day);
+      }
+
+      // 2. Apply Time Override
+      if (result.time_override) {
+        const [hours, minutes] = result.time_override.split(':').map(Number);
+        finalDate.setHours(hours, minutes, 0, 0);
+      }
+
+      // Return the constructed result
+      return {
+        detectedName: result.detectedName,
+        macros: result.macros,
+        detectedTimestamp: finalDate.toISOString()
+      };
+
+    } catch (error: any) {
+      console.error("Analysis Error:", error);
+      alert(`Analysis Failed: ${error.message}`);
       throw error;
     }
   }
