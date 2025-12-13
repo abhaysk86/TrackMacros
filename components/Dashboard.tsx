@@ -26,13 +26,14 @@ const Dashboard: React.FC<DashboardProps> = ({ settings, setViewState }) => {
     return StorageService.getLogsForDate(selectedDate);
   }, [logs, selectedDate]);
 
+  // FIXED: Added Math.round to prevent "939.18000" decimals in totals
   const dailyTotals = useMemo(() => {
     return dailyLogs.reduce((acc, log) => ({
-      calories: acc.calories + log.calories,
-      protein: acc.protein + log.protein,
-      carbs: acc.carbs + log.carbs,
-      fats: acc.fats + log.fats,
-      addedSugar: acc.addedSugar + log.addedSugar,
+      calories: Math.round(acc.calories + log.calories),
+      protein: Math.round(acc.protein + log.protein),
+      carbs: Math.round(acc.carbs + log.carbs),
+      fats: Math.round(acc.fats + log.fats),
+      addedSugar: Math.round(acc.addedSugar + log.addedSugar),
     }), { calories: 0, protein: 0, carbs: 0, fats: 0, addedSugar: 0 });
   }, [dailyLogs]);
 
@@ -160,8 +161,9 @@ const Dashboard: React.FC<DashboardProps> = ({ settings, setViewState }) => {
                     {new Date(log.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                   </span>
                 </div>
+                {/* FIXED: Added Sugar to the display list & Rounded numbers */}
                 <div className="text-xs text-slate-400">
-                  {log.calories} kcal • P: {log.protein}g • C: {log.carbs}g • F: {log.fats}g
+                  {Math.round(log.calories)} kcal • P: {Math.round(log.protein)} • C: {Math.round(log.carbs)} • F: {Math.round(log.fats)} • S: {Math.round(log.addedSugar)}
                 </div>
               </div>
               {log.imageUri && (
