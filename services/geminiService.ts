@@ -1,6 +1,13 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Macros } from "../types";
 
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+const isOverloadedError = (error: any): boolean => {
+  const msg = error?.message ?? '';
+  return msg.includes('503') || msg.includes('UNAVAILABLE') || msg.includes('high demand') || msg.includes('overloaded');
+};
+
 // Helper to convert File to Base64
 export const fileToGenerativePart = async (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -96,49 +103,61 @@ export const GeminiService = {
       Return ONLY JSON.
     `;
 
-    try {
-      const response = await ai.models.generateContent({
-        model: SAFE_MODEL,
-        contents: { parts: [{ text: prompt }, ...parts] },
-        config: {
-          responseMimeType: "application/json",
-          responseSchema: {
-            type: Type.OBJECT,
-            properties: {
-              detectedName: { type: Type.STRING },
-              // We ask AI to do the math and give us the final string
-              finalIsoTimestamp: { type: Type.STRING, description: "The calculated ISO 8601 timestamp for the meal." },
-              macros: {
-                type: Type.OBJECT,
-                properties: {
-                  calories: { type: Type.NUMBER },
-                  protein: { type: Type.NUMBER },
-                  carbs: { type: Type.NUMBER },
-                  fats: { type: Type.NUMBER },
-                  addedSugar: { type: Type.NUMBER }
-                }
+    const requestConfig = {
+      model: SAFE_MODEL,
+      contents: { parts: [{ text: prompt }, ...parts] },
+      config: {
+        responseMimeType: "application/json",
+        responseSchema: {
+          type: Type.OBJECT,
+          properties: {
+            detectedName: { type: Type.STRING },
+            finalIsoTimestamp: { type: Type.STRING, description: "The calculated ISO 8601 timestamp for the meal." },
+            macros: {
+              type: Type.OBJECT,
+              properties: {
+                calories: { type: Type.NUMBER },
+                protein: { type: Type.NUMBER },
+                carbs: { type: Type.NUMBER },
+                fats: { type: Type.NUMBER },
+                addedSugar: { type: Type.NUMBER }
               }
             }
           }
         }
-      });
+      }
+    };
 
-      const text = response.text;
-      if (!text) throw new Error("No response");
-      
-      const result = JSON.parse(text);
+    const MAX_RETRIES = 3;
+    for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+      try {
+        const response = await ai.models.generateContent(requestConfig);
+        const text = response.text;
+        if (!text) throw new Error("No response from model");
 
-      return {
-        detectedName: result.detectedName,
-        macros: result.macros,
-        // Map the AI's "finalIsoTimestamp" to our internal "detectedTimestamp"
-        detectedTimestamp: result.finalIsoTimestamp 
-      };
+        const result = JSON.parse(text);
+        return {
+          detectedName: result.detectedName,
+          macros: result.macros,
+          detectedTimestamp: result.finalIsoTimestamp
+        };
 
-    } catch (error: any) {
-      console.error("Analysis Error:", error);
-      alert(`Analysis Failed: ${error.message}`);
-      throw error;
+      } catch (error: any) {
+        console.error(`Analysis attempt ${attempt + 1} failed:`, error);
+
+        if (isOverloadedError(error) && attempt < MAX_RETRIES - 1) {
+          const delay = Math.pow(2, attempt) * 1500;
+          await sleep(delay);
+          continue;
+        }
+
+        const friendlyMessage = isOverloadedError(error)
+          ? "Gemini is overloaded right now. Please try again in a few seconds."
+          : "Analysis failed. Please check your API key and connection.";
+
+        alert(friendlyMessage);
+        throw error;
+      }
     }
   }
 };

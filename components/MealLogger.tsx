@@ -30,9 +30,10 @@ const MealLogger: React.FC<MealLoggerProps> = ({ settings, onLogAdded, savedMeal
       let logData: MealLog;
       
       // 1. Check for Saved Meal Match
-      const matchedSavedMeal = !selectedImage ? savedMeals.find(sm => 
-        sm.name.toLowerCase() === inputText.trim().toLowerCase() ||
-        sm.keywords.some(k => inputText.toLowerCase().includes(k.toLowerCase()))
+      const normalizedInput = inputText.trim().toLowerCase();
+      const matchedSavedMeal = !selectedImage ? savedMeals.find(sm =>
+        sm.name.toLowerCase() === normalizedInput ||
+        sm.keywords.some(k => k.toLowerCase() === normalizedInput)
       ) : null;
 
       // 2. Check complexity (Does the user want a specific time?)
