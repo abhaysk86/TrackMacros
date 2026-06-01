@@ -1,7 +1,7 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Macros } from "../types";
 
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const MODEL_CASCADE = ['gemini-3.5-flash', 'gemini-2.5-flash'];
 
 const isOverloadedError = (error: any): boolean => {
   const msg = error?.message ?? '';
@@ -30,16 +30,15 @@ interface AnalysisResult {
 export const GeminiService = {
   validateKey: async (apiKey: string, model: string): Promise<boolean> => {
     try {
-      const SAFE_MODEL = "gemini-2.5-flash"; 
       const ai = new GoogleGenAI({ apiKey });
       await ai.models.generateContent({
-        model: SAFE_MODEL,
+        model: MODEL_CASCADE[0],
         contents: "Hello",
       });
       return true;
     } catch (e: any) {
       console.error("Key validation failed", e);
-      alert(`Debug Error: ${e.message || JSON.stringify(e)}`); 
+      alert(`Debug Error: ${e.message || JSON.stringify(e)}`);
       return false;
     }
   },
@@ -50,7 +49,6 @@ export const GeminiService = {
     description: string,
     imageBase64?: string
   ): Promise<AnalysisResult> => {
-    const SAFE_MODEL = "gemini-2.5-flash";
     const ai = new GoogleGenAI({ apiKey });
 
     const parts: any[] = [];
@@ -104,7 +102,6 @@ export const GeminiService = {
     `;
 
     const requestConfig = {
-      model: SAFE_MODEL,
       contents: { parts: [{ text: prompt }, ...parts] },
       config: {
         responseMimeType: "application/json",
@@ -128,10 +125,12 @@ export const GeminiService = {
       }
     };
 
-    const MAX_RETRIES = 3;
-    for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+    for (let i = 0; i < MODEL_CASCADE.length; i++) {
       try {
-        const response = await ai.models.generateContent(requestConfig);
+        const response = await ai.models.generateContent({
+          ...requestConfig,
+          model: MODEL_CASCADE[i]
+        });
         const text = response.text;
         if (!text) throw new Error("No response from model");
 
@@ -143,11 +142,9 @@ export const GeminiService = {
         };
 
       } catch (error: any) {
-        console.error(`Analysis attempt ${attempt + 1} failed:`, error);
+        console.error(`Model ${MODEL_CASCADE[i]} failed:`, error);
 
-        if (isOverloadedError(error) && attempt < MAX_RETRIES - 1) {
-          const delay = Math.pow(2, attempt) * 1500;
-          await sleep(delay);
+        if (isOverloadedError(error) && i < MODEL_CASCADE.length - 1) {
           continue;
         }
 
