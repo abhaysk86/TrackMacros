@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { setGoals } from '../db';
-import { useGoals, useTheme } from '../hooks';
+import { setApiKey, setGoals } from '../db';
+import { useApiKey, useGoals, useTheme } from '../hooks';
+import { useToast } from '../components/Toast';
 import type { Goals, MacroKey, ThemePref } from '../types';
 
 const FIELDS: { key: MacroKey; label: string; unit: string }[] = [
@@ -20,6 +21,9 @@ const THEMES: { value: ThemePref; label: string }[] = [
 export function Profile() {
   const goals = useGoals();
   const [theme, setTheme] = useTheme();
+  const apiKey = useApiKey();
+  const toast = useToast();
+  const [keyDraft, setKeyDraft] = useState('');
   const [draft, setDraft] = useState<Record<MacroKey, string> | null>(null);
 
   // Load the stored goals into the form once they arrive.
@@ -57,6 +61,56 @@ export function Profile() {
             </label>
           ))}
         </div>
+      </section>
+
+      <section className="mb-4 rounded-[20px] bg-surface p-4 shadow-sm">
+        <h2 className="mb-1 text-[15px] font-bold">Photo and text logging</h2>
+        {apiKey ? (
+          <>
+            <p className="mb-3 text-[13px] leading-relaxed text-muted">
+              Your Gemini key is saved on this device (ending {apiKey.slice(-4)}). Estimates run on your own Google quota.
+            </p>
+            <button
+              onClick={() => {
+                void setApiKey('');
+                toast('Gemini key removed');
+              }}
+              className="rounded-xl border border-line px-3.5 py-2 text-[13px] font-bold text-danger"
+            >
+              Remove key
+            </button>
+          </>
+        ) : (
+          <>
+            <p className="mb-3 text-[13px] leading-relaxed text-muted">
+              Add a Gemini key to log meals from a photo or a description. It is free from{' '}
+              <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="font-semibold text-accent-ink underline">
+                Google AI Studio
+              </a>{' '}
+              and is stored only on this device.
+            </p>
+            <form
+              className="flex gap-2"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const key = keyDraft.trim();
+                if (!key) return;
+                void setApiKey(key);
+                setKeyDraft('');
+                toast('Gemini key saved');
+              }}
+            >
+              <input
+                type="password" value={keyDraft} onChange={(e) => setKeyDraft(e.target.value)} aria-label="Gemini API key"
+                placeholder="Paste your key" autoComplete="off"
+                className="min-w-0 flex-1 rounded-xl border border-line bg-bg px-3 py-2 text-base outline-none focus:border-accent"
+              />
+              <button type="submit" disabled={!keyDraft.trim()} className="rounded-xl bg-accent px-4 text-[13.5px] font-bold text-white disabled:opacity-45">
+                Save
+              </button>
+            </form>
+          </>
+        )}
       </section>
 
       <section className="mb-4 rounded-[20px] bg-surface p-4 shadow-sm">

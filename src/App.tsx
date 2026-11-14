@@ -4,7 +4,7 @@ import { LogSheet } from './components/LogSheet';
 import { MealForm, type MealFormTarget } from './components/MealForm';
 import { useToast } from './components/Toast';
 import { logSavedMeal, undoLogSavedMeal } from './db';
-import { useSavedMeals, useToday } from './hooks';
+import { useApiKey, useSavedMeals, useToday } from './hooks';
 import { shortDate } from './lib/date';
 import { fmt } from './lib/macros';
 import { Meals } from './screens/Meals';
@@ -19,6 +19,7 @@ export default function App() {
   const today = useToday();
   const toast = useToast();
   const savedMeals = useSavedMeals();
+  const apiKey = useApiKey();
   const [tab, setTab] = useState<Tab>('today');
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const [sheet, setSheet] = useState<SheetState>(null);
@@ -70,8 +71,14 @@ export default function App() {
         <LogSheet
           day={logDay}
           today={today}
+          apiKey={apiKey}
           savedMeals={savedMeals}
           onManual={() => setSheet({ type: 'form', target: { kind: 'meal', day: logDay } })}
+          onEstimate={(draft) => setSheet({ type: 'form', target: { kind: 'meal', day: draft.day, draft } })}
+          onOpenProfile={() => {
+            setSheet(null);
+            setTab('profile');
+          }}
           onQuickAdd={(s) => void quickAdd(s, logDay)}
           onClose={closeSheet}
         />

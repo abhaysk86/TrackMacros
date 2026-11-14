@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { addDays, dayKey, diffDays, formatTime, relativeLabel } from './date';
 import { progress, scaleMacros, sumMacros } from './macros';
+import { parseEstimate } from './ai';
 
 describe('date helpers', () => {
   it('builds a local day key', () => {
@@ -41,5 +42,32 @@ describe('macro helpers', () => {
     expect(progress(50, 100)).toBe(0.5);
     expect(progress(150, 100)).toBe(1);
     expect(progress(10, 0)).toBe(1);
+  });
+});
+
+describe('parseEstimate', () => {
+  const today = '2026-11-14';
+  const reply = (over: object = {}) =>
+    JSON.stringify({ name: 'Dal chawal', calories: 489.6, protein: 18, carbs: 78, fats: 11, addedSugar: 3, date: '2026-11-13', time: '13:40', ...over });
+
+  it('reads a normal reply and rounds numbers', () => {
+    expect(parseEstimate(reply(), today, '20:00')).toEqual({
+      name: 'Dal chawal', day: '2026-11-13', time: '13:40', calories: 490, protein: 18, carbs: 78, fats: 11, sugar: 3,
+    });
+  });
+  it('falls back to now for future or malformed dates and times', () => {
+    const e = parseEstimate(reply({ date: '2026-11-20', time: '25:00' }), today, '20:00');
+    expect(e.day).toBe(today);
+    expect(e.time).toBe('20:00');
+    expect(parseEstimate(reply({ date: 'yesterday' }), today, '20:00').day).toBe(today);
+  });
+  it('never returns negative or non-numeric values', () => {
+    const e = parseEstimate(reply({ calories: -50, protein: 'lots', name: '  ' }), today, '20:00');
+    expect(e.calories).toBe(0);
+    expect(e.protein).toBe(0);
+    expect(e.name).toBe('Meal');
+  });
+  it('rejects a reply that is not JSON', () => {
+    expect(() => parseEstimate('sorry, no', today, '20:00')).toThrow();
   });
 });

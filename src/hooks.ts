@@ -1,6 +1,6 @@
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db, getGoals } from './db';
+import { db, getApiKey, getGoals } from './db';
 import { dayKey } from './lib/date';
 import { DEFAULT_GOALS, type Goals, type Meal, type SavedMeal, type ThemePref } from './types';
 
@@ -48,6 +48,10 @@ export function useSavedMeals(): SavedMeal[] {
 
 export function useGoals(): Goals {
   return useLiveQuery(getGoals, []) ?? DEFAULT_GOALS;
+}
+
+export function useApiKey(): string {
+  return useLiveQuery(getApiKey, []) ?? '';
 }
 
 // Theme preference is a single shared store so every screen sees the same value.

@@ -8,8 +8,16 @@ import {
 import { nowTime, shortDate } from '../lib/date';
 import { MACRO_META, type MacroKey, type Macros, type Meal, type SavedMeal } from '../types';
 
+/** Values from an AI estimate, shown for review before anything is logged. */
+export interface MealDraft extends Macros {
+  name: string;
+  day: string;
+  time: string;
+  thumb?: string;
+}
+
 export type MealFormTarget =
-  | { kind: 'meal'; day: string; meal?: Meal }
+  | { kind: 'meal'; day: string; meal?: Meal; draft?: MealDraft }
   | { kind: 'saved'; saved?: SavedMeal };
 
 const PORTIONS = [
@@ -27,21 +35,23 @@ const fieldClass =
 export function MealForm({ target, today, onClose }: { target: MealFormTarget; today: string; onClose: () => void }) {
   const toast = useToast();
   const existing = target.kind === 'meal' ? target.meal : target.saved;
+  const draft = target.kind === 'meal' ? target.draft : undefined;
+  const initial = existing ?? draft;
   const isMeal = target.kind === 'meal';
 
-  const [name, setName] = useState(existing?.name ?? '');
-  const [day, setDay] = useState(target.kind === 'meal' ? (target.meal?.day ?? target.day) : today);
-  const [time, setTime] = useState(target.kind === 'meal' ? (target.meal?.time ?? nowTime()) : '');
+  const [name, setName] = useState(initial?.name ?? '');
+  const [day, setDay] = useState(target.kind === 'meal' ? (target.meal?.day ?? draft?.day ?? target.day) : today);
+  const [time, setTime] = useState(target.kind === 'meal' ? (target.meal?.time ?? draft?.time ?? nowTime()) : '');
   const [portion, setPortion] = useState(1);
   const [saveAsFrequent, setSaveAsFrequent] = useState(false);
 
   // `base` holds the values at 1x so switching portions never accumulates rounding drift.
   const base = useRef<Record<MacroKey, number>>({
-    calories: existing?.calories ?? 0, protein: existing?.protein ?? 0, carbs: existing?.carbs ?? 0,
-    fats: existing?.fats ?? 0, sugar: existing?.sugar ?? 0,
+    calories: initial?.calories ?? 0, protein: initial?.protein ?? 0, carbs: initial?.carbs ?? 0,
+    fats: initial?.fats ?? 0, sugar: initial?.sugar ?? 0,
   });
   const [text, setText] = useState<Record<MacroKey, string>>(() =>
-    Object.fromEntries(KEYS.map((k) => [k, existing ? String(Math.round(existing[k])) : ''])) as Record<MacroKey, string>,
+    Object.fromEntries(KEYS.map((k) => [k, initial ? String(Math.round(initial[k])) : ''])) as Record<MacroKey, string>,
   );
 
   const onNumber = (key: MacroKey, raw: string) => {
@@ -69,7 +79,7 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
         await updateMeal(target.meal.id, { ...values, name: cleanName, day, time });
         toast('Meal updated');
       } else {
-        await addMeal({ ...values, name: cleanName, day, time, source: 'manual' });
+        await addMeal({ ...values, name: cleanName, day, time, source: draft ? 'ai' : 'manual', thumb: draft?.thumb });
         if (saveAsFrequent) await addSavedMeal(cleanName, values);
         toast(day === today ? `${cleanName} added` : `${cleanName} added to ${shortDate(day)}`);
       }
@@ -96,7 +106,7 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
     onClose();
   };
 
-  const title = isMeal ? (existing ? 'Edit meal' : 'Add a meal') : existing ? 'Edit frequent meal' : 'New frequent meal';
+  const title = isMeal ? (existing ? 'Edit meal' : draft ? 'Review meal' : 'Add a meal') : existing ? 'Edit frequent meal' : 'New frequent meal';
 
   const cells: { key: MacroKey; label: string; color?: string; aria: string }[] = [
     { key: 'calories', label: 'kcal', aria: 'Calories (kcal)' },
@@ -129,6 +139,14 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
         }}
         className="flex flex-col gap-2.5"
       >
+        {draft && (
+          <p className="flex items-center gap-3 rounded-xl bg-accent-soft px-3 py-2 text-[12.5px] leading-snug">
+            {draft.thumb && <img src={draft.thumb} alt="" className="h-11 w-11 shrink-0 rounded-lg object-cover" />}
+            <span>
+              <b>AI estimate.</b> Check the portion and numbers, then add it. Nothing is logged until you do.
+            </span>
+          </p>
+        )}
         <input
           className={fieldClass} value={name} onChange={(e) => setName(e.target.value)} aria-label="Meal name"
           placeholder={isMeal ? 'Meal name, e.g. Dal chawal' : 'Meal name, e.g. Standard Coffee'} maxLength={80}

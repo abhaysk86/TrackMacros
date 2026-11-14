@@ -128,6 +128,7 @@ export function Today({ day, today, savedMeals, onSelectDay, onQuickAdd, onEditM
           {meals.map((m) => (
             <li key={m.id}>
               <button onClick={() => onEditMeal(m)} className="flex w-full items-center gap-3 rounded-2xl bg-surface px-3.5 py-3 text-left shadow-sm">
+                {m.thumb && <img src={m.thumb} alt="" className="h-10 w-10 shrink-0 rounded-xl object-cover" />}
                 <span className="min-w-0 flex-1">
                   <span className="block truncate text-[13.5px] font-semibold">{m.name}</span>
                   <span className="mt-0.5 block text-[11px] text-muted">

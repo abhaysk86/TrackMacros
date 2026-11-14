@@ -22,7 +22,7 @@ db.version(1).stores({
 
 const newId = () => crypto.randomUUID();
 
-export type MealInput = Macros & Pick<Meal, 'name' | 'day' | 'time' | 'source'>;
+export type MealInput = Macros & Pick<Meal, 'name' | 'day' | 'time' | 'source' | 'thumb'>;
 
 export async function addMeal(input: MealInput): Promise<Meal> {
   const meal: Meal = { ...input, id: newId(), createdAt: Date.now() };
@@ -64,3 +64,12 @@ export async function getGoals(): Promise<Goals> {
 }
 
 export const setGoals = (goals: Goals) => db.settings.put({ key: 'goals', value: goals });
+
+/** The user's own Gemini key. It is stored only in this browser. */
+export async function getApiKey(): Promise<string> {
+  const row = await db.settings.get('geminiKey');
+  return typeof row?.value === 'string' ? row.value : '';
+}
+
+export const setApiKey = (key: string) =>
+  key ? db.settings.put({ key: 'geminiKey', value: key }) : db.settings.delete('geminiKey');
