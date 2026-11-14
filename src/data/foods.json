@@ -156,7 +156,8 @@
   "sugar": 0,
   "aliases": [
    "anda",
-   "eggs"
+   "eggs",
+   "whole egg"
   ],
   "source": "USDA FoodData Central",
   "usdaDescription": "Egg, whole, cooked, hard-boiled"
@@ -553,7 +554,8 @@
   "sugar": 0,
   "aliases": [
    "anda",
-   "eggs"
+   "eggs",
+   "whole egg"
   ],
   "source": "USDA FoodData Central",
   "usdaDescription": "Egg, whole, cooked, fried"

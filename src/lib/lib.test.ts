@@ -4,7 +4,7 @@ import { progress, scaleMacros, sumMacros } from './macros';
 import { parseEstimate, pickModels } from './ai';
 import { isValidProfile, suggestGoals, type BodyProfile } from './goals';
 import { parseBackup } from './backup';
-import { FOODS, searchFoods } from './foods';
+import { FOODS, matchFood, parseQuery, searchFoods } from './foods';
 
 describe('date helpers', () => {
   it('builds a local day key', () => {
@@ -183,5 +183,27 @@ describe('food library', () => {
     expect(searchFoods('dal')[0].name).toBe('Dal');
     expect(searchFoods('e')).toEqual([]);
     expect(searchFoods('zzzz')).toEqual([]);
+  });
+  it('reads a quantity and ignores size words', () => {
+    expect(parseQuery('2 boiled eggs whole')).toEqual({ quantity: 2, words: ['boiled', 'eggs', 'whole'] });
+    expect(parseQuery('half cup white rice')).toEqual({ quantity: 0.5, words: ['white', 'rice'] });
+    expect(parseQuery('a large banana')).toEqual({ quantity: 1, words: ['banana'] });
+    expect(parseQuery('three roti').quantity).toBe(3);
+  });
+  it('suggests the food despite a quantity, a plural or one stray word', () => {
+    expect(searchFoods('2 boiled eggs whole')[0].name).toBe('Boiled egg');
+    expect(searchFoods('3 rotis')[0].name).toBe('Roti');
+    expect(searchFoods('2 bananas')[0].name).toBe('Banana');
+  });
+  it('matches a single clear food with its quantity', () => {
+    expect(matchFood('2 boiled eggs whole')).toMatchObject({ food: { name: 'Boiled egg' }, quantity: 2 });
+    expect(matchFood('1 banana')).toMatchObject({ food: { name: 'Banana' }, quantity: 1 });
+    expect(matchFood('3 rotis')).toMatchObject({ food: { name: 'Roti' }, quantity: 3 });
+  });
+  it('leaves mixed meals and unclear entries to the AI', () => {
+    expect(matchFood('2 eggs and toast')).toBeNull();
+    expect(matchFood('paneer butter masala with 2 roti')).toBeNull();
+    expect(matchFood('eggs')).toBeNull();
+    expect(matchFood('grilled sandwich')).toBeNull();
   });
 });

@@ -1,6 +1,6 @@
 # name | USDA FoodData Central id | USDA description at the time of selection | serving label | grams | added sugar rule (0 = none, T = all sugar is added, A = approximate: total sugar used) | search aliases
-Boiled egg|173424|Egg, whole, cooked, hard-boiled|1 large|50|0|anda,eggs
-Fried egg|173423|Egg, whole, cooked, fried|1 large|46|0|anda,eggs
+Boiled egg|173424|Egg, whole, cooked, hard-boiled|1 large|50|0|anda,eggs,whole egg
+Fried egg|173423|Egg, whole, cooked, fried|1 large|46|0|anda,eggs,whole egg
 Omelette|172185|Egg, whole, cooked, omelet|1 egg|61|0|omelet,anda
 Scrambled egg|172187|Egg, whole, cooked, scrambled|1 egg|61|0|bhurji,eggs
 Egg white|172183|Egg, white, raw, fresh|1 large|33|0|

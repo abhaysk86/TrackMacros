@@ -5,7 +5,7 @@ import { AiError, estimateMeal } from '../lib/ai';
 import type { MealDraft } from './MealForm';
 import { nowTime, shortDate } from '../lib/date';
 import { prepareImage } from '../lib/image';
-import { searchFoods, type Food } from '../lib/foods';
+import { matchFood, parseQuery, searchFoods, type Food } from '../lib/foods';
 import { fmt } from '../lib/macros';
 import type { SavedMeal } from '../types';
 
@@ -35,13 +35,18 @@ export function LogSheet({ day, today, apiKey, savedMeals, onManual, onQuickAdd,
   const foods = searchFoods(text);
 
   // A food from the built-in list opens the review form with its standard serving; no AI is used.
-  const pickFood = (food: Food) =>
+  const pickFood = (food: Food, quantity = 1) => {
+    // Amounts the portion buttons cover are preselected; others are multiplied in.
+    const onButtons = [0.5, 1, 1.5, 2, 3].includes(quantity);
+    const times = onButtons ? 1 : quantity;
     onEstimate({
       name: food.brand && !food.name.includes(food.brand) ? `${food.brand} ${food.name}` : food.name,
-      calories: food.calories, protein: food.protein, carbs: food.carbs, fats: food.fats, sugar: food.sugar,
-      day, time: nowTime(), source: 'library',
-      note: `${food.serving}. Standard values from ${food.source}.${food.sugarApprox ? ' Added sugar is approximate.' : ''} Use the portion buttons for more or less.`,
+      calories: food.calories * times, protein: food.protein * times, carbs: food.carbs * times,
+      fats: food.fats * times, sugar: food.sugar * times,
+      day, time: nowTime(), source: 'library', portion: onButtons ? quantity : 1,
+      note: `${onButtons ? '1×' : `${quantity} ×`} ${food.serving}. Standard values from ${food.source}, not an AI estimate.${food.sugarApprox ? ' Added sugar is approximate.' : ''}`,
     });
+  };
 
   const estimate = async (description: string, file?: File) => {
     if (!apiKey) {
@@ -66,7 +71,10 @@ export function LogSheet({ day, today, apiKey, savedMeals, onManual, onQuickAdd,
     if (!query) return;
     // An exact frequent-meal name logs instantly, with no AI call.
     const exact = savedMeals.find((s) => s.name.toLowerCase() === query);
-    if (exact) onQuickAdd(exact);
+    if (exact) return onQuickAdd(exact);
+    // A single clear food from the built-in list is used as is, also with no AI call.
+    const known = matchFood(text);
+    if (known) pickFood(known.food, known.quantity);
     else void estimate(text);
   };
 
@@ -137,7 +145,7 @@ export function LogSheet({ day, today, apiKey, savedMeals, onManual, onQuickAdd,
           <ul>
             {foods.map((f) => (
               <li key={f.id} className="border-b border-line last:border-0">
-                <button onClick={() => pickFood(f)} className="flex w-full items-center gap-2 py-2 text-left">
+                <button onClick={() => pickFood(f, parseQuery(text).quantity)} className="flex w-full items-center gap-2 py-2 text-left">
                   <span className="min-w-0 flex-1">
                     <span className="block truncate text-[14px] font-semibold">
                       {f.name}

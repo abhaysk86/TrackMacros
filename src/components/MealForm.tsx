@@ -18,6 +18,8 @@ export interface MealDraft extends Macros {
   source?: 'ai' | 'library';
   /** Shown above the form in place of the AI-estimate notice. */
   note?: string;
+  /** Portion to preselect; the values given are for one portion. */
+  portion?: number;
 }
 
 export type MealFormTarget =
@@ -47,7 +49,8 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
   const [name, setName] = useState(initial?.name ?? '');
   const [day, setDay] = useState(target.kind === 'meal' ? (target.meal?.day ?? draft?.day ?? target.day) : today);
   const [time, setTime] = useState(target.kind === 'meal' ? (target.meal?.time ?? draft?.time ?? nowTime()) : '');
-  const [portion, setPortion] = useState(1);
+  const startPortion = draft?.portion && PORTIONS.some((p) => p.value === draft.portion) ? draft.portion : 1;
+  const [portion, setPortion] = useState(startPortion);
   const [saveAsFrequent, setSaveAsFrequent] = useState(false);
 
   // `base` holds the values at 1x so switching portions never accumulates rounding drift.
@@ -56,7 +59,7 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
     fats: initial?.fats ?? 0, sugar: initial?.sugar ?? 0,
   });
   const [text, setText] = useState<Record<MacroKey, string>>(() =>
-    Object.fromEntries(KEYS.map((k) => [k, initial ? String(Math.round(initial[k])) : ''])) as Record<MacroKey, string>,
+    Object.fromEntries(KEYS.map((k) => [k, initial ? String(Math.round(initial[k] * startPortion)) : ''])) as Record<MacroKey, string>,
   );
 
   const onNumber = (key: MacroKey, raw: string) => {
