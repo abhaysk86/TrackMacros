@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Camera, Image as ImageIcon, KeyRound, Loader2, PencilLine, Plus } from 'lucide-react';
 import { Sheet } from './Sheet';
-import { AiError, estimateMeal } from '../lib/ai';
+import { AiError, PROXY_URL, estimateMeal, fetchQuota, type Quota } from '../lib/ai';
 import type { MealDraft } from './MealForm';
 import { nowTime, shortDate } from '../lib/date';
 import { prepareImage } from '../lib/image';
@@ -27,7 +27,20 @@ export function LogSheet({ day, today, apiKey, savedMeals, onManual, onQuickAdd,
   const [busy, setBusy] = useState<{ thumb?: string } | null>(null);
   const [error, setError] = useState('');
   const [needsKey, setNeedsKey] = useState(false);
+  const [quota, setQuota] = useState<Quota | null>(null);
   const cameraInput = useRef<HTMLInputElement>(null);
+  // AI logging works with the user's own key, or through the free service when it is set up.
+  const aiAvailable = Boolean(apiKey || PROXY_URL);
+
+  useEffect(() => {
+    if (apiKey || !PROXY_URL) return;
+    let live = true;
+    void fetchQuota().then((q) => live && setQuota(q));
+    return () => {
+      live = false;
+    };
+  }, [apiKey]);
+
   const galleryInput = useRef<HTMLInputElement>(null);
 
   const query = text.trim().toLowerCase();
@@ -49,7 +62,7 @@ export function LogSheet({ day, today, apiKey, savedMeals, onManual, onQuickAdd,
   };
 
   const estimate = async (description: string, file?: File) => {
-    if (!apiKey) {
+    if (!aiAvailable) {
       setNeedsKey(true);
       return;
     }
@@ -102,11 +115,11 @@ export function LogSheet({ day, today, apiKey, savedMeals, onManual, onQuickAdd,
       <input ref={galleryInput} type="file" accept="image/*" className="hidden" onChange={onFile} data-testid="gallery-input" />
 
       <div className="grid grid-cols-2 gap-2.5">
-        <button onClick={() => (apiKey ? cameraInput.current?.click() : setNeedsKey(true))} className="rounded-[18px] bg-accent px-3 py-3.5 text-center text-[13.5px] font-bold text-white">
+        <button onClick={() => (aiAvailable ? cameraInput.current?.click() : setNeedsKey(true))} className="rounded-[18px] bg-accent px-3 py-3.5 text-center text-[13.5px] font-bold text-white">
           <Camera className="mx-auto mb-1" size={24} />
           Take a photo
         </button>
-        <button onClick={() => (apiKey ? galleryInput.current?.click() : setNeedsKey(true))} className="rounded-[18px] border border-line bg-surface px-3 py-3.5 text-center text-[13.5px] font-bold">
+        <button onClick={() => (aiAvailable ? galleryInput.current?.click() : setNeedsKey(true))} className="rounded-[18px] border border-line bg-surface px-3 py-3.5 text-center text-[13.5px] font-bold">
           <ImageIcon className="mx-auto mb-1 text-accent-ink" size={24} />
           Choose a photo
         </button>
@@ -128,6 +141,14 @@ export function LogSheet({ day, today, apiKey, savedMeals, onManual, onQuickAdd,
           <ArrowRight size={18} />
         </button>
       </form>
+
+      {quota && !error && (
+        <p className="mt-2 text-center text-[11.5px] text-muted">
+          {quota.paused
+            ? 'Free AI logging is paused for now. The food list and frequent meals still work.'
+            : `${quota.remaining} of ${quota.limit} free AI logs left today · the food list and frequent meals are unlimited`}
+        </p>
+      )}
 
       {error && <p role="alert" className="mt-2.5 rounded-xl bg-accent-soft px-3.5 py-2.5 text-[13px] font-medium text-accent-ink">{error}</p>}
 

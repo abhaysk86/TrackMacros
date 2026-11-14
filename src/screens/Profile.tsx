@@ -120,7 +120,7 @@ export function Profile() {
         ) : (
           <>
             <p className="mb-3 text-[13px] leading-relaxed text-muted">
-              Add a Gemini key to log meals from a photo or a description. It is free from{' '}
+              Add your own Gemini key for unlimited photo and text logging. It is free from{' '}
               <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="font-semibold text-accent-ink underline">
                 Google AI Studio
               </a>{' '}

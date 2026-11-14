@@ -1,5 +1,5 @@
 import type { Macros } from '../types';
-import { formatTime, longDate } from './date';
+import { buildRequest } from '../../supabase/functions/estimate/prompt';
 
 export interface Estimate extends Macros {
   name: string;
@@ -7,7 +7,7 @@ export interface Estimate extends Macros {
   time: string;
 }
 
-export type AiErrorKind = 'key' | 'quota' | 'busy' | 'network' | 'unreadable';
+export type AiErrorKind = 'key' | 'quota' | 'busy' | 'network' | 'unreadable' | 'limit' | 'paused';
 
 export class AiError extends Error {
   constructor(public kind: AiErrorKind, message: string) {
@@ -85,34 +85,6 @@ async function resolveModels(apiKey: string, refresh = false): Promise<string[]>
   return cached?.models?.length ? cached.models : FALLBACK_MODELS;
 }
 
-const RESPONSE_SCHEMA = {
-  type: 'OBJECT',
-  properties: {
-    name: { type: 'STRING', description: 'Short descriptive meal name, at most 6 words.' },
-    calories: { type: 'NUMBER' },
-    protein: { type: 'NUMBER', description: 'grams' },
-    carbs: { type: 'NUMBER', description: 'grams' },
-    fats: { type: 'NUMBER', description: 'grams' },
-    addedSugar: { type: 'NUMBER', description: 'grams of added sugar only, not natural sugar' },
-    date: { type: 'STRING', description: 'YYYY-MM-DD the meal was eaten' },
-    time: { type: 'STRING', description: 'HH:mm, 24-hour, the meal was eaten' },
-  },
-  required: ['name', 'calories', 'protein', 'carbs', 'fats', 'addedSugar', 'date', 'time'],
-};
-
-const buildPrompt = (text: string, today: string, now: string) => `You are a nutrition expert estimating the content of one meal.
-
-Current local date: ${today} (${longDate(today)}). Current local time: ${now}.
-${text ? `The user wrote: "${text}"` : 'The user sent a photo with no description.'}
-
-Do this:
-1. Identify the food and estimate the portion actually shown or described.
-2. Estimate calories, protein, carbs, fats and ADDED sugar (sugar added in cooking or processing; not sugar naturally in fruit or milk) for that portion.
-3. Work out when it was eaten. If the user gives a day or time ("yesterday", "at 8am", "on the 10th"), resolve it against the current date and time. A named meal with no time means a typical time for it (breakfast 08:30, lunch 13:00, dinner 20:00). Otherwise use the current date and time. Never return a future date.
-4. Give a short, plain name for the meal.
-
-Round every number to a whole number. Reply with JSON only.`;
-
 const DAY_RE = /^\d{4}-\d{2}-\d{2}$/;
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
 const num = (v: unknown) => Math.max(0, Math.round(Number(v) || 0));
@@ -135,6 +107,61 @@ export function parseEstimate(raw: string, today: string, now: string): Estimate
   };
 }
 
+/** Address of the free estimate service; empty when it is not set up. */
+export const PROXY_URL: string = import.meta.env.VITE_AI_PROXY_URL ?? '';
+
+/** A random id for this browser, used only to count free AI logs. */
+export function deviceId(): string {
+  let id = localStorage.getItem('tm_device');
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem('tm_device', id);
+  }
+  return id;
+}
+
+export interface Quota {
+  remaining: number;
+  limit: number;
+  paused: boolean;
+}
+
+/** How many free AI logs are left today, or null if that cannot be found out. */
+export async function fetchQuota(): Promise<Quota | null> {
+  if (!PROXY_URL) return null;
+  try {
+    const res = await fetch(`${PROXY_URL}?device=${deviceId()}`);
+    if (!res.ok) return null;
+    const json = await res.json();
+    return typeof json?.remaining === 'number' ? { remaining: json.remaining, limit: json.limit, paused: !!json.paused } : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Estimates a meal through the free service, which holds its own key and enforces the daily allowance. */
+export async function estimateViaProxy({ text, imageBase64, today, now }: Omit<EstimateRequest, 'apiKey'>): Promise<Estimate> {
+  let res: Response;
+  try {
+    res = await fetch(PROXY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ device: deviceId(), text, imageBase64, today, now }),
+    });
+  } catch {
+    throw new AiError('network', 'No connection. Check your internet and try again.');
+  }
+  const json = await res.json().catch(() => null);
+  if (res.ok && typeof json?.estimate === 'string') return parseEstimate(json.estimate, today, now);
+  const code = json?.error?.code;
+  const message = typeof json?.error?.message === 'string' ? json.error.message : '';
+  if (code === 'limit') {
+    throw new AiError('limit', `${message} The food list, frequent meals and manual entry still work, or add your own Gemini key in Profile for unlimited logging.`);
+  }
+  if (code === 'paused') throw new AiError('paused', `${message} You can still use the food list, frequent meals and manual entry.`);
+  throw new AiError('busy', message || 'The AI service is busy right now. Please try again in a moment.');
+}
+
 interface EstimateRequest {
   apiKey: string;
   text: string;
@@ -144,12 +171,9 @@ interface EstimateRequest {
 }
 
 export async function estimateMeal({ apiKey, text, imageBase64, today, now }: EstimateRequest): Promise<Estimate> {
-  const parts: unknown[] = [{ text: buildPrompt(text.trim(), today, formatTime(now)) }];
-  if (imageBase64) parts.push({ inline_data: { mime_type: 'image/jpeg', data: imageBase64 } });
-  const body = JSON.stringify({
-    contents: [{ parts }],
-    generationConfig: { responseMimeType: 'application/json', responseSchema: RESPONSE_SCHEMA },
-  });
+  // No key of their own: use the free service.
+  if (!apiKey) return estimateViaProxy({ text, imageBase64, today, now });
+  const body = JSON.stringify(buildRequest(text, today, now, imageBase64));
 
   const busy = () => new AiError('busy', 'The AI service is busy right now. Please try again in a moment.');
   let models = await resolveModels(apiKey);
