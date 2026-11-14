@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { addDays, dayKey, diffDays, formatTime, relativeLabel } from './date';
 import { progress, scaleMacros, sumMacros } from './macros';
-import { parseEstimate } from './ai';
+import { parseEstimate, pickModels } from './ai';
 
 describe('date helpers', () => {
   it('builds a local day key', () => {
@@ -69,5 +69,35 @@ describe('parseEstimate', () => {
   });
   it('rejects a reply that is not JSON', () => {
     expect(() => parseEstimate('sorry, no', today, '20:00')).toThrow();
+  });
+});
+
+describe('pickModels', () => {
+  const gen = ['generateContent', 'countTokens'];
+  it('picks the newest stable Flash models, newest first', () => {
+    const picked = pickModels([
+      { name: 'models/gemini-2.5-flash', supportedGenerationMethods: gen },
+      { name: 'models/gemini-4.0-flash', supportedGenerationMethods: gen },
+      { name: 'models/gemini-3.5-flash', supportedGenerationMethods: gen },
+      { name: 'models/gemini-3-flash', supportedGenerationMethods: gen },
+      { name: 'models/gemini-2.0-flash', supportedGenerationMethods: gen },
+    ]);
+    expect(picked).toEqual(['gemini-4.0-flash', 'gemini-3.5-flash', 'gemini-3-flash']);
+  });
+  it('ignores previews, lite, pro, special-purpose and non-generating models', () => {
+    const picked = pickModels([
+      { name: 'models/gemini-4.5-flash-preview', supportedGenerationMethods: gen },
+      { name: 'models/gemini-3.5-flash-lite', supportedGenerationMethods: gen },
+      { name: 'models/gemini-3.5-pro', supportedGenerationMethods: gen },
+      { name: 'models/gemini-3.5-flash-image', supportedGenerationMethods: gen },
+      { name: 'models/gemini-flash-latest', supportedGenerationMethods: gen },
+      { name: 'models/gemini-9.0-flash', supportedGenerationMethods: ['embedContent'] },
+      { name: 'models/gemini-9.5-flash' },
+      { name: 'models/gemini-2.5-flash', supportedGenerationMethods: gen },
+    ]);
+    expect(picked).toEqual(['gemini-2.5-flash']);
+  });
+  it('returns nothing for an empty list', () => {
+    expect(pickModels([])).toEqual([]);
   });
 });
