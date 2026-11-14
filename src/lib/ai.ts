@@ -18,7 +18,7 @@ export class AiError extends Error {
 const ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models';
 
 // Used only when Google's model list cannot be fetched.
-const FALLBACK_MODELS = ['gemini-3.5-flash', 'gemini-2.5-flash'];
+const FALLBACK_MODELS = ['gemini-4-hydrogen', 'gemini-3.5-flash', 'gemini-2.5-flash'];
 const MODELS_CACHE_KEY = 'tm_models';
 const MODELS_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
 
@@ -27,14 +27,17 @@ interface ListedModel {
   supportedGenerationMethods?: string[];
 }
 
-// Stable Flash models only: no previews, experiments, "lite" or special-purpose variants.
-const FLASH_RE = /^models\/(gemini-(\d+)(?:\.(\d+))?-flash)$/;
+// Google's fast, low-cost tier has been called "flash" (up to Gemini 3.x) and "hydrogen"
+// (Gemini 4). Add a name here if the tier is renamed again.
+const FAST_TIERS = ['flash', 'hydrogen'];
+// Stable releases only: no previews, experiments, "lite" or special-purpose variants.
+const FAST_RE = new RegExp(`^models/(gemini-(\\d+)(?:\\.(\\d+))?-(?:${FAST_TIERS.join('|')}))$`);
 
-/** Picks the newest stable Flash models from Google's list, newest first. */
+/** Picks the newest stable fast-tier models from Google's list, newest first. */
 export function pickModels(listed: ListedModel[]): string[] {
   return listed
     .filter((m) => m.supportedGenerationMethods?.includes('generateContent'))
-    .map((m) => FLASH_RE.exec(m.name))
+    .map((m) => FAST_RE.exec(m.name))
     .filter((match): match is RegExpExecArray => match !== null)
     .map((match) => ({ id: match[1], major: Number(match[2]), minor: Number(match[3] ?? 0) }))
     .sort((x, y) => y.major - x.major || y.minor - x.minor)
@@ -176,12 +179,17 @@ export async function estimateMeal({ apiKey, text, imageBase64, today, now }: Es
     if (res.status === 429) {
       throw new AiError('quota', 'Your Gemini key has hit its usage limit. Wait a minute, or enter the meal yourself.');
     }
-    if (res.status === 400 || res.status === 401 || res.status === 403) {
+    if (res.status === 401 || res.status === 403) {
       throw new AiError('key', 'Your Gemini key was not accepted. Check it in Profile.');
     }
+    if (res.status === 400) {
+      // A 400 is either a bad key or a request this particular model does not accept.
+      const detail = await res.json().then((j) => String(j?.error?.message ?? ''), () => '');
+      if (/api key/i.test(detail)) throw new AiError('key', 'Your Gemini key was not accepted. Check it in Profile.');
+    }
 
-    // 404 means the model has been retired or renamed; 5xx means it is overloaded.
-    // Either way the next model is tried. If a model was missing and the whole list
+    // 404 means the model has been retired or renamed, 5xx that it is overloaded, and a
+    // remaining 400 that it rejected the request format. Either way the next model is tried. If a model was missing and the whole list
     // is exhausted, fetch a fresh list from Google once and try any new models.
     if (res.status === 404 && i === models.length - 1 && !refreshed) {
       refreshed = true;

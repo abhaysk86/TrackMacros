@@ -97,6 +97,16 @@ describe('pickModels', () => {
     ]);
     expect(picked).toEqual(['gemini-2.5-flash']);
   });
+  it('treats Gemini 4 Hydrogen as the fast tier, ahead of older Flash models', () => {
+    const picked = pickModels([
+      { name: 'models/gemini-3.8-flash', supportedGenerationMethods: gen },
+      { name: 'models/gemini-4-hydrogen', supportedGenerationMethods: gen },
+      { name: 'models/gemini-4-argon', supportedGenerationMethods: gen },
+      { name: 'models/gemini-4-hydrogen-preview', supportedGenerationMethods: gen },
+      { name: 'models/gemini-3.6-flash', supportedGenerationMethods: gen },
+    ]);
+    expect(picked).toEqual(['gemini-4-hydrogen', 'gemini-3.8-flash', 'gemini-3.6-flash']);
+  });
   it('returns nothing for an empty list', () => {
     expect(pickModels([])).toEqual([]);
   });
