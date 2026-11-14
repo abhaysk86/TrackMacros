@@ -21,13 +21,6 @@ export const addDays = (key: string, n: number): string => {
 export const diffDays = (from: string, to: string): number =>
   Math.round((parseDay(to).getTime() - parseDay(from).getTime()) / 86_400_000);
 
-/** The Monday-to-Sunday week containing the given day. */
-export const weekOf = (key: string): string[] => {
-  const mondayOffset = (parseDay(key).getDay() + 6) % 7;
-  const start = addDays(key, -mondayOffset);
-  return Array.from({ length: 7 }, (_, i) => addDays(start, i));
-};
-
 export const relativeLabel = (key: string, today: string): string => {
   const n = diffDays(key, today);
   if (n === 0) return 'Today';

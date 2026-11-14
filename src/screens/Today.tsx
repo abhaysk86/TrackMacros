@@ -1,9 +1,8 @@
-import { Plus } from 'lucide-react';
+import { CalendarDays, ChevronDown, ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 import { Logo } from '../components/Logo';
 import { Summary } from '../components/Summary';
-import { WeekStrip } from '../components/WeekStrip';
 import { useGoals, useMealsForDay } from '../hooks';
-import { formatTime, longDate, relativeLabel, shortDate } from '../lib/date';
+import { addDays, formatTime, longDate, relativeLabel, shortDate } from '../lib/date';
 import { fmt, sumMacros } from '../lib/macros';
 import type { Meal, SavedMeal } from '../types';
 
@@ -37,19 +36,54 @@ export function Today({ day, today, savedMeals, onSelectDay, onQuickAdd, onEditM
         TrackMacros
       </header>
 
-      <div className="mb-2.5 flex items-center justify-between">
-        <div>
-          <h1 className="text-[19px] font-bold tracking-tight">{relativeLabel(day, today)}</h1>
-          <p className="text-[12.5px] text-muted">{longDate(day)}</p>
-        </div>
-        {!isToday && (
-          <button onClick={() => onSelectDay(today)} className="rounded-full bg-accent-soft px-3 py-2 text-xs font-bold text-accent-ink">
-            Back to today
+      <div className="mb-3 flex items-center justify-between gap-2">
+        <label className="relative flex min-w-0 items-center gap-2.5">
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-accent-soft text-accent-ink">
+            <CalendarDays size={19} />
+          </span>
+          <span className="min-w-0">
+            <h1 className="flex items-center gap-1 text-[19px] font-bold leading-tight tracking-tight">
+              {relativeLabel(day, today)}
+              <ChevronDown size={16} className="text-muted" />
+            </h1>
+            <span className="block truncate text-[12.5px] text-muted">{longDate(day)}</span>
+          </span>
+          {/* The native date picker sits invisibly over the label so one tap opens the calendar. */}
+          <input
+            type="date" value={day} max={today} aria-label="Choose a date"
+            onChange={(e) => e.target.value && e.target.value <= today && onSelectDay(e.target.value)}
+            onClick={(e) => {
+              try {
+                e.currentTarget.showPicker?.();
+              } catch {
+                /* the picker opens on its own where showPicker is unavailable */
+              }
+            }}
+            className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+          />
+        </label>
+
+        <div className="flex shrink-0 items-center gap-1">
+          {!isToday && (
+            <button onClick={() => onSelectDay(today)} aria-label="Back to today" className="mr-1 rounded-full bg-accent-soft px-3 py-2 text-xs font-bold text-accent-ink">
+              Today
+            </button>
+          )}
+          <button
+            aria-label="Previous day" onClick={() => onSelectDay(addDays(day, -1))}
+            className="grid h-10 w-10 place-items-center rounded-full bg-surface text-ink shadow-sm"
+          >
+            <ChevronLeft size={19} />
           </button>
-        )}
+          <button
+            aria-label="Next day" disabled={isToday} onClick={() => onSelectDay(addDays(day, 1))}
+            className="grid h-10 w-10 place-items-center rounded-full bg-surface text-ink shadow-sm disabled:opacity-35"
+          >
+            <ChevronRight size={19} />
+          </button>
+        </div>
       </div>
 
-      <WeekStrip day={day} today={today} onSelect={onSelectDay} />
       <Summary totals={totals} goals={goals} />
 
       {savedMeals.length > 0 && (

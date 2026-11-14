@@ -50,7 +50,7 @@ export function Profile() {
                   inputMode="numeric" value={draft?.[key] ?? ''}
                   onChange={(e) => draft && setDraft({ ...draft, [key]: e.target.value.replace(/\D/g, '') })}
                   onBlur={() => commit(key)}
-                  className="w-24 rounded-xl border border-line bg-bg px-3 py-2 text-right font-bold outline-none focus:border-accent"
+                  className="w-24 rounded-xl border border-line bg-bg px-3 py-2 text-right text-base font-bold outline-none focus:border-accent"
                 />
                 <span className="w-7 text-xs font-normal text-muted">{unit}</span>
               </span>

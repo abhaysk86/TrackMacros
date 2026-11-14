@@ -20,7 +20,7 @@ const PORTIONS = [
 
 const KEYS: MacroKey[] = ['calories', 'protein', 'carbs', 'fats', 'sugar'];
 const fieldClass =
-  'w-full rounded-[14px] border border-line bg-surface px-3.5 py-2.5 text-[15px] font-semibold outline-none focus:border-accent';
+  'block h-[46px] w-full min-w-0 appearance-none rounded-[14px] border border-line bg-surface px-3.5 text-left text-base font-semibold outline-none focus:border-accent';
 
 /** Add or edit a logged meal, or a frequent meal. */
 export function MealForm({ target, today, onClose }: { target: MealFormTarget; today: string; onClose: () => void }) {
@@ -107,10 +107,11 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
         className="flex flex-col gap-3"
       >
         <label className="block">
-          <span className="mb-1 block text-xs text-muted">Name</span>
+          <span className="mb-1 block text-xs text-muted">Meal</span>
           <input
             className={fieldClass} value={name} onChange={(e) => setName(e.target.value)}
-            placeholder={isMeal ? 'e.g. Dal chawal' : 'e.g. Standard Coffee'} autoFocus={!existing} maxLength={80}
+            placeholder={isMeal ? 'e.g. Dal chawal' : 'e.g. Standard Coffee'} maxLength={80}
+            name="meal-title" autoComplete="off" enterKeyHint="next"
           />
         </label>
 
@@ -154,7 +155,7 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
                 <input
                   inputMode="decimal" value={text[key]} onChange={(e) => onNumber(key, e.target.value)} placeholder="0"
                   aria-label={`${key === 'sugar' ? 'Added sugar' : label} in grams`}
-                  className="w-full bg-transparent text-center text-[15px] font-bold outline-none"
+                  className="w-full bg-transparent text-center text-base font-bold outline-none"
                 />
                 <span className="block text-[10.5px] font-semibold" style={{ color }}>
                   {label} g
@@ -172,9 +173,11 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
           </label>
         )}
 
-        <button type="submit" disabled={!canSave} className="rounded-2xl bg-accent py-3.5 text-[15px] font-bold text-white disabled:opacity-45">
-          {existing ? 'Save changes' : isMeal ? `Add to ${day === today ? 'today' : shortDate(day)}` : 'Save meal'}
-        </button>
+        <div className="sticky bottom-0 -mx-5 bg-bg px-5 pb-1 pt-2">
+          <button type="submit" disabled={!canSave} className="w-full rounded-2xl bg-accent py-3.5 text-[15px] font-bold text-white disabled:opacity-45">
+            {existing ? 'Save changes' : isMeal ? `Add to ${day === today ? 'today' : shortDate(day)}` : 'Save meal'}
+          </button>
+        </div>
 
         {existing && (
           <button type="button" onClick={() => void remove()} className="py-2 text-[13.5px] font-bold text-danger">

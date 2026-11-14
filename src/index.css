@@ -70,6 +70,16 @@ button {
   cursor: pointer;
 }
 
+/* iOS zooms the page when a focused field is under 16px, so no field goes below that. */
+input,
+select,
+textarea {
+  font-size: max(16px, 1em);
+}
+input::-webkit-date-and-time-value {
+  text-align: left;
+}
+
 /* Hide the scrollbar on horizontally scrolling chip rows. */
 .no-scrollbar {
   scrollbar-width: none;

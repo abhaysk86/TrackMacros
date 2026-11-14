@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { addDays, dayKey, diffDays, formatTime, relativeLabel, weekOf } from './date';
+import { addDays, dayKey, diffDays, formatTime, relativeLabel } from './date';
 import { progress, scaleMacros, sumMacros } from './macros';
 
 describe('date helpers', () => {
@@ -14,14 +14,6 @@ describe('date helpers', () => {
   it('counts days between keys', () => {
     expect(diffDays('2026-11-12', '2026-11-14')).toBe(2);
     expect(diffDays('2026-11-14', '2026-11-12')).toBe(-2);
-  });
-  it('returns the Monday-to-Sunday week', () => {
-    // 14 Nov 2026 is a Saturday.
-    expect(weekOf('2026-11-14')).toEqual([
-      '2026-11-09', '2026-11-10', '2026-11-11', '2026-11-12', '2026-11-13', '2026-11-14', '2026-11-15',
-    ]);
-    expect(weekOf('2026-11-15')[0]).toBe('2026-11-09');
-    expect(weekOf('2026-11-16')[0]).toBe('2026-11-16');
   });
   it('labels days relative to today', () => {
     expect(relativeLabel('2026-11-14', '2026-11-14')).toBe('Today');

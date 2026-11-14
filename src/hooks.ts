@@ -31,10 +31,9 @@ export function useMealsForDay(day: string): Meal[] {
   );
 }
 
-/** The set of days in the range that have at least one meal. */
-export function useDaysWithMeals(from: string, to: string): Set<string> {
-  const days = useLiveQuery(() => db.meals.where('day').between(from, to, true, true).uniqueKeys(), [from, to]);
-  return new Set((days as string[] | undefined) ?? []);
+/** All meals from `from` to `to` inclusive. */
+export function useMealsInRange(from: string, to: string): Meal[] {
+  return useLiveQuery(() => db.meals.where('day').between(from, to, true, true).toArray(), [from, to]) ?? [];
 }
 
 /** Frequent meals, most used first. */

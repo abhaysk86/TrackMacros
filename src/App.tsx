@@ -54,7 +54,7 @@ export default function App() {
           onAllMeals={() => setTab('meals')}
         />
       )}
-      {tab === 'trends' && <Trends />}
+      {tab === 'trends' && <Trends today={today} />}
       {tab === 'meals' && (
         <Meals
           savedMeals={savedMeals}
