@@ -4,6 +4,8 @@ import { X } from 'lucide-react';
 interface SheetProps {
   title: string;
   onClose: () => void;
+  /** Optional control shown beside the close button. */
+  action?: ReactNode;
   children: ReactNode;
 }
 
@@ -29,7 +31,7 @@ function useVisibleArea() {
 }
 
 /** A bottom sheet that slides over the current screen and stays above the keyboard. */
-export function Sheet({ title, onClose, children }: SheetProps) {
+export function Sheet({ title, onClose, action, children }: SheetProps) {
   const area = useVisibleArea();
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
@@ -49,13 +51,16 @@ export function Sheet({ title, onClose, children }: SheetProps) {
       role="dialog" aria-modal="true" aria-label={title}
     >
       <div className="absolute inset-x-0 -top-[100vh] -bottom-[100vh] bg-black/45" onClick={onClose} />
-      <div className="sheet-in relative max-h-[94%] w-full max-w-md overflow-y-auto overscroll-contain rounded-t-[26px] bg-bg px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-3">
-        <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-line" />
-        <div className="mb-4 flex items-center justify-between">
+      <div className="sheet-in relative max-h-[94%] w-full max-w-md overflow-y-auto overscroll-contain rounded-t-[26px] bg-bg px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-2.5">
+        <div className="mx-auto mb-1.5 h-1 w-10 rounded-full bg-line" />
+        <div className="mb-2 flex items-center justify-between">
           <h2 className="text-lg font-bold tracking-tight">{title}</h2>
-          <button onClick={onClose} aria-label="Close" className="-mr-2 grid h-10 w-10 place-items-center rounded-full text-muted">
-            <X size={20} />
-          </button>
+          <span className="-mr-2 flex items-center">
+            {action}
+            <button onClick={onClose} aria-label="Close" className="grid h-10 w-10 place-items-center rounded-full text-muted">
+              <X size={20} />
+            </button>
+          </span>
         </div>
         {children}
       </div>

@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Trash2 } from 'lucide-react';
 import { Sheet } from './Sheet';
 import { useToast } from './Toast';
 import {
@@ -20,7 +21,7 @@ const PORTIONS = [
 
 const KEYS: MacroKey[] = ['calories', 'protein', 'carbs', 'fats', 'sugar'];
 const fieldClass =
-  'block h-[46px] w-full min-w-0 appearance-none rounded-[14px] border border-line bg-surface px-3.5 text-left text-base font-semibold outline-none focus:border-accent';
+  'block w-full min-w-0 appearance-none rounded-[14px] border border-line bg-surface px-3.5 py-[10px] text-left text-base font-semibold leading-6 outline-none focus:border-accent';
 
 /** Add or edit a logged meal, or a frequent meal. */
 export function MealForm({ target, today, onClose }: { target: MealFormTarget; today: string; onClose: () => void }) {
@@ -97,34 +98,53 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
 
   const title = isMeal ? (existing ? 'Edit meal' : 'Add a meal') : existing ? 'Edit frequent meal' : 'New frequent meal';
 
+  const cells: { key: MacroKey; label: string; color?: string; aria: string }[] = [
+    { key: 'calories', label: 'kcal', aria: 'Calories (kcal)' },
+    ...MACRO_META.map(({ key, label, color }) => ({
+      key, label, color, aria: `${key === 'sugar' ? 'Added sugar' : label} in grams`,
+    })),
+  ];
+
+  // The form is kept short enough to fit above a phone keyboard without scrolling.
   return (
-    <Sheet title={title} onClose={onClose}>
+    <Sheet
+      title={title}
+      onClose={onClose}
+      action={
+        existing && (
+          <button
+            type="button" onClick={() => void remove()}
+            aria-label={isMeal ? 'Delete this meal' : 'Remove this frequent meal'}
+            className="grid h-10 w-10 place-items-center rounded-full text-danger"
+          >
+            <Trash2 size={19} />
+          </button>
+        )
+      }
+    >
       <form
         onSubmit={(e) => {
           e.preventDefault();
           void save();
         }}
-        className="flex flex-col gap-3"
+        className="flex flex-col gap-2.5"
       >
-        <label className="block">
-          <span className="mb-1 block text-xs text-muted">Meal</span>
-          <input
-            className={fieldClass} value={name} onChange={(e) => setName(e.target.value)}
-            placeholder={isMeal ? 'e.g. Dal chawal' : 'e.g. Standard Coffee'} maxLength={80}
-            name="meal-title" autoComplete="off" enterKeyHint="next"
-          />
-        </label>
+        <input
+          className={fieldClass} value={name} onChange={(e) => setName(e.target.value)} aria-label="Meal name"
+          placeholder={isMeal ? 'Meal name, e.g. Dal chawal' : 'Meal name, e.g. Standard Coffee'} maxLength={80}
+          name="meal-title" autoComplete="off" enterKeyHint="done"
+        />
 
         {isMeal && (
           <div className="grid grid-cols-[1.3fr_1fr] gap-2.5">
-            <label className="block">
-              <span className="mb-1 block text-xs text-muted">Date</span>
-              <input type="date" className={fieldClass} value={day} max={today} onChange={(e) => e.target.value && setDay(e.target.value)} />
-            </label>
-            <label className="block">
-              <span className="mb-1 block text-xs text-muted">Time</span>
-              <input type="time" className={fieldClass} value={time} onChange={(e) => e.target.value && setTime(e.target.value)} />
-            </label>
+            <input
+              type="date" aria-label="Date" className={fieldClass} value={day} max={today}
+              onChange={(e) => e.target.value && setDay(e.target.value)}
+            />
+            <input
+              type="time" aria-label="Time" className={fieldClass} value={time}
+              onChange={(e) => e.target.value && setTime(e.target.value)}
+            />
           </div>
         )}
 
@@ -133,7 +153,7 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
             {PORTIONS.map((p) => (
               <button
                 key={p.value} type="button" onClick={() => onPortion(p.value)} aria-pressed={portion === p.value}
-                className={`rounded-[9px] py-2 ${portion === p.value ? 'bg-surface text-ink shadow-sm' : 'text-muted'}`}
+                className={`rounded-[9px] py-1.5 ${portion === p.value ? 'bg-surface text-ink shadow-sm' : 'text-muted'}`}
               >
                 {p.label}
               </button>
@@ -141,49 +161,39 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
           </div>
         )}
 
-        <div className="rounded-[20px] bg-surface p-3.5 shadow-sm">
-          <label className="mb-2.5 flex items-baseline justify-between gap-3">
-            <span className="text-xs text-muted">Calories (kcal)</span>
-            <input
-              inputMode="decimal" value={text.calories} onChange={(e) => onNumber('calories', e.target.value)} placeholder="0"
-              className="w-28 rounded-xl border border-line bg-bg px-3 py-1.5 text-right text-2xl font-extrabold tracking-tight outline-none focus:border-accent"
-            />
-          </label>
-          <div className="grid grid-cols-4 gap-2">
-            {MACRO_META.map(({ key, label, color }) => (
-              <label key={key} className="rounded-xl border border-line bg-bg px-1 py-2 text-center focus-within:border-accent">
-                <input
-                  inputMode="decimal" value={text[key]} onChange={(e) => onNumber(key, e.target.value)} placeholder="0"
-                  aria-label={`${key === 'sugar' ? 'Added sugar' : label} in grams`}
-                  className="w-full bg-transparent text-center text-base font-bold outline-none"
-                />
-                <span className="block text-[10.5px] font-semibold" style={{ color }}>
-                  {label} g
-                </span>
-              </label>
-            ))}
-          </div>
+        <div className="grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr] gap-1.5">
+          {cells.map(({ key, label, color, aria }) => (
+            <label
+              key={key}
+              className={`rounded-xl border bg-surface px-0.5 py-1.5 text-center focus-within:border-accent ${
+                key === 'calories' ? 'border-accent/50' : 'border-line'
+              }`}
+            >
+              <input
+                inputMode="decimal" value={text[key]} onChange={(e) => onNumber(key, e.target.value)} placeholder="0"
+                aria-label={aria} enterKeyHint="done"
+                className={`w-full bg-transparent text-center font-bold outline-none ${key === 'calories' ? 'text-[17px]' : 'text-base'}`}
+              />
+              <span className="block text-[10.5px] font-semibold text-muted" style={color ? { color } : undefined}>
+                {label}
+              </span>
+            </label>
+          ))}
         </div>
 
         {isMeal && !existing && (
-          <label className="flex items-center justify-between px-0.5 py-1 text-[13.5px] font-semibold">
+          <label className="flex items-center justify-between px-0.5 text-[13.5px] font-semibold">
             Save as a frequent meal
             <input type="checkbox" className="peer sr-only" checked={saveAsFrequent} onChange={(e) => setSaveAsFrequent(e.target.checked)} />
             <span className="relative h-[26px] w-11 rounded-full bg-line transition-colors after:absolute after:left-[3px] after:top-[3px] after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform peer-checked:bg-accent peer-checked:after:translate-x-[18px] peer-focus-visible:ring-2 peer-focus-visible:ring-accent" />
           </label>
         )}
 
-        <div className="sticky bottom-0 -mx-5 bg-bg px-5 pb-1 pt-2">
-          <button type="submit" disabled={!canSave} className="w-full rounded-2xl bg-accent py-3.5 text-[15px] font-bold text-white disabled:opacity-45">
+        <div className="sticky bottom-0 -mx-5 bg-bg px-5 pt-0.5">
+          <button type="submit" disabled={!canSave} className="w-full rounded-2xl bg-accent py-3 text-[15px] font-bold text-white disabled:opacity-45">
             {existing ? 'Save changes' : isMeal ? `Add to ${day === today ? 'today' : shortDate(day)}` : 'Save meal'}
           </button>
         </div>
-
-        {existing && (
-          <button type="button" onClick={() => void remove()} className="py-2 text-[13.5px] font-bold text-danger">
-            {isMeal ? 'Delete this meal' : 'Remove this frequent meal'}
-          </button>
-        )}
       </form>
     </Sheet>
   );
