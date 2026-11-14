@@ -14,6 +14,10 @@ export interface MealDraft extends Macros {
   day: string;
   time: string;
   thumb?: string;
+  /** Where the values came from; defaults to an AI estimate. */
+  source?: 'ai' | 'library';
+  /** Shown above the form in place of the AI-estimate notice. */
+  note?: string;
 }
 
 export type MealFormTarget =
@@ -25,6 +29,7 @@ const PORTIONS = [
   { value: 1, label: '1×' },
   { value: 1.5, label: '1½×' },
   { value: 2, label: '2×' },
+  { value: 3, label: '3×' },
 ];
 
 const KEYS: MacroKey[] = ['calories', 'protein', 'carbs', 'fats', 'sugar'];
@@ -79,7 +84,7 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
         await updateMeal(target.meal.id, { ...values, name: cleanName, day, time });
         toast('Meal updated');
       } else {
-        await addMeal({ ...values, name: cleanName, day, time, source: draft ? 'ai' : 'manual', thumb: draft?.thumb });
+        await addMeal({ ...values, name: cleanName, day, time, source: draft ? (draft.source ?? 'ai') : 'manual', thumb: draft?.thumb });
         if (saveAsFrequent) await addSavedMeal(cleanName, values);
         toast(day === today ? `${cleanName} added` : `${cleanName} added to ${shortDate(day)}`);
       }
@@ -106,7 +111,7 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
     onClose();
   };
 
-  const title = isMeal ? (existing ? 'Edit meal' : draft ? 'Review meal' : 'Add a meal') : existing ? 'Edit frequent meal' : 'New frequent meal';
+  const title = isMeal ? (existing ? 'Edit meal' : draft ? (draft.source === 'library' ? 'Add from food list' : 'Review meal') : 'Add a meal') : existing ? 'Edit frequent meal' : 'New frequent meal';
 
   const cells: { key: MacroKey; label: string; color?: string; aria: string }[] = [
     { key: 'calories', label: 'kcal', aria: 'Calories (kcal)' },
@@ -143,7 +148,11 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
           <p className="flex items-center gap-3 rounded-xl bg-accent-soft px-3 py-2 text-[12.5px] leading-snug">
             {draft.thumb && <img src={draft.thumb} alt="" className="h-11 w-11 shrink-0 rounded-lg object-cover" />}
             <span>
-              <b>AI estimate.</b> Check the portion and numbers, then add it. Nothing is logged until you do.
+              {draft.note ?? (
+                <>
+                  <b>AI estimate.</b> Check the portion and numbers, then add it. Nothing is logged until you do.
+                </>
+              )}
             </span>
           </p>
         )}
@@ -167,7 +176,7 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
         )}
 
         {isMeal && (
-          <div className="grid grid-cols-4 rounded-xl bg-line p-[3px] text-center text-[13px] font-semibold" role="group" aria-label="Portion">
+          <div className="grid grid-cols-5 rounded-xl bg-line p-[3px] text-center text-[13px] font-semibold" role="group" aria-label="Portion">
             {PORTIONS.map((p) => (
               <button
                 key={p.value} type="button" onClick={() => onPortion(p.value)} aria-pressed={portion === p.value}

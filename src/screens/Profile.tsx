@@ -189,7 +189,10 @@ export function Profile() {
       <section className="rounded-[20px] bg-surface p-4 shadow-sm">
         <h2 className="mb-1 text-[15px] font-bold">About</h2>
         <p className="text-[13px] leading-relaxed text-muted">
-          TrackMacros keeps your meals and goals on this device.
+          TrackMacros keeps your meals and goals on this device. Food list values come from{' '}
+          <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener noreferrer" className="underline">USDA FoodData Central</a> and{' '}
+          <a href="https://world.openfoodfacts.org/" target="_blank" rel="noopener noreferrer" className="underline">Open Food Facts</a>{' '}
+          (Open Database Licence).
           <br />
           Built by{' '}
           <a href="https://theabhayperspective.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-accent-ink underline">

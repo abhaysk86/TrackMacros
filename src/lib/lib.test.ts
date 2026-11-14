@@ -4,6 +4,7 @@ import { progress, scaleMacros, sumMacros } from './macros';
 import { parseEstimate, pickModels } from './ai';
 import { isValidProfile, suggestGoals, type BodyProfile } from './goals';
 import { parseBackup } from './backup';
+import { FOODS, searchFoods } from './foods';
 
 describe('date helpers', () => {
   it('builds a local day key', () => {
@@ -156,5 +157,31 @@ describe('parseBackup', () => {
   it('rejects files that are not backups', () => {
     expect(() => parseBackup('hello')).toThrow();
     expect(() => parseBackup(JSON.stringify({ app: 'other', meals: [], savedMeals: [] }))).toThrow();
+  });
+});
+
+describe('food library', () => {
+  it('ships with a full set of valid entries', () => {
+    expect(FOODS.length).toBeGreaterThan(100);
+    for (const f of FOODS) {
+      expect(f.name && f.serving && f.source).toBeTruthy();
+      for (const k of ['calories', 'protein', 'carbs', 'fats', 'sugar'] as const) {
+        expect(Number.isFinite(f[k]) && f[k] >= 0, `${f.name} ${k}`).toBe(true);
+      }
+      expect(f.sugar, `${f.name} sugar within carbs`).toBeLessThanOrEqual(f.carbs + 0.5);
+    }
+    expect(new Set(FOODS.map((f) => f.id)).size).toBe(FOODS.length);
+  });
+  it('finds foods by name, alias and brand', () => {
+    expect(searchFoods('boiled egg')[0].name).toBe('Boiled egg');
+    expect(searchFoods('coke').map((f) => f.name)).toContain('Coca-Cola');
+    expect(searchFoods('lays').length).toBe(2);
+    expect(searchFoods('chawal')[0].name).toBe('White rice, cooked');
+    expect(searchFoods('amul').every((f) => f.brand === 'Amul')).toBe(true);
+  });
+  it('ranks names that start with the query first and needs two characters', () => {
+    expect(searchFoods('dal')[0].name).toBe('Dal');
+    expect(searchFoods('e')).toEqual([]);
+    expect(searchFoods('zzzz')).toEqual([]);
   });
 });
