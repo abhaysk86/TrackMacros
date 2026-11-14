@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Camera, Heart, Target } from 'lucide-react';
 import { GoalCalculator } from '../components/GoalCalculator';
+import { LegalLinks, LegalSheet, type LegalDoc } from '../components/Legal';
 import { Logo } from '../components/Logo';
 import { setGoals, setOnboarded } from '../db';
 import type { Goals } from '../types';
@@ -14,6 +15,7 @@ const POINTS = [
 /** First-run screen: what the app does, then goal setup. */
 export function Welcome() {
   const [step, setStep] = useState<'intro' | 'goals'>('intro');
+  const [legal, setLegal] = useState<LegalDoc | null>(null);
 
   const finish = async (goals?: Goals) => {
     if (goals) await setGoals(goals);
@@ -58,7 +60,10 @@ export function Welcome() {
           Get started
         </button>
         <p className="mt-4 text-center text-[11.5px] leading-relaxed text-muted">
-          Your meals stay on this device. Nutrition figures are estimates, not medical advice.
+          Your meals are stored on this device. Photos and descriptions you send for an estimate go to Google's AI and are
+          not kept. Figures are estimates, not medical advice.
+          <br />
+          By continuing you agree to the <LegalLinks onOpen={setLegal} />.
           <br />
           Built by{' '}
           <a href="https://theabhayperspective.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-accent-ink underline">
@@ -66,6 +71,7 @@ export function Welcome() {
           </a>
         </p>
       </div>
+      {legal && <LegalSheet doc={legal} onClose={() => setLegal(null)} />}
     </div>
   );
 }

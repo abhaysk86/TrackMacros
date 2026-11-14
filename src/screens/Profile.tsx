@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { GoalCalculator } from '../components/GoalCalculator';
+import { CONTACT_EMAIL, LegalLinks, LegalSheet, type LegalDoc } from '../components/Legal';
 import { Sheet } from '../components/Sheet';
 import { parseBackup } from '../lib/backup';
 import { dayKey } from '../lib/date';
@@ -31,6 +32,7 @@ export function Profile() {
   const [draft, setDraft] = useState<Record<MacroKey, string> | null>(null);
 
   const [calculating, setCalculating] = useState(false);
+  const [legal, setLegal] = useState<LegalDoc | null>(null);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const importInput = useRef<HTMLInputElement>(null);
 
@@ -199,7 +201,16 @@ export function Profile() {
             Theabhayperspective
           </a>
         </p>
+        <p className="mt-2 text-[13px] text-muted">
+          <LegalLinks onOpen={setLegal} />
+          {' · '}
+          <a href={`mailto:${CONTACT_EMAIL}?subject=TrackMacros%20feedback`} className="font-semibold text-accent-ink underline">
+            Send feedback
+          </a>
+        </p>
       </section>
+
+      {legal && <LegalSheet doc={legal} onClose={() => setLegal(null)} />}
 
       {calculating && (
         <Sheet title="Work out my goals" onClose={() => setCalculating(false)}>
