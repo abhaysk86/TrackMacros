@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { BottomNav, type Tab } from './components/BottomNav';
 import { LogSheet } from './components/LogSheet';
 import { MealForm, type MealFormTarget } from './components/MealForm';
@@ -98,6 +99,8 @@ export default function App() {
         />
       )}
       {sheet?.type === 'form' && <MealForm target={sheet.target} today={today} onClose={closeSheet} />}
+
+      <Analytics />
     </div>
   );
 }
