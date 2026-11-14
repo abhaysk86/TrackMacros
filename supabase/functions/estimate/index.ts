@@ -9,7 +9,6 @@ const num = (key: string, fallback: number) => Number(env(key)) || fallback;
 
 const SUPABASE_URL = env('SUPABASE_URL');
 const SERVICE_KEY = env('SUPABASE_SERVICE_ROLE_KEY');
-const GEMINI_KEY = env('GEMINI_API_KEY');
 const MODELS = env('GEMINI_MODELS', 'gemini-4-hydrogen,gemini-3.8-flash').split(',').map((m) => m.trim()).filter(Boolean);
 const DEVICE_LIMIT = num('DEVICE_DAILY_LIMIT', 5);
 const IP_LIMIT = num('IP_DAILY_LIMIT', 20);
@@ -23,7 +22,6 @@ const ALLOWED_ORIGINS = [
   /^https:\/\/trackmacros\.theabhayperspective\.com$/,
   /^https:\/\/track-macros[a-z0-9-]*\.vercel\.app$/,
   /^http:\/\/localhost(:\d+)?$/,
-  ...env('EXTRA_ORIGINS').split(',').filter(Boolean).map((o) => new RegExp(`^${o.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`)),
 ];
 
 const DAY_RE = /^\d{4}-\d{2}-\d{2}$/;
@@ -75,6 +73,8 @@ Deno.serve(async (req: Request) => {
       }));
     }
     if (req.method !== 'POST') return fail(405, 'bad_request', 'Use POST.');
+    // Read per request so a newly saved secret is picked up without a redeploy.
+    const GEMINI_KEY = env('GEMINI_API_KEY').trim();
     if (!GEMINI_KEY) return fail(503, 'paused', 'Free AI logging is not set up yet.');
 
     const body = await req.json().catch(() => null);
