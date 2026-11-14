@@ -1,20 +1,39 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# TrackMacros
 
-# Run and deploy your AI Studio app
+A macro tracker that runs as an installable web app. Log meals, save the ones you eat often, and track
+calories, protein, carbs, fats and added sugar against daily goals.
 
-This contains everything you need to run your app locally.
+Live at https://trackmacros.theabhayperspective.com
 
-View your app in AI Studio: https://ai.studio/apps/drive/1j0iN5iqF1NzeCFaivJvqVPs57pQvZHbm
+## Stack
 
-## Run Locally
+- React, TypeScript and Vite
+- Tailwind CSS for styling, with light and dark themes defined in `src/index.css`
+- Dexie (IndexedDB) for on-device storage; no data leaves the device
+- `vite-plugin-pwa` for install and offline support
 
-**Prerequisites:**  Node.js
+## Develop
 
+```bash
+npm install
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+npm run dev
+```
+
+```bash
+npm test
+```
+
+```bash
+npm run build
+```
+
+## Layout
+
+- `src/db.ts`: database tables and all write operations
+- `src/hooks.ts`: live queries, the current day, and the theme preference
+- `src/lib/`: date and macro helpers, with tests
+- `src/components/`: shared UI (summary ring, week strip, sheets, forms, navigation)
+- `src/screens/`: Today, Trends, Meals and Profile

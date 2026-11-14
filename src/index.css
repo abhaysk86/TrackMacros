@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #faf6ef;
+  --surface: #ffffff;
+  --ink: #1e2420;
+  --muted: #686f69;
+  --line: #ece6db;
+  --accent: #e2603a;
+  --accent-ink: #c94a25;
+  --accent-soft: #fbe7df;
+  --protein: #17805f;
+  --carbs: #e0a22b;
+  --fats: #4f78d1;
+  --sugar: #b9508f;
+  --danger: #c0392b;
+  --toast: #1e2420;
+  --toast-ink: #ffffff;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #121614;
+  --surface: #1c221e;
+  --ink: #f2efe9;
+  --muted: #98a19a;
+  --line: #2b322d;
+  --accent: #f0764f;
+  --accent-ink: #f58a66;
+  --accent-soft: #3a241c;
+  --protein: #35b88c;
+  --carbs: #ebb645;
+  --fats: #7195e6;
+  --sugar: #d570ac;
+  --danger: #ef6b5b;
+  --toast: #f2efe9;
+  --toast-ink: #121614;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-protein: var(--protein);
+  --color-carbs: var(--carbs);
+  --color-fats: var(--fats);
+  --color-sugar: var(--sugar);
+  --color-danger: var(--danger);
+  --color-toast: var(--toast);
+  --color-toast-ink: var(--toast-ink);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Hide the scrollbar on horizontally scrolling chip rows. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes sheet-up {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.sheet-in {
+  animation: sheet-up 0.18s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sheet-in { animation: none; }
+}
