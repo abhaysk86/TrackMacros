@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { addDays, dayKey, diffDays, formatTime, relativeLabel } from './date';
 import { progress, scaleMacros, sumMacros } from './macros';
 import { parseEstimate, pickModels } from './ai';
+import { isValidProfile, suggestGoals, type BodyProfile } from './goals';
+import { parseBackup } from './backup';
 
 describe('date helpers', () => {
   it('builds a local day key', () => {
@@ -109,5 +111,50 @@ describe('pickModels', () => {
   });
   it('returns nothing for an empty list', () => {
     expect(pickModels([])).toEqual([]);
+  });
+});
+
+describe('suggestGoals', () => {
+  const base: BodyProfile = { sex: 'male', age: 40, heightCm: 175, weightKg: 80, activity: 'light', aim: 'maintain' };
+  it('matches a hand-worked example', () => {
+    // BMR = 800 + 1093.75 - 200 + 5 = 1698.75; x 1.375 = 2335.8 -> 2350 kcal
+    // protein 80 x 1.6 = 128 -> 130 g; fat 2350 x 0.27 / 9 = 70.5 -> 70 g
+    // carbs (2350 - 520 - 630) / 4 = 300 g; sugar 2350 x 0.06 / 4 = 35.25 -> 35 g
+    expect(suggestGoals(base)).toEqual({ calories: 2350, protein: 130, carbs: 300, fats: 70, sugar: 35 });
+  });
+  it('lowers calories to lose weight and raises them to gain', () => {
+    expect(suggestGoals({ ...base, aim: 'lose' }).calories).toBe(1850);
+    expect(suggestGoals({ ...base, aim: 'gain' }).calories).toBe(2650);
+  });
+  it('never goes below a safe calorie floor', () => {
+    const small: BodyProfile = { sex: 'female', age: 60, heightCm: 150, weightKg: 45, activity: 'sedentary', aim: 'lose' };
+    expect(suggestGoals(small).calories).toBe(1200);
+    expect(suggestGoals(small).carbs).toBeGreaterThanOrEqual(0);
+  });
+  it('validates plausible ranges', () => {
+    expect(isValidProfile(base)).toBe(true);
+    expect(isValidProfile({ ...base, age: 5 })).toBe(false);
+    expect(isValidProfile({ ...base, weightKg: 0 })).toBe(false);
+  });
+});
+
+describe('parseBackup', () => {
+  const meal = { id: 'm1', name: 'Dal', day: '2026-11-14', time: '13:00', source: 'manual', createdAt: 1, calories: 400, protein: 15, carbs: 60, fats: 8, sugar: 0 };
+  const saved = { id: 's1', name: 'Coffee', uses: 3, createdAt: 1, calories: 91, protein: 4, carbs: 9, fats: 4, sugar: 5 };
+  const file = (over: object = {}) => JSON.stringify({ app: 'trackmacros', version: 1, exportedAt: 'x', meals: [meal], savedMeals: [saved], goals: { calories: 2000, protein: 130, carbs: 220, fats: 65, sugar: 30 }, ...over });
+
+  it('reads a valid backup', () => {
+    const b = parseBackup(file());
+    expect(b.meals).toHaveLength(1);
+    expect(b.savedMeals).toHaveLength(1);
+    expect(b.goals?.calories).toBe(2000);
+  });
+  it('drops broken entries and keeps good ones', () => {
+    const b = parseBackup(file({ meals: [meal, { ...meal, id: 'm2', day: '14/11/2026' }, { id: 'm3' }, null] }));
+    expect(b.meals.map((m) => m.id)).toEqual(['m1']);
+  });
+  it('rejects files that are not backups', () => {
+    expect(() => parseBackup('hello')).toThrow();
+    expect(() => parseBackup(JSON.stringify({ app: 'other', meals: [], savedMeals: [] }))).toThrow();
   });
 });

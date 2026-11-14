@@ -1,5 +1,9 @@
-import { useEffect, useState } from 'react';
-import { setApiKey, setGoals } from '../db';
+import { useEffect, useRef, useState } from 'react';
+import { GoalCalculator } from '../components/GoalCalculator';
+import { Sheet } from '../components/Sheet';
+import { parseBackup } from '../lib/backup';
+import { dayKey } from '../lib/date';
+import { deleteAllData, exportBackup, importBackup, setApiKey, setGoals } from '../db';
 import { useApiKey, useGoals, useTheme } from '../hooks';
 import { useToast } from '../components/Toast';
 import type { Goals, MacroKey, ThemePref } from '../types';
@@ -26,10 +30,40 @@ export function Profile() {
   const [keyDraft, setKeyDraft] = useState('');
   const [draft, setDraft] = useState<Record<MacroKey, string> | null>(null);
 
-  // Load the stored goals into the form once they arrive.
+  const [calculating, setCalculating] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const importInput = useRef<HTMLInputElement>(null);
+
+  // Keep the form in step with the stored goals (first load, calculator, import).
+  const goalsKey = JSON.stringify(goals);
   useEffect(() => {
-    setDraft((d) => d ?? (Object.fromEntries(FIELDS.map((f) => [f.key, String(goals[f.key])])) as Record<MacroKey, string>));
-  }, [goals]);
+    setDraft(Object.fromEntries(FIELDS.map((f) => [f.key, String(goals[f.key])])) as Record<MacroKey, string>);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [goalsKey]);
+
+  const exportData = async () => {
+    const backup = await exportBackup();
+    const url = URL.createObjectURL(new Blob([JSON.stringify(backup)], { type: 'application/json' }));
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `trackmacros-backup-${dayKey()}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+    toast(`Backup saved: ${backup.meals.length} meals`);
+  };
+
+  const importData = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    if (!file) return;
+    try {
+      const backup = parseBackup(await file.text());
+      await importBackup(backup);
+      toast(`Imported ${backup.meals.length} meals and ${backup.savedMeals.length} frequent meals`);
+    } catch (err) {
+      toast(err instanceof Error ? err.message : 'That file could not be imported.');
+    }
+  };
 
   const commit = (key: MacroKey) => {
     if (!draft) return;
@@ -61,6 +95,9 @@ export function Profile() {
             </label>
           ))}
         </div>
+        <button onClick={() => setCalculating(true)} className="mt-3.5 w-full rounded-xl border border-line py-2.5 text-[13.5px] font-bold text-accent-ink">
+          Work out my goals for me
+        </button>
       </section>
 
       <section className="mb-4 rounded-[20px] bg-surface p-4 shadow-sm">
@@ -127,6 +164,28 @@ export function Profile() {
         </div>
       </section>
 
+      <section className="mb-4 rounded-[20px] bg-surface p-4 shadow-sm">
+        <h2 className="mb-1 text-[15px] font-bold">Your data</h2>
+        <p className="mb-3 text-[13px] leading-relaxed text-muted">
+          Everything is stored on this device only. Save a backup file before changing phones or clearing your browser.
+        </p>
+        <input ref={importInput} type="file" accept="application/json,.json" className="hidden" onChange={(e) => void importData(e)} data-testid="import-input" />
+        <div className="grid grid-cols-2 gap-2">
+          <button onClick={() => void exportData()} className="rounded-xl border border-line py-2.5 text-[13.5px] font-bold">Save a backup</button>
+          <button onClick={() => importInput.current?.click()} className="rounded-xl border border-line py-2.5 text-[13.5px] font-bold">Restore a backup</button>
+        </div>
+        <button
+          onClick={() => {
+            if (!confirmDelete) return setConfirmDelete(true);
+            void deleteAllData();
+          }}
+          onBlur={() => setConfirmDelete(false)}
+          className={`mt-2 w-full rounded-xl py-2.5 text-[13.5px] font-bold ${confirmDelete ? 'bg-danger text-white' : 'text-danger'}`}
+        >
+          {confirmDelete ? 'Tap again to delete everything on this device' : 'Delete all my data'}
+        </button>
+      </section>
+
       <section className="rounded-[20px] bg-surface p-4 shadow-sm">
         <h2 className="mb-1 text-[15px] font-bold">About</h2>
         <p className="text-[13px] leading-relaxed text-muted">
@@ -138,6 +197,19 @@ export function Profile() {
           </a>
         </p>
       </section>
+
+      {calculating && (
+        <Sheet title="Work out my goals" onClose={() => setCalculating(false)}>
+          <GoalCalculator
+            submitLabel="Use these goals"
+            onDone={(suggested) => {
+              void setGoals(suggested);
+              setCalculating(false);
+              toast('Goals updated');
+            }}
+          />
+        </Sheet>
+      )}
     </>
   );
 }

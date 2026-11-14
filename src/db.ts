@@ -2,6 +2,7 @@ import Dexie, { type EntityTable } from 'dexie';
 import { DEFAULT_GOALS, type Goals, type Macros, type Meal, type SavedMeal } from './types';
 import { nowTime } from './lib/date';
 import { pickMacros } from './lib/macros';
+import type { Backup } from './lib/backup';
 
 interface Setting {
   key: string;
@@ -73,3 +74,37 @@ export async function getApiKey(): Promise<string> {
 
 export const setApiKey = (key: string) =>
   key ? db.settings.put({ key: 'geminiKey', value: key }) : db.settings.delete('geminiKey');
+
+export async function isOnboarded(): Promise<boolean> {
+  return (await db.settings.get('onboarded'))?.value === true;
+}
+
+export const setOnboarded = () => db.settings.put({ key: 'onboarded', value: true });
+
+/** Everything needed to restore the app on another device. The Gemini key is left out on purpose. */
+export async function exportBackup(): Promise<Backup> {
+  return {
+    app: 'trackmacros',
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    meals: await db.meals.toArray(),
+    savedMeals: await db.savedMeals.toArray(),
+    goals: await getGoals(),
+  };
+}
+
+/** Adds a backup's contents to what is already here; entries with the same id are replaced. */
+export async function importBackup(backup: Pick<Backup, 'meals' | 'savedMeals'> & { goals?: Goals }): Promise<void> {
+  await db.transaction('rw', db.meals, db.savedMeals, db.settings, async () => {
+    await db.meals.bulkPut(backup.meals);
+    await db.savedMeals.bulkPut(backup.savedMeals);
+    if (backup.goals) await setGoals(backup.goals);
+  });
+}
+
+/** Removes every meal, frequent meal and setting from this device. */
+export async function deleteAllData(): Promise<void> {
+  await db.transaction('rw', db.meals, db.savedMeals, db.settings, async () => {
+    await Promise.all([db.meals.clear(), db.savedMeals.clear(), db.settings.clear()]);
+  });
+}

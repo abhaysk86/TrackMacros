@@ -1,6 +1,6 @@
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db, getApiKey, getGoals } from './db';
+import { db, getApiKey, getGoals, isOnboarded } from './db';
 import { dayKey } from './lib/date';
 import { DEFAULT_GOALS, type Goals, type Meal, type SavedMeal, type ThemePref } from './types';
 
@@ -48,6 +48,11 @@ export function useSavedMeals(): SavedMeal[] {
 
 export function useGoals(): Goals {
   return useLiveQuery(getGoals, []) ?? DEFAULT_GOALS;
+}
+
+/** Whether first-run setup is done; undefined while the database is still loading. */
+export function useOnboarded(): boolean | undefined {
+  return useLiveQuery(isOnboarded, []);
 }
 
 export function useApiKey(): string {
