@@ -1,0 +1,88 @@
+# name | USDA FoodData Central id | USDA description at the time of selection | serving label | grams | added sugar rule (0 = none, T = all sugar is added, A = approximate: total sugar used) | search aliases
+Boiled egg|173424|Egg, whole, cooked, hard-boiled|1 large|50|0|anda,eggs,whole egg
+Fried egg|173423|Egg, whole, cooked, fried|1 large|46|0|anda,eggs,whole egg
+Omelette|172185|Egg, whole, cooked, omelet|1 egg|61|0|omelet,anda
+Scrambled egg|172187|Egg, whole, cooked, scrambled|1 egg|61|0|bhurji,eggs
+Egg white|172183|Egg, white, raw, fresh|1 large|33|0|
+Milk, full cream|746782|Milk, whole, 3.25% milkfat, with added vitamin D|1 glass (200 ml)|206|0|doodh
+Milk, toned|171267|Milk, reduced fat, fluid, 2% milkfat, with added vitamin A and vitamin D|1 glass (200 ml)|206|0|doodh,low fat milk
+Curd|2259793|Yogurt, plain, whole milk|1 small bowl|100|0|dahi,yogurt,yoghurt
+Greek yogurt, plain|330137|Yogurt, Greek, plain, nonfat|1 small bowl|100|0|yoghurt
+Cheddar cheese|328637|Cheese, cheddar|1 slice|21|0|cheese slice
+Butter|173410|Butter, salted|1 tsp|5|0|makhan
+Ghee|171314|Butter, Clarified butter (ghee)|1 tsp|5|0|
+White rice, cooked|168878|Rice, white, long-grain, regular, enriched, cooked|1 cup|158|0|chawal,steamed rice
+Brown rice, cooked|169704|Rice, brown, long-grain, cooked|1 cup|195|0|
+Roti|171844|Bread, chapati or roti, plain, commercially prepared|1 medium|40|0|chapati,phulka
+Naan|171845|Bread, naan, plain, commercially prepared, refrigerated|1 piece|90|0|
+Paratha|174076|Bread, paratha, whole wheat, commercially prepared, frozen|1 piece|79|0|parantha
+White bread|174924|Bread, white, commercially prepared (includes soft bread crumbs)|1 slice|28|0|toast
+Whole wheat bread|172688|Bread, whole-wheat, commercially prepared|1 slice|32|0|brown bread,toast
+Oats, dry|173904|Cereals, oats, regular and quick, not fortified, dry|1 serving|40|0|oatmeal,porridge
+Pasta, cooked|169737|Pasta, cooked, enriched, without added salt|1 cup|140|0|spaghetti,macaroni
+Lentils, cooked|172421|Lentils, mature seeds, cooked, boiled, without salt|1 bowl|150|0|dal,daal,masoor
+Chickpeas, cooked|173757|Chickpeas (garbanzo beans, bengal gram), mature seeds, cooked, boiled, without salt|1 cup|164|0|chana,chole
+Kidney beans, cooked|175194|Beans, kidney, red, mature seeds, cooked, boiled, without salt|1 cup|177|0|rajma
+Moong sprouts|169957|Mung beans, mature seeds, sprouted, raw|1 cup|104|0|sprouts
+Peanuts, roasted|173806|Peanuts, all types, dry-roasted, without salt|1 handful|28|0|moongphali,groundnut
+Almonds|170567|Nuts, almonds|10 almonds|12|0|badam
+Cashews|2515374|Nuts, cashew nuts, raw|10 cashews|15|0|kaju
+Walnuts|170187|Nuts, walnuts, english|1 handful|28|0|akhrot
+Peanut butter|174266|Peanut butter, smooth style, with salt|1 tbsp|16|A|
+Chicken breast, cooked|171477|Chicken, broilers or fryers, breast, meat only, cooked, roasted|1 serving|100|0|grilled chicken
+Salmon, cooked|175168|Fish, salmon, Atlantic, farmed, cooked, dry heat|1 serving|100|0|fish
+Tuna, canned in water|334194|Fish, tuna, light, canned in water, drained solids|1 serving|100|0|
+Prawns, cooked|175180|Crustaceans, shrimp, cooked|1 serving|100|0|shrimp,jhinga
+Banana|173944|Bananas, raw|1 medium|118|0|kela
+Apple|171688|Apples, raw, with skin|1 medium|182|0|seb
+Orange|169097|Oranges, raw, all commercial varieties|1 medium|131|0|santra
+Mango|169910|Mangos, raw|1 cup pieces|165|0|aam
+Grapes|174683|Grapes, red or green (European type, such as Thompson seedless), raw|1 cup|151|0|angoor
+Watermelon|167765|Watermelon, raw|1 cup pieces|152|0|tarbooz
+Papaya|169926|Papayas, raw|1 cup pieces|145|0|papita
+Pomegranate|169134|Pomegranates, raw|1/2 cup seeds|87|0|anar
+Guava|173044|Guavas, common, raw|1 fruit|55|0|amrood
+Dates|171726|Dates, deglet noor|3 dates|21|0|khajoor
+Pineapple|169124|Pineapple, raw, all varieties|1 cup pieces|165|0|
+Potato, boiled|170440|Potatoes, boiled, cooked without skin, flesh, without salt|1 medium|167|0|aloo
+Sweet potato, boiled|168484|Sweet potato, cooked, boiled, without skin|1 medium|151|0|shakarkandi
+Cucumber|2346406|Cucumber, with peel, raw|1 cup slices|104|0|kheera
+Tomato|170457|Tomatoes, red, ripe, raw, year round average|1 medium|123|0|tamatar
+Carrot|170393|Carrots, raw|1 medium|61|0|gajar
+Broccoli, cooked|169967|Broccoli, cooked, boiled, drained, without salt|1 cup|156|0|
+Cheese pizza|170317|Pizza, cheese topping, regular crust, frozen, cooked|1 slice|107|0|
+Hamburger|170694|Fast foods, hamburger; single, regular patty; with condiments|1 burger|106|0|burger
+French fries|170698|Fast foods, potato, french fried in vegetable oil|1 medium serving|117|0|fries,chips
+Vanilla ice cream|167575|Ice creams, vanilla|1 scoop|66|A|icecream
+Dark chocolate|170273|Chocolate, dark, 70-85% cacao solids|2 squares|20|A|
+Milk chocolate|167587|Candies, milk chocolate|4 squares|28|A|
+Sugar|746784|Sugars, granulated|1 tsp|4|T|cheeni
+Honey|169640|Honey|1 tbsp|21|T|shahad
+Tomato ketchup|168556|Catsup|1 tbsp|17|A|sauce
+Black coffee|171890|Beverages, coffee, brewed, prepared with tap water|1 cup|240|0|americano
+Orange juice|169098|Orange juice, raw|1 glass (200 ml)|207|0|
+Coconut water|170174|Nuts, coconut water (liquid from coconuts)|1 glass (200 ml)|200|0|nariyal pani
+Beer|168746|Alcoholic beverage, beer, regular, all|1 can (330 ml)|330|0|
+Red wine|173190|Alcoholic beverage, wine, table, red|1 glass (150 ml)|147|0|
+Whisky|174819|Alcoholic beverage, distilled, whiskey, 86 proof|1 peg (30 ml)|28|0|whiskey,scotch
+Sunflower oil|171025|Oil, sunflower, linoleic, (approx. 65%)|1 tsp|4.5|0|cooking oil
+Olive oil|171413|Oil, olive, salad or cooking|1 tsp|4.5|0|
+Idli|2708346|Idli|2 idlis|80|0|
+Plain dosa|2708347|Dosa (Indian), plain|1 dosa|85|0|dosai
+Dal|2707427|Dal|1 bowl|150|0|daal,dal tadka,dal fry
+Sambar|2707430|Sambar|1 bowl|150|0|sambhar
+Chicken curry|2706437|Chicken curry|1 bowl|200|0|
+Chicken biryani|2706538|Biryani with chicken|1 plate|250|0|biriyani
+Vegetable biryani|2708985|Biryani with vegetables|1 plate|250|0|veg biryani,pulao
+Fish curry|2706460|Fish curry|1 bowl|200|0|
+Palak paneer|2709631|Palak paneer|1 bowl|200|0|saag paneer
+Vegetable curry|2710067|Vegetable curry|1 bowl|200|0|sabzi,sabji
+Samosa|2708730|Samosa|1 samosa|100|0|
+Pakora|2710066|Pakora|4 pieces|60|0|bhajiya,pakoda
+Vada|2709130|Vada|1 vada|50|0|medu vada
+Upma|2709128|Upma|1 bowl|150|0|
+Fried rice|2708951|Fried rice, meatless|1 cup|166|0|
+Noodles, stir fried|2708799|Lo mein, meatless|1 cup|160|0|chowmein,hakka noodles
+Puri|2707714|Bread, puri|1 puri|30|0|poori
+Vegetable momos|2708344|Dumpling, no meat|6 pieces|150|0|dumplings,momo
+Rice pudding|2705685|Pudding, rice|1 small bowl|120|A|kheer,payasam

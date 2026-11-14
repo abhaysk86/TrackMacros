@@ -1,0 +1,1736 @@
+[
+ {
+  "id": "usda-170567",
+  "name": "Almonds",
+  "serving": "10 almonds (12 g)",
+  "calories": 69.5,
+  "protein": 2.5,
+  "carbs": 2.6,
+  "fats": 6,
+  "sugar": 0,
+  "aliases": [
+   "badam"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Nuts, almonds"
+ },
+ {
+  "id": "off-8904004400731",
+  "name": "Aloo Bhujia",
+  "brand": "Haldiram's",
+  "serving": "1 serving (30 g)",
+  "calories": 170.7,
+  "protein": 2.7,
+  "carbs": 14.3,
+  "fats": 11.2,
+  "sugar": 0,
+  "aliases": [
+   "namkeen",
+   "sev"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "off-8901262010016",
+  "name": "Amul Butter",
+  "brand": "Amul",
+  "serving": "1 tsp (5 g)",
+  "calories": 36.2,
+  "protein": 0.1,
+  "carbs": 0,
+  "fats": 4,
+  "sugar": 0,
+  "aliases": [
+   "makhan"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "off-8901262020015",
+  "name": "Amul Cheese Slice",
+  "brand": "Amul",
+  "serving": "1 slice (20 g)",
+  "calories": 62.2,
+  "protein": 4,
+  "carbs": 0.3,
+  "fats": 5,
+  "sugar": 0,
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "off-8901262180115",
+  "name": "Amul Malai Paneer",
+  "brand": "Amul",
+  "serving": "1 serving (50 g)",
+  "calories": 156,
+  "protein": 10,
+  "carbs": 2,
+  "fats": 12,
+  "sugar": 0,
+  "aliases": [
+   "cottage cheese"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "off-8901262200196",
+  "name": "Amul Masti Buttermilk",
+  "brand": "Amul",
+  "serving": "1 pack (200 ml)",
+  "calories": 57,
+  "protein": 3,
+  "carbs": 3.6,
+  "fats": 3,
+  "sugar": 0,
+  "aliases": [
+   "chaas",
+   "chhaas"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-171688",
+  "name": "Apple",
+  "serving": "1 medium (182 g)",
+  "calories": 94.6,
+  "protein": 0.5,
+  "carbs": 25.1,
+  "fats": 0.3,
+  "sugar": 0,
+  "aliases": [
+   "seb"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)"
+ },
+ {
+  "id": "usda-173944",
+  "name": "Banana",
+  "serving": "1 medium (118 g)",
+  "calories": 105,
+  "protein": 1.3,
+  "carbs": 27,
+  "fats": 0.4,
+  "sugar": 0,
+  "aliases": [
+   "kela"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Bananas, raw"
+ },
+ {
+  "id": "usda-168746",
+  "name": "Beer",
+  "serving": "1 can (330 ml) (330 g)",
+  "calories": 141.9,
+  "protein": 1.5,
+  "carbs": 11.7,
+  "fats": 0,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Alcoholic beverage, beer, regular, all"
+ },
+ {
+  "id": "usda-171890",
+  "name": "Black coffee",
+  "serving": "1 cup (240 g)",
+  "calories": 2.4,
+  "protein": 0.3,
+  "carbs": 0,
+  "fats": 0,
+  "sugar": 0,
+  "aliases": [
+   "americano"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Beverages, coffee, brewed, prepared with tap water"
+ },
+ {
+  "id": "usda-173424",
+  "name": "Boiled egg",
+  "serving": "1 large (50 g)",
+  "calories": 77.5,
+  "protein": 6.3,
+  "carbs": 0.6,
+  "fats": 5.3,
+  "sugar": 0,
+  "aliases": [
+   "anda",
+   "eggs",
+   "whole egg"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Egg, whole, cooked, hard-boiled"
+ },
+ {
+  "id": "off-7622202026423",
+  "name": "Bournvita",
+  "brand": "Cadbury",
+  "serving": "1 serving (20 g)",
+  "calories": 76.2,
+  "protein": 1.4,
+  "carbs": 17.2,
+  "fats": 0.4,
+  "sugar": 6.4,
+  "aliases": [
+   "health drink"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "off-8901063338593",
+  "name": "Britannia Whole Wheat Bread",
+  "brand": "Britannia",
+  "serving": "1 slice (25 g)",
+  "calories": 61.3,
+  "protein": 2.1,
+  "carbs": 12.7,
+  "fats": 0.5,
+  "sugar": 0.4,
+  "aliases": [
+   "brown bread",
+   "toast"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-169967",
+  "name": "Broccoli, cooked",
+  "serving": "1 cup (156 g)",
+  "calories": 54.6,
+  "protein": 3.7,
+  "carbs": 11.2,
+  "fats": 0.6,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Broccoli, cooked, boiled, drained, without salt"
+ },
+ {
+  "id": "usda-169704",
+  "name": "Brown rice, cooked",
+  "serving": "1 cup (195 g)",
+  "calories": 239.9,
+  "protein": 5.3,
+  "carbs": 49.9,
+  "fats": 1.9,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)"
+ },
+ {
+  "id": "usda-173410",
+  "name": "Butter",
+  "serving": "1 tsp (5 g)",
+  "calories": 35.9,
+  "protein": 0,
+  "carbs": 0,
+  "fats": 4.1,
+  "sugar": 0,
+  "aliases": [
+   "makhan"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Butter, salted"
+ },
+ {
+  "id": "usda-170393",
+  "name": "Carrot",
+  "serving": "1 medium (61 g)",
+  "calories": 25,
+  "protein": 0.6,
+  "carbs": 5.8,
+  "fats": 0.1,
+  "sugar": 0,
+  "aliases": [
+   "gajar"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Carrots, raw"
+ },
+ {
+  "id": "usda-2515374",
+  "name": "Cashews",
+  "serving": "10 cashews (15 g)",
+  "calories": 84.7,
+  "protein": 2.6,
+  "carbs": 5.4,
+  "fats": 5.8,
+  "sugar": 0,
+  "aliases": [
+   "kaju"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Nuts, cashew nuts, raw"
+ },
+ {
+  "id": "usda-328637",
+  "name": "Cheddar cheese",
+  "serving": "1 slice (21 g)",
+  "calories": 85.7,
+  "protein": 4.9,
+  "carbs": 0.5,
+  "fats": 7.1,
+  "sugar": 0,
+  "aliases": [
+   "cheese slice"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Cheese, cheddar"
+ },
+ {
+  "id": "usda-170317",
+  "name": "Cheese pizza",
+  "serving": "1 slice (107 g)",
+  "calories": 286.8,
+  "protein": 11.1,
+  "carbs": 31.1,
+  "fats": 13.1,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Pizza, cheese topping, regular crust, frozen, cooked"
+ },
+ {
+  "id": "usda-2706538",
+  "name": "Chicken biryani",
+  "serving": "1 plate (250 g)",
+  "calories": 260,
+  "protein": 17.9,
+  "carbs": 34,
+  "fats": 5.9,
+  "sugar": 0,
+  "aliases": [
+   "biriyani"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Biryani with chicken"
+ },
+ {
+  "id": "usda-171477",
+  "name": "Chicken breast, cooked",
+  "serving": "1 serving (100 g)",
+  "calories": 165,
+  "protein": 31,
+  "carbs": 0,
+  "fats": 3.6,
+  "sugar": 0,
+  "aliases": [
+   "grilled chicken"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Chicken, broilers or fryers, breast, meat only, cooked, roasted"
+ },
+ {
+  "id": "usda-2706437",
+  "name": "Chicken curry",
+  "serving": "1 bowl (200 g)",
+  "calories": 214,
+  "protein": 13,
+  "carbs": 13.1,
+  "fats": 13,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Chicken curry"
+ },
+ {
+  "id": "usda-173757",
+  "name": "Chickpeas, cooked",
+  "serving": "1 cup (164 g)",
+  "calories": 269,
+  "protein": 14.5,
+  "carbs": 45,
+  "fats": 4.2,
+  "sugar": 0,
+  "aliases": [
+   "chana",
+   "chole"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Chickpeas (garbanzo beans, bengal gram), mature seeds, cooked, boiled, without salt"
+ },
+ {
+  "id": "off-8901764012273",
+  "name": "Coca-Cola",
+  "brand": "Coca-Cola",
+  "serving": "1 can (300 ml)",
+  "calories": 132,
+  "protein": 0,
+  "carbs": 33,
+  "fats": 0,
+  "sugar": 33,
+  "aliases": [
+   "coke",
+   "cola",
+   "soft drink"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-170174",
+  "name": "Coconut water",
+  "serving": "1 glass (200 ml) (200 g)",
+  "calories": 38,
+  "protein": 1.4,
+  "carbs": 7.4,
+  "fats": 0.4,
+  "sugar": 0,
+  "aliases": [
+   "nariyal pani"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Nuts, coconut water (liquid from coconuts)"
+ },
+ {
+  "id": "off-8901764112911",
+  "name": "Coke Zero",
+  "brand": "Coca-Cola",
+  "serving": "1 can (300 ml)",
+  "calories": 0,
+  "protein": 0,
+  "carbs": 0,
+  "fats": 0,
+  "sugar": 0,
+  "aliases": [
+   "diet coke",
+   "cola"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-2346406",
+  "name": "Cucumber",
+  "serving": "1 cup slices (104 g)",
+  "calories": 16.5,
+  "protein": 0.7,
+  "carbs": 3.1,
+  "fats": 0.2,
+  "sugar": 0,
+  "aliases": [
+   "kheera"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Cucumber, with peel, raw"
+ },
+ {
+  "id": "usda-2259793",
+  "name": "Curd",
+  "serving": "1 small bowl (100 g)",
+  "calories": 78,
+  "protein": 3.8,
+  "carbs": 5.6,
+  "fats": 4.5,
+  "sugar": 0,
+  "aliases": [
+   "dahi",
+   "yogurt",
+   "yoghurt"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Yogurt, plain, whole milk"
+ },
+ {
+  "id": "off-7622202334009",
+  "name": "Dairy Milk",
+  "brand": "Cadbury",
+  "serving": "1 serving (25 g)",
+  "calories": 131.3,
+  "protein": 1.7,
+  "carbs": 15.7,
+  "fats": 7,
+  "sugar": 14.7,
+  "sugarApprox": true,
+  "aliases": [
+   "chocolate"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-2707427",
+  "name": "Dal",
+  "serving": "1 bowl (150 g)",
+  "calories": 217.5,
+  "protein": 12.9,
+  "carbs": 28.8,
+  "fats": 6.5,
+  "sugar": 0,
+  "aliases": [
+   "daal",
+   "dal tadka",
+   "dal fry"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Dal"
+ },
+ {
+  "id": "usda-170273",
+  "name": "Dark chocolate",
+  "serving": "2 squares (20 g)",
+  "calories": 119.6,
+  "protein": 1.6,
+  "carbs": 9.2,
+  "fats": 8.5,
+  "sugar": 4.8,
+  "sugarApprox": true,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Chocolate, dark, 70-85% cacao solids"
+ },
+ {
+  "id": "usda-171726",
+  "name": "Dates",
+  "serving": "3 dates (21 g)",
+  "calories": 59.2,
+  "protein": 0.5,
+  "carbs": 15.8,
+  "fats": 0.1,
+  "sugar": 0,
+  "aliases": [
+   "khajoor"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Dates, deglet noor"
+ },
+ {
+  "id": "usda-172183",
+  "name": "Egg white",
+  "serving": "1 large (33 g)",
+  "calories": 17.2,
+  "protein": 3.6,
+  "carbs": 0.2,
+  "fats": 0.1,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Egg, white, raw, fresh"
+ },
+ {
+  "id": "off-8906059635007",
+  "name": "Epigamia Greek Yogurt, Natural",
+  "brand": "Epigamia",
+  "serving": "1 cup (85 g)",
+  "calories": 54,
+  "protein": 6.5,
+  "carbs": 4,
+  "fats": 1.9,
+  "sugar": 0,
+  "aliases": [
+   "yoghurt"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-2706460",
+  "name": "Fish curry",
+  "serving": "1 bowl (200 g)",
+  "calories": 186,
+  "protein": 9.9,
+  "carbs": 13.3,
+  "fats": 10.8,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Fish curry"
+ },
+ {
+  "id": "usda-170698",
+  "name": "French fries",
+  "serving": "1 medium serving (117 g)",
+  "calories": 365,
+  "protein": 4,
+  "carbs": 48.5,
+  "fats": 17.2,
+  "sugar": 0,
+  "aliases": [
+   "fries",
+   "chips"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Fast foods, potato, french fried in vegetable oil"
+ },
+ {
+  "id": "usda-173423",
+  "name": "Fried egg",
+  "serving": "1 large (46 g)",
+  "calories": 90.2,
+  "protein": 6.3,
+  "carbs": 0.4,
+  "fats": 6.8,
+  "sugar": 0,
+  "aliases": [
+   "anda",
+   "eggs",
+   "whole egg"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Egg, whole, cooked, fried"
+ },
+ {
+  "id": "usda-2708951",
+  "name": "Fried rice",
+  "serving": "1 cup (166 g)",
+  "calories": 288.8,
+  "protein": 6.4,
+  "carbs": 54,
+  "fats": 5.3,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Rice, fried, meatless"
+ },
+ {
+  "id": "off-8902579103170",
+  "name": "Frooti",
+  "brand": "Parle Agro",
+  "serving": "1 small pack (125 ml)",
+  "calories": 78.6,
+  "protein": 0,
+  "carbs": 19.6,
+  "fats": 0,
+  "sugar": 17.8,
+  "aliases": [
+   "mango drink"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-171314",
+  "name": "Ghee",
+  "serving": "1 tsp (5 g)",
+  "calories": 45,
+  "protein": 0,
+  "carbs": 0,
+  "fats": 5,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Butter, Clarified butter (ghee)"
+ },
+ {
+  "id": "off-8901063092822",
+  "name": "Good Day Butter Cookies",
+  "brand": "Britannia",
+  "serving": "1 serving (25 g)",
+  "calories": 125,
+  "protein": 1.7,
+  "carbs": 17.3,
+  "fats": 5.5,
+  "sugar": 5,
+  "aliases": [
+   "biscuit"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-174683",
+  "name": "Grapes",
+  "serving": "1 cup (151 g)",
+  "calories": 104.2,
+  "protein": 1.1,
+  "carbs": 27.3,
+  "fats": 0.2,
+  "sugar": 0,
+  "aliases": [
+   "angoor"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Grapes, red or green (European type, such as Thompson seedless), raw"
+ },
+ {
+  "id": "usda-330137",
+  "name": "Greek yogurt, plain",
+  "serving": "1 small bowl (100 g)",
+  "calories": 61,
+  "protein": 10.3,
+  "carbs": 3.6,
+  "fats": 0.4,
+  "sugar": 0,
+  "aliases": [
+   "yoghurt"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Yogurt, Greek, plain, nonfat"
+ },
+ {
+  "id": "usda-173044",
+  "name": "Guava",
+  "serving": "1 fruit (55 g)",
+  "calories": 37.4,
+  "protein": 1.4,
+  "carbs": 7.9,
+  "fats": 0.5,
+  "sugar": 0,
+  "aliases": [
+   "amrood"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Guavas, common, raw"
+ },
+ {
+  "id": "usda-170694",
+  "name": "Hamburger",
+  "serving": "1 burger (106 g)",
+  "calories": 278.8,
+  "protein": 14.1,
+  "carbs": 31.3,
+  "fats": 10.8,
+  "sugar": 0,
+  "aliases": [
+   "burger"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Fast foods, hamburger; single, regular patty; with condiments"
+ },
+ {
+  "id": "off-8901719117183",
+  "name": "Hide & Seek",
+  "brand": "Parle",
+  "serving": "1 serving (25 g)",
+  "calories": 118.5,
+  "protein": 1.5,
+  "carbs": 18.6,
+  "fats": 4.3,
+  "sugar": 8.1,
+  "aliases": [
+   "biscuit",
+   "cookies"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-169640",
+  "name": "Honey",
+  "serving": "1 tbsp (21 g)",
+  "calories": 63.8,
+  "protein": 0.1,
+  "carbs": 17.3,
+  "fats": 0,
+  "sugar": 17.2,
+  "aliases": [
+   "shahad"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Honey"
+ },
+ {
+  "id": "off-8901030807176",
+  "name": "Horlicks Classic Malt",
+  "brand": "Horlicks",
+  "serving": "1 serving (20 g)",
+  "calories": 75.4,
+  "protein": 2.2,
+  "carbs": 15.8,
+  "fats": 0.4,
+  "sugar": 2.7,
+  "aliases": [
+   "health drink"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-2708346",
+  "name": "Idli",
+  "serving": "2 idlis (80 g)",
+  "calories": 102.4,
+  "protein": 5.1,
+  "carbs": 20,
+  "fats": 0.3,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Idli"
+ },
+ {
+  "id": "off-8901499009661",
+  "name": "Kellogg's Corn Flakes",
+  "brand": "Kellogg's",
+  "serving": "1 bowl (30 g)",
+  "calories": 113.4,
+  "protein": 2,
+  "carbs": 26.1,
+  "fats": 0.3,
+  "sugar": 2.4,
+  "aliases": [
+   "cereal",
+   "cornflakes"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-175194",
+  "name": "Kidney beans, cooked",
+  "serving": "1 cup (177 g)",
+  "calories": 224.8,
+  "protein": 15.3,
+  "carbs": 40.4,
+  "fats": 0.9,
+  "sugar": 0,
+  "aliases": [
+   "rajma"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Beans, kidney, red, mature seeds, cooked, boiled, without salt"
+ },
+ {
+  "id": "off-8901030922787",
+  "name": "Kissan Mixed Fruit Jam",
+  "brand": "Kissan",
+  "serving": "1 tbsp (15 g)",
+  "calories": 42.8,
+  "protein": 0,
+  "carbs": 10.6,
+  "fats": 0,
+  "sugar": 9.7,
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "off-8901058015171",
+  "name": "KitKat",
+  "brand": "Nestlé",
+  "serving": "1 serving (20 g)",
+  "calories": 87.6,
+  "protein": 1.3,
+  "carbs": 9.5,
+  "fats": 5,
+  "sugar": 5.8,
+  "aliases": [
+   "chocolate"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "off-8901491361026",
+  "name": "Kurkure Masala Munch",
+  "brand": "Kurkure",
+  "serving": "1 serving (30 g)",
+  "calories": 167.4,
+  "protein": 1.9,
+  "carbs": 16.6,
+  "fats": 10.4,
+  "sugar": 0,
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "off-8901491101837",
+  "name": "Lay's Classic Salted",
+  "brand": "Lay's",
+  "serving": "1 serving (30 g)",
+  "calories": 166.2,
+  "protein": 2.1,
+  "carbs": 15.5,
+  "fats": 10.7,
+  "sugar": 0.2,
+  "aliases": [
+   "lays",
+   "chips",
+   "crisps"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "off-8901491503020",
+  "name": "Lay's Magic Masala",
+  "brand": "Lay's",
+  "serving": "1 serving (30 g)",
+  "calories": 159.3,
+  "protein": 2,
+  "carbs": 15.6,
+  "fats": 9.9,
+  "sugar": 0.3,
+  "aliases": [
+   "lays",
+   "chips",
+   "crisps"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-172421",
+  "name": "Lentils, cooked",
+  "serving": "1 bowl (150 g)",
+  "calories": 174,
+  "protein": 13.5,
+  "carbs": 30.2,
+  "fats": 0.6,
+  "sugar": 0,
+  "aliases": [
+   "dal",
+   "daal",
+   "masoor"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Lentils, mature seeds, cooked, boiled, without salt"
+ },
+ {
+  "id": "off-8901058000306",
+  "name": "Maggi Masala Noodles",
+  "brand": "Maggi",
+  "serving": "1 pack (70 g)",
+  "calories": 310,
+  "protein": 6,
+  "carbs": 42,
+  "fats": 13,
+  "sugar": 1,
+  "aliases": [
+   "instant noodles"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-169910",
+  "name": "Mango",
+  "serving": "1 cup pieces (165 g)",
+  "calories": 99,
+  "protein": 1.4,
+  "carbs": 24.7,
+  "fats": 0.6,
+  "sugar": 0,
+  "aliases": [
+   "aam"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Mangos, raw"
+ },
+ {
+  "id": "off-8901063162914",
+  "name": "Marie Gold",
+  "brand": "Britannia",
+  "serving": "1 serving (25 g)",
+  "calories": 111.3,
+  "protein": 2,
+  "carbs": 19.9,
+  "fats": 2.7,
+  "sugar": 5.2,
+  "aliases": [
+   "biscuit"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-167587",
+  "name": "Milk chocolate",
+  "serving": "4 squares (28 g)",
+  "calories": 149.8,
+  "protein": 2.1,
+  "carbs": 16.6,
+  "fats": 8.3,
+  "sugar": 14.4,
+  "sugarApprox": true,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Candies, milk chocolate"
+ },
+ {
+  "id": "usda-746782",
+  "name": "Milk, full cream",
+  "serving": "1 glass (200 ml) (206 g)",
+  "calories": 123.6,
+  "protein": 6.7,
+  "carbs": 9.5,
+  "fats": 6.6,
+  "sugar": 0,
+  "aliases": [
+   "doodh"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Milk, whole, 3.25% milkfat, with added vitamin D"
+ },
+ {
+  "id": "usda-171267",
+  "name": "Milk, toned",
+  "serving": "1 glass (200 ml) (206 g)",
+  "calories": 103,
+  "protein": 6.8,
+  "carbs": 9.9,
+  "fats": 4.1,
+  "sugar": 0,
+  "aliases": [
+   "doodh",
+   "low fat milk"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Milk, reduced fat, fluid, 2% milkfat, with added vitamin A and vitamin D"
+ },
+ {
+  "id": "usda-169957",
+  "name": "Moong sprouts",
+  "serving": "1 cup (104 g)",
+  "calories": 31.2,
+  "protein": 3.2,
+  "carbs": 6.2,
+  "fats": 0.2,
+  "sugar": 0,
+  "aliases": [
+   "sprouts"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Mung beans, mature seeds, sprouted, raw"
+ },
+ {
+  "id": "usda-171845",
+  "name": "Naan",
+  "serving": "1 piece (90 g)",
+  "calories": 261.9,
+  "protein": 8.7,
+  "carbs": 45.4,
+  "fats": 5.1,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Bread, naan, plain, commercially prepared, refrigerated"
+ },
+ {
+  "id": "usda-2708799",
+  "name": "Noodles, stir fried",
+  "serving": "1 cup (160 g)",
+  "calories": 193.6,
+  "protein": 7.6,
+  "carbs": 32.3,
+  "fats": 3.8,
+  "sugar": 0,
+  "aliases": [
+   "chowmein",
+   "hakka noodles"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Lo mein, meatless"
+ },
+ {
+  "id": "off-80177173",
+  "name": "Nutella",
+  "brand": "Ferrero",
+  "serving": "1 tbsp (15 g)",
+  "calories": 80.9,
+  "protein": 0.9,
+  "carbs": 8.6,
+  "fats": 4.6,
+  "sugar": 7.5,
+  "aliases": [
+   "chocolate spread"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-173904",
+  "name": "Oats, dry",
+  "serving": "1 serving (40 g)",
+  "calories": 151.6,
+  "protein": 5.3,
+  "carbs": 27.1,
+  "fats": 2.6,
+  "sugar": 0,
+  "aliases": [
+   "oatmeal",
+   "porridge"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Cereals, oats, regular and quick, not fortified, dry"
+ },
+ {
+  "id": "usda-171413",
+  "name": "Olive oil",
+  "serving": "1 tsp (4.5 g)",
+  "calories": 39.8,
+  "protein": 0,
+  "carbs": 0,
+  "fats": 4.5,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Oil, olive, salad or cooking"
+ },
+ {
+  "id": "usda-172185",
+  "name": "Omelette",
+  "serving": "1 egg (61 g)",
+  "calories": 93.9,
+  "protein": 6.4,
+  "carbs": 0.4,
+  "fats": 7.1,
+  "sugar": 0,
+  "aliases": [
+   "omelet",
+   "anda"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Egg, whole, cooked, omelet"
+ },
+ {
+  "id": "usda-169097",
+  "name": "Orange",
+  "serving": "1 medium (131 g)",
+  "calories": 61.6,
+  "protein": 1.2,
+  "carbs": 15.4,
+  "fats": 0.2,
+  "sugar": 0,
+  "aliases": [
+   "santra"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Oranges, raw, all commercial varieties"
+ },
+ {
+  "id": "usda-169098",
+  "name": "Orange juice",
+  "serving": "1 glass (200 ml) (207 g)",
+  "calories": 93.1,
+  "protein": 1.4,
+  "carbs": 21.5,
+  "fats": 0.4,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Orange juice, raw (Includes foods for USDA's Food Distribution Program)"
+ },
+ {
+  "id": "off-7622202225512",
+  "name": "Oreo",
+  "brand": "Cadbury",
+  "serving": "3 biscuits (30 g)",
+  "calories": 144.9,
+  "protein": 1.6,
+  "carbs": 21.6,
+  "fats": 5.9,
+  "sugar": 11.5,
+  "aliases": [
+   "biscuit"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-2710066",
+  "name": "Pakora",
+  "serving": "4 pieces (60 g)",
+  "calories": 75,
+  "protein": 3,
+  "carbs": 9.7,
+  "fats": 2.9,
+  "sugar": 0,
+  "aliases": [
+   "bhajiya",
+   "pakoda"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Pakora"
+ },
+ {
+  "id": "usda-2709631",
+  "name": "Palak paneer",
+  "serving": "1 bowl (200 g)",
+  "calories": 202,
+  "protein": 10.8,
+  "carbs": 8.6,
+  "fats": 14,
+  "sugar": 0,
+  "aliases": [
+   "saag paneer"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Palak Paneer"
+ },
+ {
+  "id": "usda-169926",
+  "name": "Papaya",
+  "serving": "1 cup pieces (145 g)",
+  "calories": 62.4,
+  "protein": 0.7,
+  "carbs": 15.7,
+  "fats": 0.4,
+  "sugar": 0,
+  "aliases": [
+   "papita"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Papayas, raw"
+ },
+ {
+  "id": "usda-174076",
+  "name": "Paratha",
+  "serving": "1 piece (79 g)",
+  "calories": 257.5,
+  "protein": 5,
+  "carbs": 35.8,
+  "fats": 10.4,
+  "sugar": 0,
+  "aliases": [
+   "parantha"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Bread, paratha, whole wheat, commercially prepared, frozen"
+ },
+ {
+  "id": "off-8901719123870",
+  "name": "Parle-G",
+  "brand": "Parle",
+  "serving": "1 serving (25 g)",
+  "calories": 113.5,
+  "protein": 1.7,
+  "carbs": 19.3,
+  "fats": 3.3,
+  "sugar": 6.3,
+  "aliases": [
+   "biscuit",
+   "glucose biscuit"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-169737",
+  "name": "Pasta, cooked",
+  "serving": "1 cup (140 g)",
+  "calories": 221.2,
+  "protein": 8.1,
+  "carbs": 43.2,
+  "fats": 1.3,
+  "sugar": 0,
+  "aliases": [
+   "spaghetti",
+   "macaroni"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Pasta, cooked, enriched, without added salt"
+ },
+ {
+  "id": "usda-174266",
+  "name": "Peanut butter",
+  "serving": "1 tbsp (16 g)",
+  "calories": 95.7,
+  "protein": 3.6,
+  "carbs": 3.6,
+  "fats": 8.2,
+  "sugar": 1.7,
+  "sugarApprox": true,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Peanut butter, smooth style, with salt (Includes foods for USDA's Food Distribution Program)"
+ },
+ {
+  "id": "usda-173806",
+  "name": "Peanuts, roasted",
+  "serving": "1 handful (28 g)",
+  "calories": 164.4,
+  "protein": 6.8,
+  "carbs": 6,
+  "fats": 13.9,
+  "sugar": 0,
+  "aliases": [
+   "moongphali",
+   "groundnut"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Peanuts, all types, dry-roasted, without salt"
+ },
+ {
+  "id": "off-8902080104581",
+  "name": "Pepsi",
+  "brand": "PepsiCo",
+  "serving": "1 small bottle (250 ml)",
+  "calories": 107.5,
+  "protein": 0,
+  "carbs": 27.3,
+  "fats": 0,
+  "sugar": 27.3,
+  "aliases": [
+   "cola",
+   "soft drink"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-169124",
+  "name": "Pineapple",
+  "serving": "1 cup pieces (165 g)",
+  "calories": 82.5,
+  "protein": 0.9,
+  "carbs": 21.6,
+  "fats": 0.2,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Pineapple, raw, all varieties"
+ },
+ {
+  "id": "usda-2708347",
+  "name": "Plain dosa",
+  "serving": "1 dosa (85 g)",
+  "calories": 178.5,
+  "protein": 4.8,
+  "carbs": 31.5,
+  "fats": 3.4,
+  "sugar": 0,
+  "aliases": [
+   "dosai"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Dosa, plain"
+ },
+ {
+  "id": "usda-169134",
+  "name": "Pomegranate",
+  "serving": "1/2 cup seeds (87 g)",
+  "calories": 72.2,
+  "protein": 1.5,
+  "carbs": 16.3,
+  "fats": 1,
+  "sugar": 0,
+  "aliases": [
+   "anar"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Pomegranates, raw"
+ },
+ {
+  "id": "usda-170440",
+  "name": "Potato, boiled",
+  "serving": "1 medium (167 g)",
+  "calories": 143.6,
+  "protein": 2.9,
+  "carbs": 33.4,
+  "fats": 0.2,
+  "sugar": 0,
+  "aliases": [
+   "aloo"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Potatoes, boiled, cooked without skin, flesh, without salt"
+ },
+ {
+  "id": "usda-175180",
+  "name": "Prawns, cooked",
+  "serving": "1 serving (100 g)",
+  "calories": 99,
+  "protein": 24,
+  "carbs": 0.2,
+  "fats": 0.3,
+  "sugar": 0,
+  "aliases": [
+   "shrimp",
+   "jhinga"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Crustaceans, shrimp, cooked"
+ },
+ {
+  "id": "usda-2707714",
+  "name": "Puri",
+  "serving": "1 puri (30 g)",
+  "calories": 122.7,
+  "protein": 2.1,
+  "carbs": 11.8,
+  "fats": 7.5,
+  "sugar": 0,
+  "aliases": [
+   "poori"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Bread, puri"
+ },
+ {
+  "id": "off-8901491103800",
+  "name": "Quaker Oats",
+  "brand": "Quaker",
+  "serving": "1 serving (40 g)",
+  "calories": 162.8,
+  "protein": 4.7,
+  "carbs": 27.4,
+  "fats": 3.8,
+  "sugar": 0,
+  "aliases": [
+   "oatmeal"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-173190",
+  "name": "Red wine",
+  "serving": "1 glass (150 ml) (147 g)",
+  "calories": 125,
+  "protein": 0.1,
+  "carbs": 3.8,
+  "fats": 0,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Alcoholic beverage, wine, table, red"
+ },
+ {
+  "id": "usda-2705685",
+  "name": "Rice pudding",
+  "serving": "1 small bowl (120 g)",
+  "calories": 129.6,
+  "protein": 3.9,
+  "carbs": 22.1,
+  "fats": 2.6,
+  "sugar": 13.9,
+  "sugarApprox": true,
+  "aliases": [
+   "kheer",
+   "payasam"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Pudding, rice"
+ },
+ {
+  "id": "usda-171844",
+  "name": "Roti",
+  "serving": "1 medium (40 g)",
+  "calories": 118.8,
+  "protein": 4.5,
+  "carbs": 18.5,
+  "fats": 3,
+  "sugar": 0,
+  "aliases": [
+   "chapati",
+   "phulka"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Bread, chapati or roti, plain, commercially prepared"
+ },
+ {
+  "id": "usda-175168",
+  "name": "Salmon, cooked",
+  "serving": "1 serving (100 g)",
+  "calories": 206,
+  "protein": 22.1,
+  "carbs": 0,
+  "fats": 12.4,
+  "sugar": 0,
+  "aliases": [
+   "fish"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Fish, salmon, Atlantic, farmed, cooked, dry heat"
+ },
+ {
+  "id": "usda-2707430",
+  "name": "Sambar",
+  "serving": "1 bowl (150 g)",
+  "calories": 129,
+  "protein": 6.5,
+  "carbs": 17.7,
+  "fats": 4.1,
+  "sugar": 0,
+  "aliases": [
+   "sambhar"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Sambar, vegetable stew"
+ },
+ {
+  "id": "usda-2708730",
+  "name": "Samosa",
+  "serving": "1 samosa (100 g)",
+  "calories": 310,
+  "protein": 5.1,
+  "carbs": 33.2,
+  "fats": 17.5,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Samosa"
+ },
+ {
+  "id": "usda-172187",
+  "name": "Scrambled egg",
+  "serving": "1 egg (61 g)",
+  "calories": 90.9,
+  "protein": 6.1,
+  "carbs": 1,
+  "fats": 6.7,
+  "sugar": 0,
+  "aliases": [
+   "bhurji",
+   "eggs"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Egg, whole, cooked, scrambled"
+ },
+ {
+  "id": "off-8901764032912",
+  "name": "Sprite",
+  "brand": "Coca-Cola",
+  "serving": "1 small bottle (250 ml)",
+  "calories": 100,
+  "protein": 0,
+  "carbs": 25,
+  "fats": 0,
+  "sugar": 24.5,
+  "aliases": [
+   "soft drink"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-746784",
+  "name": "Sugar",
+  "serving": "1 tsp (4 g)",
+  "calories": 15.4,
+  "protein": 0,
+  "carbs": 4,
+  "fats": 0,
+  "sugar": 4,
+  "aliases": [
+   "cheeni"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Sugars, granulated"
+ },
+ {
+  "id": "usda-171025",
+  "name": "Sunflower oil",
+  "serving": "1 tsp (4.5 g)",
+  "calories": 39.8,
+  "protein": 0,
+  "carbs": 0,
+  "fats": 4.5,
+  "sugar": 0,
+  "aliases": [
+   "cooking oil"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Oil, sunflower, linoleic, (approx. 65%)"
+ },
+ {
+  "id": "usda-168484",
+  "name": "Sweet potato, boiled",
+  "serving": "1 medium (151 g)",
+  "calories": 114.8,
+  "protein": 2.1,
+  "carbs": 26.8,
+  "fats": 0.2,
+  "sugar": 0,
+  "aliases": [
+   "shakarkandi"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Sweet potato, cooked, boiled, without skin"
+ },
+ {
+  "id": "off-8901764042911",
+  "name": "Thums Up",
+  "brand": "Coca-Cola",
+  "serving": "1 small bottle (250 ml)",
+  "calories": 97.5,
+  "protein": 0,
+  "carbs": 24.3,
+  "fats": 0,
+  "sugar": 23.8,
+  "aliases": [
+   "cola",
+   "soft drink"
+  ],
+  "source": "Open Food Facts"
+ },
+ {
+  "id": "usda-170457",
+  "name": "Tomato",
+  "serving": "1 medium (123 g)",
+  "calories": 22.1,
+  "protein": 1.1,
+  "carbs": 4.8,
+  "fats": 0.2,
+  "sugar": 0,
+  "aliases": [
+   "tamatar"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Tomatoes, red, ripe, raw, year round average"
+ },
+ {
+  "id": "usda-168556",
+  "name": "Tomato ketchup",
+  "serving": "1 tbsp (17 g)",
+  "calories": 17.2,
+  "protein": 0.2,
+  "carbs": 4.7,
+  "fats": 0,
+  "sugar": 3.6,
+  "sugarApprox": true,
+  "aliases": [
+   "sauce"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Catsup"
+ },
+ {
+  "id": "usda-334194",
+  "name": "Tuna, canned in water",
+  "serving": "1 serving (100 g)",
+  "calories": 90,
+  "protein": 19,
+  "carbs": 0.1,
+  "fats": 0.9,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Fish, tuna, light, canned in water, drained solids"
+ },
+ {
+  "id": "usda-2709128",
+  "name": "Upma",
+  "serving": "1 bowl (150 g)",
+  "calories": 130.5,
+  "protein": 3,
+  "carbs": 20.7,
+  "fats": 4,
+  "sugar": 0,
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Upma"
+ },
+ {
+  "id": "usda-2709130",
+  "name": "Vada",
+  "serving": "1 vada (50 g)",
+  "calories": 133,
+  "protein": 6.4,
+  "carbs": 16.6,
+  "fats": 4.9,
+  "sugar": 0,
+  "aliases": [
+   "medu vada"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Vada"
+ },
+ {
+  "id": "usda-167575",
+  "name": "Vanilla ice cream",
+  "serving": "1 scoop (66 g)",
+  "calories": 136.6,
+  "protein": 2.3,
+  "carbs": 15.6,
+  "fats": 7.3,
+  "sugar": 14,
+  "sugarApprox": true,
+  "aliases": [
+   "icecream"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Ice creams, vanilla"
+ },
+ {
+  "id": "usda-2708985",
+  "name": "Vegetable biryani",
+  "serving": "1 plate (250 g)",
+  "calories": 272.5,
+  "protein": 4.8,
+  "carbs": 44.8,
+  "fats": 8,
+  "sugar": 0,
+  "aliases": [
+   "veg biryani",
+   "pulao"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Biryani with vegetables"
+ },
+ {
+  "id": "usda-2710067",
+  "name": "Vegetable curry",
+  "serving": "1 bowl (200 g)",
+  "calories": 172,
+  "protein": 3.2,
+  "carbs": 17.6,
+  "fats": 10.5,
+  "sugar": 0,
+  "aliases": [
+   "sabzi",
+   "sabji"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Vegetable curry"
+ },
+ {
+  "id": "usda-2708344",
+  "name": "Vegetable momos",
+  "serving": "6 pieces (150 g)",
+  "calories": 187.5,
+  "protein": 5.2,
+  "carbs": 30.8,
+  "fats": 5.1,
+  "sugar": 0,
+  "aliases": [
+   "dumplings",
+   "momo"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Dumpling, no meat"
+ },
+ {
+  "id": "usda-170187",
+  "name": "Walnuts",
+  "serving": "1 handful (28 g)",
+  "calories": 183.1,
+  "protein": 4.3,
+  "carbs": 3.8,
+  "fats": 18.3,
+  "sugar": 0,
+  "aliases": [
+   "akhrot"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Nuts, walnuts, english"
+ },
+ {
+  "id": "usda-167765",
+  "name": "Watermelon",
+  "serving": "1 cup pieces (152 g)",
+  "calories": 45.6,
+  "protein": 0.9,
+  "carbs": 11.5,
+  "fats": 0.2,
+  "sugar": 0,
+  "aliases": [
+   "tarbooz"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Watermelon, raw"
+ },
+ {
+  "id": "usda-174819",
+  "name": "Whisky",
+  "serving": "1 peg (30 ml) (28 g)",
+  "calories": 70,
+  "protein": 0,
+  "carbs": 0,
+  "fats": 0,
+  "sugar": 0,
+  "aliases": [
+   "whiskey",
+   "scotch"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Alcoholic beverage, distilled, whiskey, 86 proof"
+ },
+ {
+  "id": "usda-174924",
+  "name": "White bread",
+  "serving": "1 slice (28 g)",
+  "calories": 74.5,
+  "protein": 2.5,
+  "carbs": 13.8,
+  "fats": 0.9,
+  "sugar": 0,
+  "aliases": [
+   "toast"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Bread, white, commercially prepared (includes soft bread crumbs)"
+ },
+ {
+  "id": "usda-168878",
+  "name": "White rice, cooked",
+  "serving": "1 cup (158 g)",
+  "calories": 205.4,
+  "protein": 4.3,
+  "carbs": 44.5,
+  "fats": 0.4,
+  "sugar": 0,
+  "aliases": [
+   "chawal",
+   "steamed rice"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Rice, white, long-grain, regular, enriched, cooked"
+ },
+ {
+  "id": "usda-172688",
+  "name": "Whole wheat bread",
+  "serving": "1 slice (32 g)",
+  "calories": 80.6,
+  "protein": 4,
+  "carbs": 13.7,
+  "fats": 1.1,
+  "sugar": 0,
+  "aliases": [
+   "brown bread",
+   "toast"
+  ],
+  "source": "USDA FoodData Central",
+  "usdaDescription": "Bread, whole-wheat, commercially prepared"
+ }
+]

@@ -1,0 +1,31 @@
+# name | brand | Open Food Facts barcode | serving label | amount | unit | added sugar rule (0 = none, T = all sugar is added, A = label's added sugar if given, else total sugar marked approximate) | search aliases
+Coca-Cola|Coca-Cola|8901764012273|1 can|300|ml|T|coke,cola,soft drink
+Thums Up|Coca-Cola|8901764042911|1 small bottle|250|ml|T|cola,soft drink
+Sprite|Coca-Cola|8901764032912|1 small bottle|250|ml|T|soft drink
+Pepsi|PepsiCo|8902080104581|1 small bottle|250|ml|T|cola,soft drink
+Coke Zero|Coca-Cola|8901764112911|1 can|300|ml|0|diet coke,cola
+Frooti|Parle Agro|8902579103170|1 small pack|125|ml|A|mango drink
+Lay's Classic Salted|Lay's|8901491101837|1 serving|30|g|A|lays,chips,crisps
+Lay's Magic Masala|Lay's|8901491503020|1 serving|30|g|A|lays,chips,crisps
+Kurkure Masala Munch|Kurkure|8901491361026|1 serving|30|g|A|
+Aloo Bhujia|Haldiram's|8904004400731|1 serving|30|g|A|namkeen,sev
+Maggi Masala Noodles|Maggi|8901058000306|1 pack|70|g|A|instant noodles
+Parle-G|Parle|8901719123870|1 serving|25|g|A|biscuit,glucose biscuit
+Good Day Butter Cookies|Britannia|8901063092822|1 serving|25|g|A|biscuit
+Marie Gold|Britannia|8901063162914|1 serving|25|g|A|biscuit
+Oreo|Cadbury|7622202225512|3 biscuits|30|g|A|biscuit
+Hide & Seek|Parle|8901719117183|1 serving|25|g|A|biscuit,cookies
+Dairy Milk|Cadbury|7622202334009|1 serving|25|g|A|chocolate
+KitKat|Nestlé|8901058015171|1 serving|20|g|A|chocolate
+Amul Butter|Amul|8901262010016|1 tsp|5|g|0|makhan
+Amul Cheese Slice|Amul|8901262020015|1 slice|20|g|0|
+Amul Malai Paneer|Amul|8901262180115|1 serving|50|g|0|cottage cheese
+Amul Masti Buttermilk|Amul|8901262200196|1 pack|200|ml|0|chaas,chhaas
+Epigamia Greek Yogurt, Natural|Epigamia|8906059635007|1 cup|85|g|0|yoghurt
+Kellogg's Corn Flakes|Kellogg's|8901499009661|1 bowl|30|g|A|cereal,cornflakes
+Quaker Oats|Quaker|8901491103800|1 serving|40|g|0|oatmeal
+Bournvita|Cadbury|7622202026423|1 serving|20|g|A|health drink
+Horlicks Classic Malt|Horlicks|8901030807176|1 serving|20|g|A|health drink
+Nutella|Ferrero|80177173|1 tbsp|15|g|A|chocolate spread
+Kissan Mixed Fruit Jam|Kissan|8901030922787|1 tbsp|15|g|A|
+Britannia Whole Wheat Bread|Britannia|8901063338593|1 slice|25|g|A|brown bread,toast
