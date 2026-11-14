@@ -14,10 +14,10 @@ export interface BodyProfile {
 }
 
 export const ACTIVITY_OPTIONS: { value: Activity; label: string; hint: string; factor: number }[] = [
-  { value: 'sedentary', label: 'Mostly sitting', hint: 'Desk job, little exercise', factor: 1.2 },
-  { value: 'light', label: 'Lightly active', hint: 'Exercise 1 to 3 days a week', factor: 1.375 },
-  { value: 'moderate', label: 'Active', hint: 'Exercise 3 to 5 days a week', factor: 1.55 },
-  { value: 'very', label: 'Very active', hint: 'Hard exercise most days', factor: 1.725 },
+  { value: 'sedentary', label: 'Mostly sitting', hint: 'little exercise', factor: 1.2 },
+  { value: 'light', label: 'Lightly active', hint: '1 to 3 days a week', factor: 1.375 },
+  { value: 'moderate', label: 'Active', hint: '3 to 5 days a week', factor: 1.55 },
+  { value: 'very', label: 'Very active', hint: 'hard exercise most days', factor: 1.725 },
 ];
 
 export const AIM_OPTIONS: { value: Aim; label: string; calorieShift: number; proteinPerKg: number }[] = [

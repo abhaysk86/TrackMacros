@@ -48,7 +48,7 @@ export function GoalCalculator({ submitLabel, onDone }: { submitLabel: string; o
         <select value={activity} onChange={(e) => setActivity(e.target.value as Activity)} className={`${inputClass} text-left`}>
           {ACTIVITY_OPTIONS.map((a) => (
             <option key={a.value} value={a.value}>
-              {a.label}: {a.hint.toLowerCase()}
+              {a.label}, {a.hint}
             </option>
           ))}
         </select>
