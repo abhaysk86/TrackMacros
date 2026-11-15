@@ -48,7 +48,7 @@ export function Profile() {
     const url = URL.createObjectURL(new Blob([JSON.stringify(backup)], { type: 'application/json' }));
     const link = document.createElement('a');
     link.href = url;
-    link.download = `trackmacros-backup-${dayKey()}.json`;
+    link.download = `mealglimpse-backup-${dayKey()}.json`;
     link.click();
     URL.revokeObjectURL(url);
     toast(`Backup saved: ${backup.meals.length} meals`);
@@ -191,7 +191,7 @@ export function Profile() {
       <section className="rounded-[20px] bg-surface p-4 shadow-sm">
         <h2 className="mb-1 text-[15px] font-bold">About</h2>
         <p className="text-[13px] leading-relaxed text-muted">
-          TrackMacros keeps your meals and goals on this device. Food list values come from{' '}
+          MealGlimpse keeps your meals and goals on this device. Food list values come from{' '}
           <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener noreferrer" className="underline">USDA FoodData Central</a> and{' '}
           <a href="https://world.openfoodfacts.org/" target="_blank" rel="noopener noreferrer" className="underline">Open Food Facts</a>{' '}
           (Open Database Licence).
@@ -204,7 +204,7 @@ export function Profile() {
         <p className="mt-2 text-[13px] text-muted">
           <LegalLinks onOpen={setLegal} />
           {' · '}
-          <a href={`mailto:${CONTACT_EMAIL}?subject=TrackMacros%20feedback`} className="font-semibold text-accent-ink underline">
+          <a href={`mailto:${CONTACT_EMAIL}?subject=MealGlimpse%20feedback`} className="font-semibold text-accent-ink underline">
             Send feedback
           </a>
         </p>

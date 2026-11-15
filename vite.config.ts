@@ -11,8 +11,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       manifest: {
-        name: 'TrackMacros',
-        short_name: 'TrackMacros',
+        name: 'MealGlimpse',
+        short_name: 'MealGlimpse',
         description: 'Log meals by photo or text and track calories, protein, carbs, fats and sugar.',
         theme_color: '#FAF6EF',
         background_color: '#FAF6EF',

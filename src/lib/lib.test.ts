@@ -154,6 +154,10 @@ describe('parseBackup', () => {
     const b = parseBackup(file({ meals: [meal, { ...meal, id: 'm2', day: '14/11/2026' }, { id: 'm3' }, null] }));
     expect(b.meals.map((m) => m.id)).toEqual(['m1']);
   });
+  it('accepts backups made under the earlier app name', () => {
+    expect(parseBackup(file()).meals).toHaveLength(1);
+    expect(parseBackup(file({ app: 'mealglimpse' })).meals).toHaveLength(1);
+  });
   it('rejects files that are not backups', () => {
     expect(() => parseBackup('hello')).toThrow();
     expect(() => parseBackup(JSON.stringify({ app: 'other', meals: [], savedMeals: [] }))).toThrow();

@@ -71,7 +71,7 @@ async function brandedFoods() {
   for (const [name, brand, code, label, amount, unit, rule, aliases] of rows('./food-spec-branded.tsv')) {
     const data = await getJson(
       `https://world.openfoodfacts.org/api/v2/product/${code}.json?fields=product_name,nutriments`,
-      { 'User-Agent': 'TrackMacrosFoodLibrary/1.0' },
+      { 'User-Agent': 'MealGlimpseFoodLibrary/1.0' },
     );
     const n = data.product?.nutriments ?? {};
     const [kcal, protein, fat, carbs] = [n['energy-kcal_100g'], n.proteins_100g, n.fat_100g, n.carbohydrates_100g];
