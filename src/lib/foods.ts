@@ -52,21 +52,37 @@ interface Scored {
   rank: number;
 }
 
+const singular = (word: string) => (word.length > 3 && word.endsWith('s') ? word.slice(0, -1) : word);
+
+/**
+ * How closely a food's name fits what was typed; lower is better.
+ * 0: the name is exactly the phrase. 1: an alias is exactly the phrase.
+ * 2: the name starts with it. 3: the name contains it. 4: matched some other way.
+ */
+function fit(food: Food, phrases: string[]): number {
+  const name = food.name.toLowerCase();
+  const aliases = (food.aliases ?? []).map((a) => a.toLowerCase());
+  if (phrases.includes(name)) return 0;
+  if (phrases.some((p) => aliases.includes(p))) return 1;
+  if (phrases.some((p) => name.startsWith(p))) return 2;
+  if (phrases.some((p) => name.includes(p))) return 3;
+  return 4;
+}
+
 function score(query: string, foods: Food[]): { scored: Scored[]; parsed: ParsedQuery } {
   const parsed = parseQuery(query);
-  const phrase = parsed.words.join(' ');
+  // The phrase as typed, and with plurals removed ("rotis" -> "roti").
+  const phrases = [...new Set([parsed.words.join(' '), parsed.words.map(singular).join(' ')])];
   const scored = foods
     .map((food) => {
       const text = haystack(food);
-      const name = food.name.toLowerCase();
-      return {
-        food,
-        matched: parsed.words.filter((w) => wordMatches(text, w)).length,
-        rank: name.startsWith(phrase) ? 0 : name.includes(phrase) ? 1 : 2,
-      };
+      return { food, matched: parsed.words.filter((w) => wordMatches(text, w)).length, rank: fit(food, phrases) };
     })
     .filter((s) => s.matched > 0)
-    .sort((a, b) => b.matched - a.matched || a.rank - b.rank || a.food.name.localeCompare(b.food.name));
+    .sort(
+      (a, b) =>
+        b.matched - a.matched || a.rank - b.rank || a.food.name.length - b.food.name.length || a.food.name.localeCompare(b.food.name),
+    );
   return { scored, parsed };
 }
 

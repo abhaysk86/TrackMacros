@@ -1,5 +1,6 @@
-// Builds src/data/foods.json from scripts/food-spec.tsv (USDA FoodData Central)
-// and scripts/food-spec-branded.tsv (Open Food Facts).
+// Builds src/data/foods.json from scripts/food-spec.tsv (USDA FoodData Central),
+// scripts/food-spec-branded.tsv (Open Food Facts) and scripts/indb-foods.json
+// (Indian dishes, produced by scripts/extract-indb.py).
 //
 //   USDA_API_KEY=... node scripts/build-food-library.mjs
 //
@@ -95,7 +96,8 @@ async function brandedFoods() {
   return out;
 }
 
-const foods = [...(await usdaFoods()), ...(await brandedFoods())].sort((a, b) => a.name.localeCompare(b.name));
+const indbFoods = JSON.parse(readFileSync(here('./indb-foods.json'), 'utf8'));
+const foods = [...(await usdaFoods()), ...(await brandedFoods()), ...indbFoods].sort((a, b) => a.name.localeCompare(b.name));
 writeFileSync(here('../src/data/foods.json'), JSON.stringify(foods, null, 1) + '\n');
 console.log(`Wrote ${foods.length} foods`);
 
