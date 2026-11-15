@@ -192,7 +192,10 @@ export function Profile() {
         <h2 className="mb-1 text-[15px] font-bold">About</h2>
         <p className="text-[13px] leading-relaxed text-muted">
           MealGlimpse keeps your meals and goals on this device. Food list values come from{' '}
-          <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener noreferrer" className="underline">USDA FoodData Central</a> and{' '}
+          <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener noreferrer" className="underline">USDA FoodData Central</a>,{' '}
+          the{' '}
+          <a href="https://github.com/lindsayjaacks/Indian-Nutrient-Databank-INDB-" target="_blank" rel="noopener noreferrer" className="underline">Indian Nutrient Databank (INDB)</a>{' '}
+          and{' '}
           <a href="https://world.openfoodfacts.org/" target="_blank" rel="noopener noreferrer" className="underline">Open Food Facts</a>{' '}
           (Open Database Licence).
           <br />

@@ -103,7 +103,7 @@ const TERMS: Section[] = [
   {
     heading: 'Food data',
     body: [
-      'Food list values come from USDA FoodData Central and from Open Food Facts, which is made available under the Open Database Licence.',
+      'Food list values come from USDA FoodData Central, from the Indian Nutrient Databank (INDB) for Indian dishes, and from Open Food Facts, which is made available under the Open Database Licence.',
     ],
   },
   {

@@ -1,5 +1,21 @@
 [
  {
+  "id": "indb-ASC005",
+  "name": "Aam panna",
+  "serving": "1 tall glass",
+  "calories": 96.4,
+  "protein": 0.4,
+  "carbs": 24.3,
+  "fats": 0.1,
+  "sugar": 20.1,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Raw mango drink (Aam panna)",
+  "aliases": [
+   "raw mango drink"
+  ]
+ },
+ {
   "id": "usda-170567",
   "name": "Almonds",
   "serving": "10 almonds (12 g)",
@@ -29,6 +45,85 @@
    "sev"
   ],
   "source": "Open Food Facts"
+ },
+ {
+  "id": "indb-BFP239",
+  "name": "Aloo curry",
+  "serving": "1 bowl",
+  "calories": 180.5,
+  "protein": 3.1,
+  "carbs": 21.0,
+  "fats": 9.0,
+  "sugar": 3.2,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Potato curry (Aloo ki sabzi)",
+  "aliases": [
+   "potato curry",
+   "aloo ki sabzi"
+  ]
+ },
+ {
+  "id": "indb-ASC171",
+  "name": "Aloo gobi",
+  "serving": "1 bowl",
+  "calories": 186.6,
+  "protein": 3.3,
+  "carbs": 10.5,
+  "fats": 14.3,
+  "sugar": 0.8,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Potato cauliflower (Aloo gobhi)",
+  "aliases": [
+   "potato cauliflower",
+   "gobhi"
+  ]
+ },
+ {
+  "id": "indb-ASC190",
+  "name": "Aloo matar",
+  "serving": "1 bowl",
+  "calories": 279.9,
+  "protein": 9.7,
+  "carbs": 27.0,
+  "fats": 14.2,
+  "sugar": 5.2,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Pea potato curry (Aloo matar)",
+  "aliases": [
+   "pea potato curry"
+  ]
+ },
+ {
+  "id": "indb-ASC175",
+  "name": "Aloo methi",
+  "serving": "1 bowl",
+  "calories": 276.0,
+  "protein": 4.6,
+  "carbs": 17.3,
+  "fats": 20.5,
+  "sugar": 1.1,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Potato fenugreek (Aloo methi)"
+ },
+ {
+  "id": "indb-ASC098",
+  "name": "Aloo paratha",
+  "serving": "1 paratha",
+  "calories": 191.4,
+  "protein": 3.5,
+  "carbs": 22.3,
+  "fats": 9.5,
+  "sugar": 1.1,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Potato parantha/paratha (Aloo ka parantha/paratha)",
+  "aliases": [
+   "potato parantha"
+  ]
  },
  {
   "id": "off-8901262010016",
@@ -89,6 +184,19 @@
   "source": "Open Food Facts"
  },
  {
+  "id": "indb-BFP153",
+  "name": "Appam",
+  "serving": "1 appam",
+  "calories": 409.3,
+  "protein": 4.8,
+  "carbs": 20.3,
+  "fats": 34.6,
+  "sugar": 6.4,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Appam"
+ },
+ {
   "id": "usda-171688",
   "name": "Apple",
   "serving": "1 medium (182 g)",
@@ -102,6 +210,53 @@
   ],
   "source": "USDA FoodData Central",
   "usdaDescription": "Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)"
+ },
+ {
+  "id": "indb-BFP172",
+  "name": "Arhar dal with spinach",
+  "serving": "1 curry bowl",
+  "calories": 213.1,
+  "protein": 8.3,
+  "carbs": 19.2,
+  "fats": 11.1,
+  "sugar": 0.9,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Arhar with spinach (Arhar dal aur palak)",
+  "aliases": [
+   "toor dal",
+   "tuvar dal",
+   "dal palak"
+  ]
+ },
+ {
+  "id": "indb-ASC219",
+  "name": "Avial",
+  "serving": "1 bowl",
+  "calories": 417.3,
+  "protein": 8.2,
+  "carbs": 28.4,
+  "fats": 29.9,
+  "sugar": 12.8,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Avial"
+ },
+ {
+  "id": "indb-ASC177",
+  "name": "Baingan bharta",
+  "serving": "1 bowl",
+  "calories": 212.2,
+  "protein": 4.5,
+  "carbs": 14.3,
+  "fats": 14.6,
+  "sugar": 5.9,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Brinjal bhartha (Baingan ka bhartha)",
+  "aliases": [
+   "brinjal bhartha"
+  ]
  },
  {
   "id": "usda-173944",
@@ -119,6 +274,22 @@
   "usdaDescription": "Bananas, raw"
  },
  {
+  "id": "indb-ASC016",
+  "name": "Banana milkshake",
+  "serving": "1 tall glass",
+  "calories": 225.6,
+  "protein": 6.4,
+  "carbs": 31.6,
+  "fats": 8.2,
+  "sugar": 27.5,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Banana milkshake (Kele milkshake)",
+  "aliases": [
+   "shake"
+  ]
+ },
+ {
   "id": "usda-168746",
   "name": "Beer",
   "serving": "1 can (330 ml) (330 g)",
@@ -129,6 +300,55 @@
   "sugar": 0,
   "source": "USDA FoodData Central",
   "usdaDescription": "Alcoholic beverage, beer, regular, all"
+ },
+ {
+  "id": "indb-ASC343",
+  "name": "Besan ladoo",
+  "serving": "1 ladoo",
+  "calories": 168.1,
+  "protein": 3.1,
+  "carbs": 22.1,
+  "fats": 8.0,
+  "sugar": 13.3,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Gram flour ladoo (Besan ladoo)",
+  "aliases": [
+   "laddu"
+  ]
+ },
+ {
+  "id": "indb-ASC184",
+  "name": "Bharwa bhindi",
+  "serving": "1 bowl",
+  "calories": 104.2,
+  "protein": 2.3,
+  "carbs": 4.3,
+  "fats": 8.5,
+  "sugar": 0.5,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Stuffed okra (Bharwa bhindi)",
+  "aliases": [
+   "stuffed okra"
+  ]
+ },
+ {
+  "id": "indb-BFP269",
+  "name": "Bhindi fry",
+  "serving": "1 bowl",
+  "calories": 184.3,
+  "protein": 3.0,
+  "carbs": 7.5,
+  "fats": 15.4,
+  "sugar": 2.4,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Okra/Lady's fingers fry (Bhindi sabzi/sabji/subji)",
+  "aliases": [
+   "okra",
+   "ladyfinger"
+  ]
  },
  {
   "id": "usda-171890",
@@ -233,6 +453,38 @@
   "usdaDescription": "Butter, salted"
  },
  {
+  "id": "indb-ASC242",
+  "name": "Butter chicken",
+  "serving": "1 large piece",
+  "calories": 377.0,
+  "protein": 30.1,
+  "carbs": 10.3,
+  "fats": 23.9,
+  "sugar": 6.5,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Butter chicken",
+  "aliases": [
+   "murgh makhani"
+  ]
+ },
+ {
+  "id": "indb-ASC173",
+  "name": "Cabbage and peas sabzi",
+  "serving": "1 bowl",
+  "calories": 106.2,
+  "protein": 5.4,
+  "carbs": 10.4,
+  "fats": 4.4,
+  "sugar": 1.6,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Cabbage and peas (Pattagobhi aur matar)",
+  "aliases": [
+   "patta gobhi"
+  ]
+ },
+ {
   "id": "usda-170393",
   "name": "Carrot",
   "serving": "1 medium (61 g)",
@@ -263,6 +515,23 @@
   "usdaDescription": "Nuts, cashew nuts, raw"
  },
  {
+  "id": "indb-OSR142",
+  "name": "Chana dal",
+  "serving": "1 bowl",
+  "calories": 291.2,
+  "protein": 12.1,
+  "carbs": 29.2,
+  "fats": 13.5,
+  "sugar": 2.9,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Split bengal gram dal (Channa dal)",
+  "aliases": [
+   "dal",
+   "daal"
+  ]
+ },
+ {
   "id": "usda-328637",
   "name": "Cheddar cheese",
   "serving": "1 slice (21 g)",
@@ -288,6 +557,22 @@
   "sugar": 0,
   "source": "USDA FoodData Central",
   "usdaDescription": "Pizza, cheese topping, regular crust, frozen, cooked"
+ },
+ {
+  "id": "indb-ASC040",
+  "name": "Cheese tomato toasted sandwich",
+  "serving": "1 triangle",
+  "calories": 170.1,
+  "protein": 5.2,
+  "carbs": 16.2,
+  "fats": 9.8,
+  "sugar": 2.0,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Cheese and tomato sandwich (toasted) (Cheese aur tamatar ke sandwich (toasted))",
+  "aliases": [
+   "cheese toastie"
+  ]
  },
  {
   "id": "usda-2706538",
@@ -320,16 +605,59 @@
   "usdaDescription": "Chicken, broilers or fryers, breast, meat only, cooked, roasted"
  },
  {
-  "id": "usda-2706437",
+  "id": "indb-ASC135",
+  "name": "Chicken chowmein",
+  "serving": "1 plate",
+  "calories": 521.0,
+  "protein": 21.8,
+  "carbs": 45.8,
+  "fats": 28.4,
+  "sugar": 5.6,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Chicken chowmein",
+  "aliases": [
+   "noodles"
+  ]
+ },
+ {
+  "id": "indb-ASC240",
   "name": "Chicken curry",
-  "serving": "1 bowl (200 g)",
-  "calories": 214,
-  "protein": 13,
-  "carbs": 13.1,
-  "fats": 13,
-  "sugar": 0,
-  "source": "USDA FoodData Central",
-  "usdaDescription": "Chicken curry"
+  "serving": "1 bowl",
+  "calories": 320.4,
+  "protein": 29.2,
+  "carbs": 8.4,
+  "fats": 18.8,
+  "sugar": 4.4,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Chicken curry"
+ },
+ {
+  "id": "indb-BFP222",
+  "name": "Chicken korma",
+  "serving": "1 bowl",
+  "calories": 513.5,
+  "protein": 34.1,
+  "carbs": 18.8,
+  "fats": 33.6,
+  "sugar": 11.5,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Chicken korma"
+ },
+ {
+  "id": "indb-ASC028",
+  "name": "Chicken sandwich",
+  "serving": "1 triangle",
+  "calories": 147.5,
+  "protein": 7.6,
+  "carbs": 14.8,
+  "fats": 6.8,
+  "sugar": 0.9,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Chicken sandwich"
  },
  {
   "id": "usda-173757",
@@ -348,6 +676,24 @@
   "usdaDescription": "Chickpeas (garbanzo beans, bengal gram), mature seeds, cooked, boiled, without salt"
  },
  {
+  "id": "indb-ASC162",
+  "name": "Chole",
+  "serving": "1 bowl",
+  "calories": 196.0,
+  "protein": 7.3,
+  "carbs": 24.0,
+  "fats": 8.2,
+  "sugar": 5.7,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Chickpeas curry (Safed channa curry)",
+  "aliases": [
+   "chana masala",
+   "chickpea curry",
+   "chhole"
+  ]
+ },
+ {
   "id": "off-8901764012273",
   "name": "Coca-Cola",
   "brand": "Coca-Cola",
@@ -363,6 +709,22 @@
    "soft drink"
   ],
   "source": "Open Food Facts"
+ },
+ {
+  "id": "indb-ASC386",
+  "name": "Coconut chutney",
+  "serving": "1 tablespoon",
+  "calories": 67.4,
+  "protein": 0.9,
+  "carbs": 2.1,
+  "fats": 6.3,
+  "sugar": 1.0,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Coconut chutney (Nariyal ki chutney)",
+  "aliases": [
+   "nariyal chutney"
+  ]
  },
  {
   "id": "usda-170174",
@@ -396,6 +758,38 @@
   "source": "Open Food Facts"
  },
  {
+  "id": "indb-BFP013",
+  "name": "Cold coffee",
+  "serving": "1 tall glass",
+  "calories": 207.3,
+  "protein": 4.8,
+  "carbs": 30.0,
+  "fats": 8.2,
+  "sugar": 29.8,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Cold coffee (with cream)",
+  "aliases": [
+   "iced coffee"
+  ]
+ },
+ {
+  "id": "indb-ASC051",
+  "name": "Cornflakes with milk",
+  "serving": "1 bowl",
+  "calories": 326.2,
+  "protein": 10.0,
+  "carbs": 41.6,
+  "fats": 14.2,
+  "sugar": 27.7,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Cornflakes with milk",
+  "aliases": [
+   "cereal"
+  ]
+ },
+ {
   "id": "usda-2346406",
   "name": "Cucumber",
   "serving": "1 cup slices (104 g)",
@@ -409,6 +803,22 @@
   ],
   "source": "USDA FoodData Central",
   "usdaDescription": "Cucumber, with peel, raw"
+ },
+ {
+  "id": "indb-ASC273",
+  "name": "Cucumber raita",
+  "serving": "1 bowl",
+  "calories": 90.3,
+  "protein": 6.2,
+  "carbs": 9.7,
+  "fats": 3.2,
+  "sugar": 8.0,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Cucumber raita (Kheere ka raita)",
+  "aliases": [
+   "kheera raita"
+  ]
  },
  {
   "id": "usda-2259793",
@@ -428,6 +838,23 @@
   "usdaDescription": "Yogurt, plain, whole milk"
  },
  {
+  "id": "indb-ASC126",
+  "name": "Curd rice",
+  "serving": "1 plate",
+  "calories": 423.1,
+  "protein": 12.4,
+  "carbs": 71.2,
+  "fats": 9.3,
+  "sugar": 8.5,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Curd rice (Dahi bhaat/Dahi chawal/ Perugu annam/Daddojanam/Thayir saadam)",
+  "aliases": [
+   "dahi chawal",
+   "thayir sadam"
+  ]
+ },
+ {
   "id": "off-7622202334009",
   "name": "Dairy Milk",
   "brand": "Cadbury",
@@ -444,21 +871,52 @@
   "source": "Open Food Facts"
  },
  {
-  "id": "usda-2707427",
+  "id": "indb-ASC155",
   "name": "Dal",
-  "serving": "1 bowl (150 g)",
-  "calories": 217.5,
-  "protein": 12.9,
-  "carbs": 28.8,
-  "fats": 6.5,
-  "sugar": 0,
+  "serving": "1 bowl",
+  "calories": 184.4,
+  "protein": 7.5,
+  "carbs": 17.3,
+  "fats": 9.2,
+  "sugar": 1.0,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Mixed dal",
   "aliases": [
+   "mixed dal",
    "daal",
    "dal tadka",
    "dal fry"
-  ],
-  "source": "USDA FoodData Central",
-  "usdaDescription": "Dal"
+  ]
+ },
+ {
+  "id": "indb-OSR145",
+  "name": "Dal dhokli",
+  "serving": "1 bowl",
+  "calories": 231.4,
+  "protein": 10.0,
+  "carbs": 28.8,
+  "fats": 8.3,
+  "sugar": 3.8,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Dal dhokli"
+ },
+ {
+  "id": "indb-OSR139",
+  "name": "Dal makhani",
+  "serving": "1 bowl",
+  "calories": 261.6,
+  "protein": 11.7,
+  "carbs": 28.1,
+  "fats": 10.8,
+  "sugar": 2.8,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Dal makhani",
+  "aliases": [
+   "daal makhni"
+  ]
  },
  {
   "id": "usda-170273",
@@ -489,6 +947,69 @@
   "usdaDescription": "Dates, deglet noor"
  },
  {
+  "id": "indb-ASC474",
+  "name": "Dhokla",
+  "serving": "1 piece",
+  "calories": 86.5,
+  "protein": 5.4,
+  "carbs": 12.3,
+  "fats": 2.1,
+  "sugar": 1.9,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Dhokla"
+ },
+ {
+  "id": "indb-ASC178",
+  "name": "Dry aloo sabzi",
+  "serving": "1 bowl",
+  "calories": 109.1,
+  "protein": 1.7,
+  "carbs": 15.2,
+  "fats": 4.4,
+  "sugar": 0.3,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Dry potato (Sookhe aloo)",
+  "aliases": [
+   "sookhe aloo",
+   "potato sabji"
+  ]
+ },
+ {
+  "id": "indb-ASC059",
+  "name": "Egg bhurji",
+  "serving": "1 egg",
+  "calories": 109.2,
+  "protein": 7.2,
+  "carbs": 0.9,
+  "fats": 8.5,
+  "sugar": 0.8,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Scrambled egg (Ande ki bhurji)",
+  "aliases": [
+   "anda bhurji",
+   "scrambled egg"
+  ]
+ },
+ {
+  "id": "indb-BFP240",
+  "name": "Egg curry",
+  "serving": "1 bowl",
+  "calories": 178.1,
+  "protein": 8.2,
+  "carbs": 6.1,
+  "fats": 13.4,
+  "sugar": 2.9,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Egg curry (Anda curry)",
+  "aliases": [
+   "anda curry"
+  ]
+ },
+ {
   "id": "usda-172183",
   "name": "Egg white",
   "serving": "1 large (33 g)",
@@ -516,16 +1037,33 @@
   "source": "Open Food Facts"
  },
  {
-  "id": "usda-2706460",
+  "id": "indb-ASC246",
   "name": "Fish curry",
-  "serving": "1 bowl (200 g)",
-  "calories": 186,
-  "protein": 9.9,
-  "carbs": 13.3,
-  "fats": 10.8,
-  "sugar": 0,
-  "source": "USDA FoodData Central",
-  "usdaDescription": "Fish curry"
+  "serving": "1 bowl",
+  "calories": 282.2,
+  "protein": 22.3,
+  "carbs": 9.6,
+  "fats": 17.0,
+  "sugar": 5.1,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Fish curry (Machli curry)",
+  "aliases": [
+   "machli"
+  ]
+ },
+ {
+  "id": "indb-ASC251",
+  "name": "Fish tikka",
+  "serving": "1 piece",
+  "calories": 41.7,
+  "protein": 5.7,
+  "carbs": 1.4,
+  "fats": 1.5,
+  "sugar": 0.4,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Fish tikka"
  },
  {
   "id": "usda-170698",
@@ -561,18 +1099,6 @@
   "usdaDescription": "Egg, whole, cooked, fried"
  },
  {
-  "id": "usda-2708951",
-  "name": "Fried rice",
-  "serving": "1 cup (166 g)",
-  "calories": 288.8,
-  "protein": 6.4,
-  "carbs": 54,
-  "fats": 5.3,
-  "sugar": 0,
-  "source": "USDA FoodData Central",
-  "usdaDescription": "Rice, fried, meatless"
- },
- {
   "id": "off-8902579103170",
   "name": "Frooti",
   "brand": "Parle Agro",
@@ -588,6 +1114,23 @@
   "source": "Open Food Facts"
  },
  {
+  "id": "indb-ASC295",
+  "name": "Gajar halwa",
+  "serving": "1 bowl",
+  "calories": 289.7,
+  "protein": 5.2,
+  "carbs": 31.1,
+  "fats": 16.3,
+  "sugar": 28.3,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Carrot halwa (Gajar ka halwa)",
+  "aliases": [
+   "carrot halwa",
+   "gajar ka halwa"
+  ]
+ },
+ {
   "id": "usda-171314",
   "name": "Ghee",
   "serving": "1 tsp (5 g)",
@@ -598,6 +1141,22 @@
   "sugar": 0,
   "source": "USDA FoodData Central",
   "usdaDescription": "Butter, Clarified butter (ghee)"
+ },
+ {
+  "id": "indb-ASC100",
+  "name": "Gobi paratha",
+  "serving": "1 paratha",
+  "calories": 181.4,
+  "protein": 3.8,
+  "carbs": 19.2,
+  "fats": 9.6,
+  "sugar": 1.2,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Cauliflower parantha/paratha (Phoolgobhi ka parantha/paratha)",
+  "aliases": [
+   "cauliflower parantha"
+  ]
  },
  {
   "id": "off-8901063092822",
@@ -721,16 +1280,126 @@
   "source": "Open Food Facts"
  },
  {
-  "id": "usda-2708346",
+  "id": "indb-ASC144",
   "name": "Idli",
-  "serving": "2 idlis (80 g)",
-  "calories": 102.4,
-  "protein": 5.1,
-  "carbs": 20,
-  "fats": 0.3,
-  "sugar": 0,
-  "source": "USDA FoodData Central",
-  "usdaDescription": "Idli"
+  "serving": "1 idli",
+  "calories": 34.5,
+  "protein": 1.2,
+  "carbs": 7.1,
+  "fats": 0.1,
+  "sugar": 0.1,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Idli"
+ },
+ {
+  "id": "indb-ASC002",
+  "name": "Instant coffee with milk",
+  "serving": "1 tea cup",
+  "calories": 104.2,
+  "protein": 2.9,
+  "carbs": 16.4,
+  "fats": 3.4,
+  "sugar": 16.3,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Instant coffee",
+  "aliases": [
+   "coffee"
+  ]
+ },
+ {
+  "id": "indb-BFP024",
+  "name": "Jal jeera",
+  "serving": "1 juice glass",
+  "calories": 42.3,
+  "protein": 0.6,
+  "carbs": 9.4,
+  "fats": 0.4,
+  "sugar": 8.0,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Jal jeera"
+ },
+ {
+  "id": "indb-BFP134",
+  "name": "Jeera rice",
+  "serving": "1 plate",
+  "calories": 365.8,
+  "protein": 6.7,
+  "carbs": 63.9,
+  "fats": 8.6,
+  "sugar": 1.7,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Cumin pulao (Jeera/Zeera pulao)",
+  "aliases": [
+   "zeera pulao"
+  ]
+ },
+ {
+  "id": "indb-ASC226",
+  "name": "Kadhai paneer",
+  "serving": "1 bowl",
+  "calories": 343.6,
+  "protein": 13.8,
+  "carbs": 23.4,
+  "fats": 21.7,
+  "sugar": 17.6,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Kadhai Paneer",
+  "aliases": [
+   "kadai paneer"
+  ]
+ },
+ {
+  "id": "indb-ASC339",
+  "name": "Kaju katli",
+  "serving": "1 burfi",
+  "calories": 120.9,
+  "protein": 1.6,
+  "carbs": 10.9,
+  "fats": 8.2,
+  "sugar": 9.0,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Cashewnut burfi (Kaju burfi/Kaju katli)",
+  "aliases": [
+   "kaju barfi"
+  ]
+ },
+ {
+  "id": "indb-ASC161",
+  "name": "Kala chana curry",
+  "serving": "1 bowl",
+  "calories": 168.7,
+  "protein": 6.8,
+  "carbs": 16.9,
+  "fats": 7.9,
+  "sugar": 2.8,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Black channa curry/Bengal gram curry (Kale chane ki curry)",
+  "aliases": [
+   "black chana"
+  ]
+ },
+ {
+  "id": "indb-ASC229",
+  "name": "Keema matar",
+  "serving": "1 bowl",
+  "calories": 457.3,
+  "protein": 29.0,
+  "carbs": 21.5,
+  "fats": 28.0,
+  "sugar": 6.3,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Pea keema curry (Matar keema ki sabzi)",
+  "aliases": [
+   "mince curry"
+  ]
  },
  {
   "id": "off-8901499009661",
@@ -749,6 +1418,19 @@
   "source": "Open Food Facts"
  },
  {
+  "id": "indb-OSR102",
+  "name": "Khakhra",
+  "serving": "1 khakhra",
+  "calories": 135.1,
+  "protein": 3.6,
+  "carbs": 20.9,
+  "fats": 4.0,
+  "sugar": 0.7,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Khakhra"
+ },
+ {
   "id": "usda-175194",
   "name": "Kidney beans, cooked",
   "serving": "1 cup (177 g)",
@@ -758,7 +1440,7 @@
   "fats": 0.9,
   "sugar": 0,
   "aliases": [
-   "rajma"
+   "boiled rajma"
   ],
   "source": "USDA FoodData Central",
   "usdaDescription": "Beans, kidney, red, mature seeds, cooked, boiled, without salt"
@@ -789,6 +1471,19 @@
    "chocolate"
   ],
   "source": "Open Food Facts"
+ },
+ {
+  "id": "indb-ASC321",
+  "name": "Kulfi",
+  "serving": "1 kulfi",
+  "calories": 265.9,
+  "protein": 8.7,
+  "carbs": 30.5,
+  "fats": 12.7,
+  "sugar": 28.1,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Kulfi"
  },
  {
   "id": "off-8901491361026",
@@ -837,6 +1532,36 @@
   "source": "Open Food Facts"
  },
  {
+  "id": "indb-ASC124",
+  "name": "Lemon rice",
+  "serving": "1 plate",
+  "calories": 562.7,
+  "protein": 13.6,
+  "carbs": 69.0,
+  "fats": 25.1,
+  "sugar": 2.5,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Lemon rice (Pulihora, Elumichai sadam, Chitranna)"
+ },
+ {
+  "id": "indb-ASC008",
+  "name": "Lemonade",
+  "serving": "1 glass",
+  "calories": 72.6,
+  "protein": 0.1,
+  "carbs": 19.1,
+  "fats": 0.0,
+  "sugar": 19.1,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Lemonade",
+  "aliases": [
+   "nimbu pani",
+   "shikanji"
+  ]
+ },
+ {
   "id": "usda-172421",
   "name": "Lentils, cooked",
   "serving": "1 bowl (150 g)",
@@ -854,6 +1579,22 @@
   "usdaDescription": "Lentils, mature seeds, cooked, boiled, without salt"
  },
  {
+  "id": "indb-ASC163",
+  "name": "Lobia curry",
+  "serving": "1 bowl",
+  "calories": 178.7,
+  "protein": 7.3,
+  "carbs": 21.4,
+  "fats": 6.7,
+  "sugar": 3.0,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Lobia curry",
+  "aliases": [
+   "black eyed peas"
+  ]
+ },
+ {
   "id": "off-8901058000306",
   "name": "Maggi Masala Noodles",
   "brand": "Maggi",
@@ -867,6 +1608,19 @@
    "instant noodles"
   ],
   "source": "Open Food Facts"
+ },
+ {
+  "id": "indb-ASC150",
+  "name": "Makki ki roti",
+  "serving": "1 roti",
+  "calories": 224.4,
+  "protein": 3.0,
+  "carbs": 20.6,
+  "fats": 14.3,
+  "sugar": 0.6,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Makki ki roti"
  },
  {
   "id": "usda-169910",
@@ -884,6 +1638,23 @@
   "usdaDescription": "Mangos, raw"
  },
  {
+  "id": "indb-ASC017",
+  "name": "Mango milkshake",
+  "serving": "1 tall glass",
+  "calories": 202.3,
+  "protein": 6.1,
+  "carbs": 25.7,
+  "fats": 8.3,
+  "sugar": 25.4,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Mango milkshake (Aam milkshake)",
+  "aliases": [
+   "shake",
+   "aam"
+  ]
+ },
+ {
   "id": "off-8901063162914",
   "name": "Marie Gold",
   "brand": "Britannia",
@@ -897,6 +1668,118 @@
    "biscuit"
   ],
   "source": "Open Food Facts"
+ },
+ {
+  "id": "indb-ASC001",
+  "name": "Masala chai",
+  "serving": "1 tea cup",
+  "calories": 34.0,
+  "protein": 0.8,
+  "carbs": 5.4,
+  "fats": 1.1,
+  "sugar": 5.4,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Hot tea (Garam Chai)",
+  "aliases": [
+   "tea",
+   "chai",
+   "garam chai"
+  ]
+ },
+ {
+  "id": "indb-ASC146",
+  "name": "Masala dosa",
+  "serving": "1 dosa",
+  "calories": 345.1,
+  "protein": 6.9,
+  "carbs": 41.0,
+  "fats": 16.4,
+  "sugar": 2.8,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Masala dosa",
+  "aliases": [
+   "dosai"
+  ]
+ },
+ {
+  "id": "indb-ASC157",
+  "name": "Masoor dal",
+  "serving": "1 bowl",
+  "calories": 185.0,
+  "protein": 7.8,
+  "carbs": 18.4,
+  "fats": 8.6,
+  "sugar": 2.3,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Whole masoor (Masoor ki dal)",
+  "aliases": [
+   "dal",
+   "daal"
+  ]
+ },
+ {
+  "id": "indb-ASC191",
+  "name": "Matar paneer",
+  "serving": "1 bowl",
+  "calories": 373.9,
+  "protein": 18.3,
+  "carbs": 25.8,
+  "fats": 21.5,
+  "sugar": 10.8,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Pea paneer curry (Matar paneer)",
+  "aliases": [
+   "pea paneer curry"
+  ]
+ },
+ {
+  "id": "indb-BFP136",
+  "name": "Matar pulao",
+  "serving": "1 plate",
+  "calories": 513.8,
+  "protein": 18.4,
+  "carbs": 86.9,
+  "fats": 9.0,
+  "sugar": 6.2,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Peas pulao (Matar pulao)",
+  "aliases": [
+   "peas pulao"
+  ]
+ },
+ {
+  "id": "indb-BFP110",
+  "name": "Methi paratha",
+  "serving": "1 paratha",
+  "calories": 135.3,
+  "protein": 3.9,
+  "carbs": 20.2,
+  "fats": 4.0,
+  "sugar": 2.2,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Methi parantha/paratha",
+  "aliases": [
+   "parantha"
+  ]
+ },
+ {
+  "id": "indb-OSR104",
+  "name": "Methi thepla",
+  "serving": "1 thepla",
+  "calories": 126.2,
+  "protein": 3.3,
+  "carbs": 15.1,
+  "fats": 5.8,
+  "sugar": 1.1,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Methi thepla"
  },
  {
   "id": "usda-167587",
@@ -943,6 +1826,86 @@
   "usdaDescription": "Milk, reduced fat, fluid, 2% milkfat, with added vitamin A and vitamin D"
  },
  {
+  "id": "indb-ASC387",
+  "name": "Mint and coriander chutney",
+  "serving": "1 tablespoon",
+  "calories": 27.0,
+  "protein": 0.7,
+  "carbs": 5.6,
+  "fats": 0.1,
+  "sugar": 4.2,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Mint and coriander chutney (Pudinay aur dhaniye ki chutney)",
+  "aliases": [
+   "green chutney",
+   "hari chutney"
+  ]
+ },
+ {
+  "id": "indb-ASC099",
+  "name": "Mooli paratha",
+  "serving": "1 paratha",
+  "calories": 183.6,
+  "protein": 3.3,
+  "carbs": 20.5,
+  "fats": 9.5,
+  "sugar": 1.3,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Radish parantha/paratha (Mooli ka parantha/paratha)",
+  "aliases": [
+   "radish parantha"
+  ]
+ },
+ {
+  "id": "indb-ASC151",
+  "name": "Moong dal",
+  "serving": "1 bowl",
+  "calories": 138.5,
+  "protein": 7.4,
+  "carbs": 16.4,
+  "fats": 4.7,
+  "sugar": 0.3,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Washed moong dal (Dhuli moong ki dal)",
+  "aliases": [
+   "dal",
+   "daal"
+  ]
+ },
+ {
+  "id": "indb-BFP046",
+  "name": "Moong dal chilla",
+  "serving": "1 cheela",
+  "calories": 352.1,
+  "protein": 15.9,
+  "carbs": 44.2,
+  "fats": 11.6,
+  "sugar": 2.5,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Moong dal stuffed cheela/chilla (Moong dal ka cheela/chilla)",
+  "aliases": [
+   "cheela",
+   "chila"
+  ]
+ },
+ {
+  "id": "indb-ASC299",
+  "name": "Moong dal halwa",
+  "serving": "1 bowl",
+  "calories": 333.7,
+  "protein": 8.0,
+  "carbs": 38.4,
+  "fats": 16.9,
+  "sugar": 24.4,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Moong dal halwa"
+ },
+ {
   "id": "usda-169957",
   "name": "Moong sprouts",
   "serving": "1 cup (104 g)",
@@ -958,32 +1921,78 @@
   "usdaDescription": "Mung beans, mature seeds, sprouted, raw"
  },
  {
-  "id": "usda-171845",
-  "name": "Naan",
-  "serving": "1 piece (90 g)",
-  "calories": 261.9,
-  "protein": 8.7,
-  "carbs": 45.4,
-  "fats": 5.1,
-  "sugar": 0,
-  "source": "USDA FoodData Central",
-  "usdaDescription": "Bread, naan, plain, commercially prepared, refrigerated"
+  "id": "indb-ASC054",
+  "name": "Murmura",
+  "serving": "1 bowl",
+  "calories": 315.0,
+  "protein": 10.1,
+  "carbs": 43.6,
+  "fats": 11.2,
+  "sugar": 20.3,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Murmura (Puffed rice)",
+  "aliases": [
+   "puffed rice"
+  ]
  },
  {
-  "id": "usda-2708799",
-  "name": "Noodles, stir fried",
-  "serving": "1 cup (160 g)",
-  "calories": 193.6,
-  "protein": 7.6,
-  "carbs": 32.3,
-  "fats": 3.8,
-  "sugar": 0,
+  "id": "indb-ASC122",
+  "name": "Mutton biryani",
+  "serving": "1 plate",
+  "calories": 396.4,
+  "protein": 15.3,
+  "carbs": 46.7,
+  "fats": 16.1,
+  "sugar": 5.0,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Mutton biryani/biriyani",
   "aliases": [
-   "chowmein",
-   "hakka noodles"
-  ],
-  "source": "USDA FoodData Central",
-  "usdaDescription": "Lo mein, meatless"
+   "biriyani"
+  ]
+ },
+ {
+  "id": "indb-BFP194",
+  "name": "Mutton korma",
+  "serving": "1 bowl",
+  "calories": 423.8,
+  "protein": 26.0,
+  "carbs": 9.3,
+  "fats": 31.3,
+  "sugar": 6.0,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Mutton korma"
+ },
+ {
+  "id": "indb-BFP199",
+  "name": "Mutton seekh kebab",
+  "serving": "1 kebab",
+  "calories": 60.3,
+  "protein": 5.1,
+  "carbs": 1.4,
+  "fats": 3.8,
+  "sugar": 0.6,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Mutton seekh kebab",
+  "aliases": [
+   "kabab"
+  ]
+ },
+ {
+  "id": "indb-ASC142",
+  "name": "Naan",
+  "serving": "1 naan",
+  "calories": 152.3,
+  "protein": 4.3,
+  "carbs": 27.5,
+  "fats": 2.7,
+  "sugar": 3.0,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Naan"
  },
  {
   "id": "off-80177173",
@@ -999,6 +2008,22 @@
    "chocolate spread"
   ],
   "source": "Open Food Facts"
+ },
+ {
+  "id": "indb-ASC050",
+  "name": "Oatmeal porridge",
+  "serving": "1 bowl",
+  "calories": 290.0,
+  "protein": 10.3,
+  "carbs": 34.9,
+  "fats": 12.8,
+  "sugar": 20.7,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Oatmeal Porridge",
+  "aliases": [
+   "oats"
+  ]
  },
  {
   "id": "usda-173904",
@@ -1103,19 +2128,141 @@
   "usdaDescription": "Pakora"
  },
  {
-  "id": "usda-2709631",
-  "name": "Palak paneer",
-  "serving": "1 bowl (200 g)",
-  "calories": 202,
-  "protein": 10.8,
-  "carbs": 8.6,
-  "fats": 14,
-  "sugar": 0,
+  "id": "indb-BFP257",
+  "name": "Palak aloo",
+  "serving": "1 bowl",
+  "calories": 191.6,
+  "protein": 5.5,
+  "carbs": 19.8,
+  "fats": 9.4,
+  "sugar": 3.1,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Spinach and potato (Palak aloo)",
   "aliases": [
-   "saag paneer"
-  ],
-  "source": "USDA FoodData Central",
-  "usdaDescription": "Palak Paneer"
+   "aloo palak"
+  ]
+ },
+ {
+  "id": "indb-ASC215",
+  "name": "Palak paneer",
+  "serving": "1 bowl",
+  "calories": 229.6,
+  "protein": 11.9,
+  "carbs": 13.1,
+  "fats": 14.1,
+  "sugar": 7.5,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Spinach paneer (Palak paneer)",
+  "aliases": [
+   "saag paneer",
+   "spinach paneer"
+  ]
+ },
+ {
+  "id": "indb-OSR144",
+  "name": "Panchmel dal",
+  "serving": "1 bowl",
+  "calories": 334.6,
+  "protein": 13.9,
+  "carbs": 32.2,
+  "fats": 16.1,
+  "sugar": 2.2,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Panchmel dal",
+  "aliases": [
+   "dal",
+   "daal"
+  ]
+ },
+ {
+  "id": "indb-ASC222",
+  "name": "Paneer butter masala",
+  "serving": "1 bowl",
+  "calories": 228.3,
+  "protein": 11.0,
+  "carbs": 15.2,
+  "fats": 13.8,
+  "sugar": 11.7,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Paneer in butter sauce",
+  "aliases": [
+   "paneer makhani"
+  ]
+ },
+ {
+  "id": "indb-ASC195",
+  "name": "Paneer curry",
+  "serving": "1 bowl",
+  "calories": 357.1,
+  "protein": 15.8,
+  "carbs": 17.0,
+  "fats": 25.1,
+  "sugar": 12.7,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Paneer curry"
+ },
+ {
+  "id": "indb-ASC149",
+  "name": "Paneer kathi roll",
+  "serving": "1 kaathi roll",
+  "calories": 424.2,
+  "protein": 10.3,
+  "carbs": 29.8,
+  "fats": 29.0,
+  "sugar": 4.9,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Paneer kaathi roll",
+  "aliases": [
+   "frankie"
+  ]
+ },
+ {
+  "id": "indb-OSR077",
+  "name": "Paneer lababdar",
+  "serving": "1 bowl",
+  "calories": 403.2,
+  "protein": 15.2,
+  "carbs": 12.9,
+  "fats": 32.4,
+  "sugar": 7.5,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Paneer lababdar"
+ },
+ {
+  "id": "indb-ASC105",
+  "name": "Paneer paratha",
+  "serving": "1 paratha",
+  "calories": 223.6,
+  "protein": 6.8,
+  "carbs": 20.7,
+  "fats": 12.4,
+  "sugar": 3.2,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Paneer parantha/paratha",
+  "aliases": [
+   "parantha"
+  ]
+ },
+ {
+  "id": "indb-ASC381",
+  "name": "Paneer tikka",
+  "serving": "1 plate",
+  "calories": 411.7,
+  "protein": 22.4,
+  "carbs": 35.0,
+  "fats": 19.7,
+  "sugar": 20.2,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Paneer shaslik/tikka"
  },
  {
   "id": "usda-169926",
@@ -1131,21 +2278,6 @@
   ],
   "source": "USDA FoodData Central",
   "usdaDescription": "Papayas, raw"
- },
- {
-  "id": "usda-174076",
-  "name": "Paratha",
-  "serving": "1 piece (79 g)",
-  "calories": 257.5,
-  "protein": 5,
-  "carbs": 35.8,
-  "fats": 10.4,
-  "sugar": 0,
-  "aliases": [
-   "parantha"
-  ],
-  "source": "USDA FoodData Central",
-  "usdaDescription": "Bread, paratha, whole wheat, commercially prepared, frozen"
  },
  {
   "id": "off-8901719123870",
@@ -1180,6 +2312,19 @@
   "usdaDescription": "Pasta, cooked, enriched, without added salt"
  },
  {
+  "id": "indb-OSR112",
+  "name": "Pav bhaji",
+  "serving": "100 g",
+  "calories": 96.5,
+  "protein": 2.7,
+  "carbs": 12.0,
+  "fats": 4.3,
+  "sugar": 2.1,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Pav bhaji"
+ },
+ {
   "id": "usda-174266",
   "name": "Peanut butter",
   "serving": "1 tbsp (16 g)",
@@ -1191,6 +2336,19 @@
   "sugarApprox": true,
   "source": "USDA FoodData Central",
   "usdaDescription": "Peanut butter, smooth style, with salt (Includes foods for USDA's Food Distribution Program)"
+ },
+ {
+  "id": "indb-ASC382",
+  "name": "Peanut chikki",
+  "serving": "1 piece",
+  "calories": 78.9,
+  "protein": 1.7,
+  "carbs": 11.7,
+  "fats": 2.7,
+  "sugar": 10.8,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Peanut brittle (Moongfali ki chikki)"
  },
  {
   "id": "usda-173806",
@@ -1225,6 +2383,38 @@
   "source": "Open Food Facts"
  },
  {
+  "id": "indb-OSR103",
+  "name": "Pesarattu",
+  "serving": "1 pesarattu",
+  "calories": 75.9,
+  "protein": 3.3,
+  "carbs": 8.5,
+  "fats": 3.1,
+  "sugar": 0.8,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Moong bean dosa (Pesarattu)",
+  "aliases": [
+   "moong dosa"
+  ]
+ },
+ {
+  "id": "indb-ASC292",
+  "name": "Phirni",
+  "serving": "1 bowl",
+  "calories": 337.0,
+  "protein": 10.1,
+  "carbs": 46.7,
+  "fats": 12.6,
+  "sugar": 31.3,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Phirni",
+  "aliases": [
+   "firni"
+  ]
+ },
+ {
   "id": "usda-169124",
   "name": "Pineapple",
   "serving": "1 cup pieces (165 g)",
@@ -1237,19 +2427,117 @@
   "usdaDescription": "Pineapple, raw, all varieties"
  },
  {
-  "id": "usda-2708347",
+  "id": "indb-ASC335",
+  "name": "Plain burfi",
+  "serving": "1 burfi",
+  "calories": 177.8,
+  "protein": 4.3,
+  "carbs": 13.5,
+  "fats": 12.2,
+  "sugar": 13.3,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Plain burfi (Burfi)",
+  "aliases": [
+   "barfi"
+  ]
+ },
+ {
+  "id": "indb-BFP148",
   "name": "Plain dosa",
-  "serving": "1 dosa (85 g)",
-  "calories": 178.5,
-  "protein": 4.8,
-  "carbs": 31.5,
-  "fats": 3.4,
-  "sugar": 0,
+  "serving": "1 dosa",
+  "calories": 137.6,
+  "protein": 3.7,
+  "carbs": 23.1,
+  "fats": 3.0,
+  "sugar": 0.3,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Plain dosa",
   "aliases": [
    "dosai"
-  ],
-  "source": "USDA FoodData Central",
-  "usdaDescription": "Dosa, plain"
+  ]
+ },
+ {
+  "id": "indb-BFP144",
+  "name": "Plain khichdi",
+  "serving": "1 small bowl",
+  "calories": 327.4,
+  "protein": 9.9,
+  "carbs": 57.6,
+  "fats": 5.8,
+  "sugar": 0.7,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Plain khitchdi (Plain khichri/khichdi)",
+  "aliases": [
+   "khichri"
+  ]
+ },
+ {
+  "id": "indb-ASC061",
+  "name": "Plain omelette",
+  "serving": "1 omelette",
+  "calories": 389.5,
+  "protein": 13.8,
+  "carbs": 0.9,
+  "fats": 36.8,
+  "sugar": 0.7,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Plain omelette/omlet",
+  "aliases": [
+   "omelet",
+   "anda"
+  ]
+ },
+ {
+  "id": "indb-ASC097",
+  "name": "Plain paratha",
+  "serving": "1 paratha",
+  "calories": 166.3,
+  "protein": 2.8,
+  "carbs": 17.1,
+  "fats": 9.4,
+  "sugar": 0.5,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Plain parantha/paratha",
+  "aliases": [
+   "parantha"
+  ]
+ },
+ {
+  "id": "indb-ASC114",
+  "name": "Plain pulao",
+  "serving": "1 plate",
+  "calories": 431.7,
+  "protein": 7.2,
+  "carbs": 67.2,
+  "fats": 14.2,
+  "sugar": 3.5,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Plain pulao",
+  "aliases": [
+   "pulav"
+  ]
+ },
+ {
+  "id": "indb-BFP044",
+  "name": "Poha",
+  "serving": "1 bowl",
+  "calories": 160.8,
+  "protein": 3.3,
+  "carbs": 19.1,
+  "fats": 7.7,
+  "sugar": 0.5,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Poha",
+  "aliases": [
+   "flattened rice"
+  ]
  },
  {
   "id": "usda-169134",
@@ -1280,6 +2568,22 @@
   ],
   "source": "USDA FoodData Central",
   "usdaDescription": "Potatoes, boiled, cooked without skin, flesh, without salt"
+ },
+ {
+  "id": "indb-BFP230",
+  "name": "Prawn curry",
+  "serving": "1 bowl",
+  "calories": 313.4,
+  "protein": 24.4,
+  "carbs": 8.9,
+  "fats": 19.8,
+  "sugar": 5.8,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Prawn curry (with coconut) (Jhinga curry)",
+  "aliases": [
+   "jhinga"
+  ]
  },
  {
   "id": "usda-175180",
@@ -1328,6 +2632,86 @@
   "source": "Open Food Facts"
  },
  {
+  "id": "indb-ASC165",
+  "name": "Rajma curry",
+  "serving": "1 bowl",
+  "calories": 172.4,
+  "protein": 7.1,
+  "carbs": 19.6,
+  "fats": 6.9,
+  "sugar": 3.0,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Kidney bean curry (Rajmah curry)",
+  "aliases": [
+   "rajma",
+   "kidney bean curry",
+   "rajmah"
+  ]
+ },
+ {
+  "id": "indb-BFP176",
+  "name": "Rasam",
+  "serving": "1 curry bowl",
+  "calories": 104.3,
+  "protein": 4.4,
+  "carbs": 13.1,
+  "fats": 3.4,
+  "sugar": 3.2,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Rasam with tamarind (Puli rasam/ Chintapandu rasam/ Charu/Saaru)"
+ },
+ {
+  "id": "indb-ASC147",
+  "name": "Rava dosa",
+  "serving": "1 dosa",
+  "calories": 166.7,
+  "protein": 5.4,
+  "carbs": 24.1,
+  "fats": 5.2,
+  "sugar": 3.2,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Semolina dosa (Suji/Rava dosa)",
+  "aliases": [
+   "suji dosa"
+  ]
+ },
+ {
+  "id": "indb-BFP579",
+  "name": "Rava idli",
+  "serving": "1 idli",
+  "calories": 61.1,
+  "protein": 2.8,
+  "carbs": 10.0,
+  "fats": 1.0,
+  "sugar": 1.0,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Semolina idli (Suji/Rava idli)",
+  "aliases": [
+   "suji idli"
+  ]
+ },
+ {
+  "id": "indb-BFP039",
+  "name": "Rava upma",
+  "serving": "1 bowl",
+  "calories": 157.1,
+  "protein": 3.5,
+  "carbs": 17.3,
+  "fats": 8.0,
+  "sugar": 1.4,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Semolina upma (Suji/Rava upma)",
+  "aliases": [
+   "suji upma",
+   "upma"
+  ]
+ },
+ {
   "id": "usda-173190",
   "name": "Red wine",
   "serving": "1 glass (150 ml) (147 g)",
@@ -1340,37 +2724,71 @@
   "usdaDescription": "Alcoholic beverage, wine, table, red"
  },
  {
-  "id": "usda-2705685",
-  "name": "Rice pudding",
-  "serving": "1 small bowl (120 g)",
-  "calories": 129.6,
-  "protein": 3.9,
-  "carbs": 22.1,
-  "fats": 2.6,
-  "sugar": 13.9,
+  "id": "indb-ASC282",
+  "name": "Rice kheer",
+  "serving": "1 bowl",
+  "calories": 300.9,
+  "protein": 9.2,
+  "carbs": 40.3,
+  "fats": 11.9,
+  "sugar": 32.2,
   "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Rice kheer (Chawal ki kheer)",
   "aliases": [
-   "kheer",
-   "payasam"
-  ],
-  "source": "USDA FoodData Central",
-  "usdaDescription": "Pudding, rice"
+   "payasam",
+   "rice pudding"
+  ]
  },
  {
-  "id": "usda-171844",
+  "id": "indb-ASC227",
+  "name": "Rogan josh",
+  "serving": "1 bowl",
+  "calories": 329.4,
+  "protein": 22.6,
+  "carbs": 11.6,
+  "fats": 21.3,
+  "sugar": 6.3,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Roghan josh",
+  "aliases": [
+   "mutton curry",
+   "roghan josh"
+  ]
+ },
+ {
+  "id": "indb-ASC096",
   "name": "Roti",
-  "serving": "1 medium (40 g)",
-  "calories": 118.8,
-  "protein": 4.5,
-  "carbs": 18.5,
-  "fats": 3,
-  "sugar": 0,
+  "serving": "1 chapati",
+  "calories": 72.8,
+  "protein": 2.1,
+  "carbs": 12.8,
+  "fats": 1.3,
+  "sugar": 0.4,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Chapati/Roti",
   "aliases": [
    "chapati",
    "phulka"
-  ],
-  "source": "USDA FoodData Central",
-  "usdaDescription": "Bread, chapati or roti, plain, commercially prepared"
+  ]
+ },
+ {
+  "id": "indb-OSR099",
+  "name": "Sabudana khichdi",
+  "serving": "1 bowl",
+  "calories": 507.9,
+  "protein": 7.4,
+  "carbs": 60.8,
+  "fats": 27.4,
+  "sugar": 2.8,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Sago khitchdi/khichri (Sabudana khitchdi/khichri)",
+  "aliases": [
+   "sago"
+  ]
  },
  {
   "id": "usda-175168",
@@ -1388,19 +2806,37 @@
   "usdaDescription": "Fish, salmon, Atlantic, farmed, cooked, dry heat"
  },
  {
-  "id": "usda-2707430",
+  "id": "indb-ASC022",
+  "name": "Salted lassi",
+  "serving": "1 tall glass",
+  "calories": 79.8,
+  "protein": 5.7,
+  "carbs": 7.9,
+  "fats": 3.0,
+  "sugar": 7.8,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Lassi (salted)",
+  "aliases": [
+   "namkeen lassi",
+   "chaas"
+  ]
+ },
+ {
+  "id": "indb-ASC167",
   "name": "Sambar",
-  "serving": "1 bowl (150 g)",
-  "calories": 129,
-  "protein": 6.5,
-  "carbs": 17.7,
-  "fats": 4.1,
-  "sugar": 0,
+  "serving": "1 bowl",
+  "calories": 249.3,
+  "protein": 8.6,
+  "carbs": 27.2,
+  "fats": 11.3,
+  "sugar": 8.5,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Sambar",
   "aliases": [
    "sambhar"
-  ],
-  "source": "USDA FoodData Central",
-  "usdaDescription": "Sambar, vegetable stew"
+  ]
  },
  {
   "id": "usda-2708730",
@@ -1413,6 +2849,19 @@
   "sugar": 0,
   "source": "USDA FoodData Central",
   "usdaDescription": "Samosa"
+ },
+ {
+  "id": "indb-ASC217",
+  "name": "Sarson ka saag",
+  "serving": "1 bowl",
+  "calories": 124.3,
+  "protein": 4.3,
+  "carbs": 7.5,
+  "fats": 8.3,
+  "sugar": 1.1,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Sarson ka saag"
  },
  {
   "id": "usda-172187",
@@ -1431,6 +2880,49 @@
   "usdaDescription": "Egg, whole, cooked, scrambled"
  },
  {
+  "id": "indb-ASC285",
+  "name": "Seviyan kheer",
+  "serving": "1 bowl",
+  "calories": 279.1,
+  "protein": 7.8,
+  "carbs": 36.9,
+  "fats": 11.6,
+  "sugar": 29.7,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Vermicelli kheer (Semiya/Seviyan ki kheer)",
+  "aliases": [
+   "vermicelli kheer",
+   "semiya payasam"
+  ]
+ },
+ {
+  "id": "indb-ASC221",
+  "name": "Shahi paneer",
+  "serving": "1 bowl",
+  "calories": 405.9,
+  "protein": 13.1,
+  "carbs": 17.2,
+  "fats": 32.0,
+  "sugar": 13.0,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Shahi paneer"
+ },
+ {
+  "id": "indb-ASC350",
+  "name": "Shahi tukda",
+  "serving": "1 tukra",
+  "calories": 193.4,
+  "protein": 2.8,
+  "carbs": 42.2,
+  "fats": 2.6,
+  "sugar": 35.4,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Shahi tukre"
+ },
+ {
   "id": "off-8901764032912",
   "name": "Sprite",
   "brand": "Coca-Cola",
@@ -1444,6 +2936,22 @@
    "soft drink"
   ],
   "source": "Open Food Facts"
+ },
+ {
+  "id": "indb-ASC259",
+  "name": "Sprouted moong salad",
+  "serving": "1 bowl",
+  "calories": 77.0,
+  "protein": 4.7,
+  "carbs": 11.2,
+  "fats": 1.5,
+  "sugar": 4.3,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Sprouted moong salad",
+  "aliases": [
+   "sprouts"
+  ]
  },
  {
   "id": "usda-746784",
@@ -1461,6 +2969,23 @@
   "usdaDescription": "Sugars, granulated"
  },
  {
+  "id": "indb-ASC293",
+  "name": "Suji halwa",
+  "serving": "1 bowl",
+  "calories": 360.2,
+  "protein": 3.5,
+  "carbs": 39.4,
+  "fats": 21.4,
+  "sugar": 22.3,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Semolina halwa (Suji ka halwa)",
+  "aliases": [
+   "sheera",
+   "rava kesari"
+  ]
+ },
+ {
   "id": "usda-171025",
   "name": "Sunflower oil",
   "serving": "1 tsp (4.5 g)",
@@ -1476,6 +3001,39 @@
   "usdaDescription": "Oil, sunflower, linoleic, (approx. 65%)"
  },
  {
+  "id": "indb-ASC047",
+  "name": "Sweet dalia",
+  "serving": "1 bowl",
+  "calories": 328.7,
+  "protein": 10.6,
+  "carbs": 35.8,
+  "fats": 16.4,
+  "sugar": 20.6,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Cracked wheat porridge (Meetha daliya)",
+  "aliases": [
+   "daliya",
+   "cracked wheat porridge"
+  ]
+ },
+ {
+  "id": "indb-ASC021",
+  "name": "Sweet lassi",
+  "serving": "1 tall glass",
+  "calories": 157.8,
+  "protein": 5.7,
+  "carbs": 28.8,
+  "fats": 3.0,
+  "sugar": 28.8,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Sweet Lassi (Meethi lassi)",
+  "aliases": [
+   "meethi lassi"
+  ]
+ },
+ {
   "id": "usda-168484",
   "name": "Sweet potato, boiled",
   "serving": "1 medium (151 g)",
@@ -1489,6 +3047,52 @@
   ],
   "source": "USDA FoodData Central",
   "usdaDescription": "Sweet potato, cooked, boiled, without skin"
+ },
+ {
+  "id": "indb-ASC127",
+  "name": "Tamarind rice",
+  "serving": "1 plate",
+  "calories": 476.9,
+  "protein": 9.5,
+  "carbs": 83.2,
+  "fats": 10.9,
+  "sugar": 14.9,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Tamarind rice (Chintapandu pulihora/Puliyodharai/Puli sadam/Huli anna)",
+  "aliases": [
+   "pulihora",
+   "puliyogare"
+  ]
+ },
+ {
+  "id": "indb-ASC241",
+  "name": "Tandoori chicken",
+  "serving": "100 g",
+  "calories": 145.2,
+  "protein": 16.3,
+  "carbs": 2.3,
+  "fats": 7.9,
+  "sugar": 1.6,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Tandoori chicken"
+ },
+ {
+  "id": "indb-ASC112",
+  "name": "Tandoori paratha",
+  "serving": "1 paratha",
+  "calories": 164.4,
+  "protein": 2.8,
+  "carbs": 17.1,
+  "fats": 9.2,
+  "sugar": 0.5,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Tandoori parantha/paratha",
+  "aliases": [
+   "parantha"
+  ]
  },
  {
   "id": "off-8901764042911",
@@ -1538,6 +3142,19 @@
   "usdaDescription": "Catsup"
  },
  {
+  "id": "indb-ASC269",
+  "name": "Tomato onion raita",
+  "serving": "1 bowl",
+  "calories": 104.8,
+  "protein": 6.6,
+  "carbs": 12.6,
+  "fats": 3.3,
+  "sugar": 10.6,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Tomato onion raita (Tamatar aur pyaaz ka raita)"
+ },
+ {
   "id": "usda-334194",
   "name": "Tuna, canned in water",
   "serving": "1 serving (100 g)",
@@ -1548,18 +3165,6 @@
   "sugar": 0,
   "source": "USDA FoodData Central",
   "usdaDescription": "Fish, tuna, light, canned in water, drained solids"
- },
- {
-  "id": "usda-2709128",
-  "name": "Upma",
-  "serving": "1 bowl (150 g)",
-  "calories": 130.5,
-  "protein": 3,
-  "carbs": 20.7,
-  "fats": 4,
-  "sugar": 0,
-  "source": "USDA FoodData Central",
-  "usdaDescription": "Upma"
  },
  {
   "id": "usda-2709130",
@@ -1593,20 +3198,38 @@
   "usdaDescription": "Ice creams, vanilla"
  },
  {
-  "id": "usda-2708985",
+  "id": "indb-ASC123",
   "name": "Vegetable biryani",
-  "serving": "1 plate (250 g)",
-  "calories": 272.5,
-  "protein": 4.8,
-  "carbs": 44.8,
-  "fats": 8,
-  "sugar": 0,
+  "serving": "1 plate",
+  "calories": 526.5,
+  "protein": 9.5,
+  "carbs": 56.0,
+  "fats": 28.7,
+  "sugar": 6.5,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Vegetable biryani/biriyani",
   "aliases": [
    "veg biryani",
-   "pulao"
-  ],
-  "source": "USDA FoodData Central",
-  "usdaDescription": "Biryani with vegetables"
+   "biriyani"
+  ]
+ },
+ {
+  "id": "indb-ASC134",
+  "name": "Vegetable chowmein",
+  "serving": "1 plate",
+  "calories": 388.6,
+  "protein": 9.2,
+  "carbs": 46.3,
+  "fats": 19.0,
+  "sugar": 5.9,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Vegetable chowmein",
+  "aliases": [
+   "noodles",
+   "hakka noodles"
+  ]
  },
  {
   "id": "usda-2710067",
@@ -1625,6 +3248,54 @@
   "usdaDescription": "Vegetable curry"
  },
  {
+  "id": "indb-ASC129",
+  "name": "Vegetable fried rice",
+  "serving": "1 plate",
+  "calories": 423.6,
+  "protein": 14.2,
+  "carbs": 47.1,
+  "fats": 19.1,
+  "sugar": 5.2,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Chinese fried rice",
+  "aliases": [
+   "chinese fried rice"
+  ]
+ },
+ {
+  "id": "indb-ASC487",
+  "name": "Vegetable khichdi",
+  "serving": "100 g",
+  "calories": 143.2,
+  "protein": 5.6,
+  "carbs": 19.6,
+  "fats": 4.5,
+  "sugar": 3.7,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Vegetable khichdi/khichri",
+  "aliases": [
+   "khichri"
+  ]
+ },
+ {
+  "id": "indb-ASC036",
+  "name": "Vegetable mayonnaise sandwich",
+  "serving": "1 triangle",
+  "calories": 166.8,
+  "protein": 3.1,
+  "carbs": 15.8,
+  "fats": 10.5,
+  "sugar": 1.6,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Vegetable and mayonnaise sandwich",
+  "aliases": [
+   "veg sandwich"
+  ]
+ },
+ {
   "id": "usda-2708344",
   "name": "Vegetable momos",
   "serving": "6 pieces (150 g)",
@@ -1639,6 +3310,55 @@
   ],
   "source": "USDA FoodData Central",
   "usdaDescription": "Dumpling, no meat"
+ },
+ {
+  "id": "indb-BFP045",
+  "name": "Vegetable poha",
+  "serving": "1 bowl",
+  "calories": 176.6,
+  "protein": 4.8,
+  "carbs": 21.1,
+  "fats": 7.9,
+  "sugar": 1.4,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Vegetable poha",
+  "aliases": [
+   "poha"
+  ]
+ },
+ {
+  "id": "indb-ASC115",
+  "name": "Vegetable pulao",
+  "serving": "1 plate",
+  "calories": 495.6,
+  "protein": 11.9,
+  "carbs": 76.7,
+  "fats": 14.6,
+  "sugar": 5.9,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Mixed vegetable pulao",
+  "aliases": [
+   "veg pulao",
+   "pulav"
+  ]
+ },
+ {
+  "id": "indb-BFP043",
+  "name": "Vegetable upma",
+  "serving": "1 plate",
+  "calories": 345.2,
+  "protein": 11.1,
+  "carbs": 38.8,
+  "fats": 15.6,
+  "sugar": 3.3,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Vegetable upma",
+  "aliases": [
+   "upma"
+  ]
  },
  {
   "id": "usda-170187",
@@ -1716,6 +3436,23 @@
   ],
   "source": "USDA FoodData Central",
   "usdaDescription": "Rice, white, long-grain, regular, enriched, cooked"
+ },
+ {
+  "id": "indb-ASC159",
+  "name": "Whole urad dal",
+  "serving": "1 bowl",
+  "calories": 182.5,
+  "protein": 7.5,
+  "carbs": 17.1,
+  "fats": 8.9,
+  "sugar": 1.9,
+  "sugarApprox": true,
+  "source": "the Indian Nutrient Databank (INDB)",
+  "indbName": "Whole urad (Urad ki dal)",
+  "aliases": [
+   "dal",
+   "daal"
+  ]
  },
  {
   "id": "usda-172688",

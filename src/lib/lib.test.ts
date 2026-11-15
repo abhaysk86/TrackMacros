@@ -185,6 +185,8 @@ describe('food library', () => {
   });
   it('ranks names that start with the query first and needs two characters', () => {
     expect(searchFoods('dal')[0].name).toBe('Dal');
+    expect(searchFoods('paneer')[0].name).toBe('Paneer curry');
+    expect(searchFoods('aloo paratha')[0].name).toBe('Aloo paratha');
     expect(searchFoods('e')).toEqual([]);
     expect(searchFoods('zzzz')).toEqual([]);
   });
@@ -208,6 +210,14 @@ describe('food library', () => {
     expect(matchFood('2 eggs and toast')).toBeNull();
     expect(matchFood('paneer butter masala with 2 roti')).toBeNull();
     expect(matchFood('eggs')).toBeNull();
-    expect(matchFood('grilled sandwich')).toBeNull();
+    expect(matchFood('club sandwich with fries')).toBeNull();
+  });
+  it('includes Indian dishes with plausible values', () => {
+    const indian = FOODS.filter((f) => f.id.startsWith('indb-'));
+    expect(indian.length).toBeGreaterThan(100);
+    for (const f of indian) expect(f.calories, f.name).toBeLessThan(700);
+    expect(matchFood('2 rotis')).toMatchObject({ food: { name: 'Roti' }, quantity: 2 });
+    expect(matchFood('rajma')).toMatchObject({ food: { name: 'Rajma curry' } });
+    expect(searchFoods('chole').map((f) => f.name)).toContain('Chole');
   });
 });

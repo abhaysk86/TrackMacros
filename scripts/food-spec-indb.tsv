@@ -1,0 +1,159 @@
+# Dishes taken from the Indian Nutrient Databank (INDB): https://github.com/lindsayjaacks/Indian-Nutrient-Databank-INDB-
+# INDB recipe code | name shown in the app | search aliases
+ASC001|Masala chai|tea,chai,garam chai
+ASC002|Instant coffee with milk|coffee
+BFP013|Cold coffee|iced coffee
+ASC016|Banana milkshake|shake
+ASC017|Mango milkshake|shake,aam
+ASC021|Sweet lassi|meethi lassi
+ASC022|Salted lassi|namkeen lassi,chaas
+ASC008|Lemonade|nimbu pani,shikanji
+ASC005|Aam panna|raw mango drink
+BFP024|Jal jeera|
+ASC047|Sweet dalia|daliya,cracked wheat porridge
+ASC050|Oatmeal porridge|oats
+ASC051|Cornflakes with milk|cereal
+ASC054|Murmura|puffed rice
+ASC059|Egg bhurji|anda bhurji,scrambled egg
+ASC061|Plain omelette|omelet,anda
+BFP039|Rava upma|suji upma,upma
+BFP043|Vegetable upma|upma
+BFP044|Poha|flattened rice
+BFP045|Vegetable poha|poha
+ASC461|Besan chilla|cheela,chila
+BFP046|Moong dal chilla|cheela,chila
+ASC474|Dhokla|
+OSR102|Khakhra|
+OSR104|Methi thepla|
+OSR099|Sabudana khichdi|sago
+ASC379|Sabudana vada|sago vada
+ASC096|Roti|chapati,phulka
+ASC097|Plain paratha|parantha
+ASC098|Aloo paratha|potato parantha
+ASC099|Mooli paratha|radish parantha
+ASC100|Gobi paratha|cauliflower parantha
+ASC105|Paneer paratha|parantha
+BFP110|Methi paratha|parantha
+ASC112|Tandoori paratha|parantha
+ASC107|Poori|puri
+ASC142|Naan|
+ASC143|Bhatura|bhature
+ASC150|Makki ki roti|
+ASC114|Plain pulao|pulav
+ASC115|Vegetable pulao|veg pulao,pulav
+BFP134|Jeera rice|zeera pulao
+BFP136|Matar pulao|peas pulao
+ASC122|Mutton biryani|biriyani
+ASC123|Vegetable biryani|veg biryani,biriyani
+ASC124|Lemon rice|
+ASC126|Curd rice|dahi chawal,thayir sadam
+ASC127|Tamarind rice|pulihora,puliyogare
+ASC129|Vegetable fried rice|chinese fried rice
+BFP144|Plain khichdi|khichri
+ASC487|Vegetable khichdi|khichri
+ASC144|Idli|
+BFP579|Rava idli|suji idli
+BFP148|Plain dosa|dosai
+ASC146|Masala dosa|dosai
+ASC147|Rava dosa|suji dosa
+ASC148|Onion tomato uttapam|uthappam
+BFP153|Appam|
+OSR103|Pesarattu|moong dosa
+ASC167|Sambar|sambhar
+BFP176|Rasam|
+ASC386|Coconut chutney|nariyal chutney
+BFP436|Medu vada|urad dal vada,vadai
+ASC378|Masala vada|
+ASC151|Moong dal|dal,daal
+ASC155|Dal|mixed dal,daal,dal tadka,dal fry
+ASC157|Masoor dal|dal,daal
+ASC159|Whole urad dal|dal,daal
+OSR139|Dal makhani|daal makhni
+OSR142|Chana dal|dal,daal
+BFP172|Arhar dal with spinach|toor dal,tuvar dal,dal palak
+OSR144|Panchmel dal|dal,daal
+ASC165|Rajma curry|rajma,kidney bean curry,rajmah
+ASC162|Chole|chana masala,chickpea curry,chhole
+ASC161|Kala chana curry|black chana
+ASC163|Lobia curry|black eyed peas
+ASC168|Kadhi pakora|besan kadhi
+OSR145|Dal dhokli|
+ASC171|Aloo gobi|potato cauliflower,gobhi
+ASC175|Aloo methi|
+ASC178|Dry aloo sabzi|sookhe aloo,potato sabji
+BFP239|Aloo curry|potato curry,aloo ki sabzi
+ASC190|Aloo matar|pea potato curry
+BFP257|Palak aloo|aloo palak
+ASC177|Baingan bharta|brinjal bhartha
+ASC184|Bharwa bhindi|stuffed okra
+BFP269|Bhindi fry|okra,ladyfinger
+ASC173|Cabbage and peas sabzi|patta gobhi
+ASC205|Lauki kofta curry|ghiya kofta
+ASC214|Dum aloo|
+ASC217|Sarson ka saag|
+ASC219|Avial|
+ASC191|Matar paneer|pea paneer curry
+ASC195|Paneer curry|
+ASC215|Palak paneer|saag paneer,spinach paneer
+ASC221|Shahi paneer|
+ASC222|Paneer butter masala|paneer makhani
+ASC226|Kadhai paneer|kadai paneer
+ASC224|Chilli paneer|
+OSR077|Paneer lababdar|
+ASC381|Paneer tikka|
+OSR112|Pav bhaji|
+OSR111|Veg manchurian|
+ASC240|Chicken curry|
+ASC241|Tandoori chicken|
+ASC242|Butter chicken|murgh makhani
+ASC243|Chicken kebab|kabab
+BFP222|Chicken korma|
+ASC227|Rogan josh|mutton curry,roghan josh
+BFP194|Mutton korma|
+ASC229|Keema matar|mince curry
+ASC237|Shami kebab|kabab
+BFP199|Mutton seekh kebab|kabab
+ASC246|Fish curry|machli
+ASC247|Fried fish|fish fry
+ASC251|Fish tikka|
+BFP230|Prawn curry|jhinga
+BFP240|Egg curry|anda curry
+ASC273|Cucumber raita|kheera raita
+ASC277|Boondi raita|
+ASC269|Tomato onion raita|
+ASC279|Dahi vada|dahi bhalla
+ASC387|Mint and coriander chutney|green chutney,hari chutney
+ASC259|Sprouted moong salad|sprouts
+ASC361|Samosa|aloo samosa
+ASC351|Aloo pakora|pakoda,bhajiya
+ASC352|Onion pakora|pakoda,pyaaz bhajiya
+ASC358|Bread pakora|pakoda
+ASC359|Paneer pakora|pakoda
+ASC360|Aloo bonda|batata vada
+ASC365|Khasta kachori|
+ASC364|Mathri|
+ASC366|Vegetable cutlet|
+OSR114|Bhel puri|bhel
+ASC383|Spring roll|
+ASC134|Vegetable chowmein|noodles,hakka noodles
+ASC135|Chicken chowmein|noodles
+ASC375|Vegetable burger|veg burger
+ASC149|Paneer kathi roll|frankie
+ASC036|Vegetable mayonnaise sandwich|veg sandwich
+ASC040|Cheese tomato toasted sandwich|cheese toastie
+ASC028|Chicken sandwich|
+ASC282|Rice kheer|payasam,rice pudding
+ASC285|Seviyan kheer|vermicelli kheer,semiya payasam
+ASC292|Phirni|firni
+ASC293|Suji halwa|sheera,rava kesari
+ASC295|Gajar halwa|carrot halwa,gajar ka halwa
+ASC299|Moong dal halwa|
+ASC321|Kulfi|
+ASC335|Plain burfi|barfi
+ASC339|Kaju katli|kaju barfi
+ASC343|Besan ladoo|laddu
+ASC348|Gulab jamun|
+ASC349|Malpua|
+ASC350|Shahi tukda|
+ASC382|Peanut chikki|
+ASC280|Gujiya|
