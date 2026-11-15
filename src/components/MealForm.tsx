@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
-import { Trash2 } from 'lucide-react';
+import { Plus, Trash2, X } from 'lucide-react';
+import { LogSheet } from './LogSheet';
 import { Sheet } from './Sheet';
 import { useToast } from './Toast';
 import {
@@ -15,7 +16,7 @@ export interface MealDraft extends Macros {
   time: string;
   thumb?: string;
   /** Where the values came from; defaults to an AI estimate. */
-  source?: 'ai' | 'library';
+  source?: 'ai' | 'library' | 'label' | 'memory';
   /** Shown above the form in place of the AI-estimate notice. */
   note?: string;
   /** Portion to preselect; the values given are for one portion. */
@@ -24,7 +25,20 @@ export interface MealDraft extends Macros {
 
 export type MealFormTarget =
   | { kind: 'meal'; day: string; meal?: Meal; draft?: MealDraft }
-  | { kind: 'saved'; saved?: SavedMeal };
+  | { kind: 'saved'; saved?: SavedMeal; draft?: MealDraft };
+
+/** One component of a combined meal, such as the sachet in a coffee. */
+interface Part {
+  name: string;
+  macros: Macros;
+}
+
+const TITLES: Record<NonNullable<MealDraft['source']>, string> = {
+  ai: 'Review meal',
+  library: 'Add from food list',
+  label: 'Review label',
+  memory: 'Log again',
+};
 
 const PORTIONS = [
   { value: 0.5, label: '½×' },
@@ -39,10 +53,18 @@ const fieldClass =
   'block w-full min-w-0 appearance-none rounded-[14px] border border-line bg-surface px-3.5 py-[10px] text-left text-base font-semibold leading-6 outline-none focus:border-accent';
 
 /** Add or edit a logged meal, or a frequent meal. */
-export function MealForm({ target, today, onClose }: { target: MealFormTarget; today: string; onClose: () => void }) {
+interface MealFormProps {
+  target: MealFormTarget;
+  today: string;
+  apiKey: string;
+  savedMeals: SavedMeal[];
+  onClose: () => void;
+}
+
+export function MealForm({ target, today, apiKey, savedMeals, onClose }: MealFormProps) {
   const toast = useToast();
   const existing = target.kind === 'meal' ? target.meal : target.saved;
-  const draft = target.kind === 'meal' ? target.draft : undefined;
+  const draft = target.draft;
   const initial = existing ?? draft;
   const isMeal = target.kind === 'meal';
 
@@ -73,6 +95,41 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
     setText(Object.fromEntries(KEYS.map((k) => [k, String(Math.round(base.current[k] * next))])) as Record<MacroKey, string>);
   };
 
+  // Combining items: each added item's values go into the totals, and it is listed so it can be taken out again.
+  const [parts, setParts] = useState<Part[]>([]);
+  const [picking, setPicking] = useState(false);
+  const autoName = (list: Part[]) => list.map((p) => p.name).join(' + ').slice(0, 80);
+  const showTotals = () =>
+    setText(Object.fromEntries(KEYS.map((k) => [k, String(Math.round(base.current[k] * portion))])) as Record<MacroKey, string>);
+
+  const addPart = (item: { name: string; portion?: number } & Macros) => {
+    const times = item.portion ?? 1;
+    const added: Part = {
+      name: item.name,
+      macros: Object.fromEntries(KEYS.map((k) => [k, item[k] * times])) as unknown as Macros,
+    };
+    // The first time, what is already on the form becomes the first listed item.
+    const current: Part[] =
+      parts.length === 0 && name.trim() && KEYS.some((k) => base.current[k] > 0)
+        ? [{ name: name.trim(), macros: Object.fromEntries(KEYS.map((k) => [k, base.current[k] * portion])) as unknown as Macros }]
+        : parts;
+    const next = [...current, added];
+    for (const k of KEYS) base.current[k] += added.macros[k] / portion;
+    if (!name.trim() || name === autoName(current)) setName(autoName(next));
+    setParts(next);
+    showTotals();
+    setPicking(false);
+  };
+
+  const removePart = (index: number) => {
+    const gone = parts[index];
+    const next = parts.filter((_, i) => i !== index);
+    for (const k of KEYS) base.current[k] = Math.max(0, base.current[k] - gone.macros[k] / portion);
+    if (name === autoName(parts)) setName(autoName(next));
+    setParts(next.length > 1 ? next : []);
+    showTotals();
+  };
+
   const macros = (): Macros =>
     Object.fromEntries(KEYS.map((k) => [k, Math.round(Number(text[k]) || 0)])) as unknown as Macros;
 
@@ -91,7 +148,7 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
         if (saveAsFrequent) await addSavedMeal(cleanName, values);
         toast(day === today ? `${cleanName} added` : `${cleanName} added to ${shortDate(day)}`);
       }
-    } else if (target.saved) {
+    } else if (target.kind === 'saved' && target.saved) {
       await updateSavedMeal(target.saved.id, { ...values, name: cleanName });
       toast('Frequent meal updated');
     } else {
@@ -114,7 +171,9 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
     onClose();
   };
 
-  const title = isMeal ? (existing ? 'Edit meal' : draft ? (draft.source === 'library' ? 'Add from food list' : 'Review meal') : 'Add a meal') : existing ? 'Edit frequent meal' : 'New frequent meal';
+  const title = isMeal
+    ? existing ? 'Edit meal' : draft ? TITLES[draft.source ?? 'ai'] : 'Add a meal'
+    : existing ? 'Edit frequent meal' : 'New frequent meal';
 
   const cells: { key: MacroKey; label: string; color?: string; aria: string }[] = [
     { key: 'calories', label: 'kcal', aria: 'Calories (kcal)' },
@@ -178,7 +237,7 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
           </div>
         )}
 
-        {isMeal && (
+        {(isMeal || !existing) && (
           <div className="grid grid-cols-5 rounded-xl bg-line p-[3px] text-center text-[13px] font-semibold" role="group" aria-label="Portion">
             {PORTIONS.map((p) => (
               <button
@@ -211,13 +270,31 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
           ))}
         </div>
 
-        {isMeal && !existing && (
-          <label className="flex items-center justify-between px-0.5 text-[13.5px] font-semibold">
-            Save as a frequent meal
-            <input type="checkbox" className="peer sr-only" checked={saveAsFrequent} onChange={(e) => setSaveAsFrequent(e.target.checked)} />
-            <span className="relative h-[26px] w-11 rounded-full bg-line transition-colors after:absolute after:left-[3px] after:top-[3px] after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform peer-checked:bg-accent peer-checked:after:translate-x-[18px] peer-focus-visible:ring-2 peer-focus-visible:ring-accent" />
-          </label>
+        {parts.length > 0 && (
+          <ul className="flex flex-wrap gap-1.5" aria-label="Items in this meal">
+            {parts.map((p, i) => (
+              <li key={i} className="flex items-center gap-1 rounded-full border border-line bg-surface py-1 pl-2.5 pr-1 text-[12px] font-semibold">
+                {p.name} <span className="font-normal text-muted">· {Math.round(p.macros.calories)} kcal</span>
+                <button type="button" onClick={() => removePart(i)} aria-label={`Remove ${p.name}`} className="grid h-6 w-6 place-items-center rounded-full text-muted">
+                  <X size={13} />
+                </button>
+              </li>
+            ))}
+          </ul>
         )}
+
+        <div className="flex items-center justify-between gap-3 px-0.5 text-[13.5px] font-semibold">
+          <button type="button" onClick={() => setPicking(true)} className="flex items-center gap-1 text-accent-ink">
+            <Plus size={15} strokeWidth={2.6} /> Add another item
+          </button>
+          {isMeal && !existing && (
+            <label className="flex items-center gap-2.5">
+              Save as frequent
+              <input type="checkbox" className="peer sr-only" checked={saveAsFrequent} onChange={(e) => setSaveAsFrequent(e.target.checked)} />
+              <span className="relative h-[26px] w-11 rounded-full bg-line transition-colors after:absolute after:left-[3px] after:top-[3px] after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform peer-checked:bg-accent peer-checked:after:translate-x-[18px] peer-focus-visible:ring-2 peer-focus-visible:ring-accent" />
+            </label>
+          )}
+        </div>
 
         <div className="sticky bottom-0 -mx-5 bg-bg px-5 pt-0.5">
           <button type="submit" disabled={!canSave} className="w-full rounded-2xl bg-accent py-3 text-[15px] font-bold text-white disabled:opacity-45">
@@ -225,6 +302,19 @@ export function MealForm({ target, today, onClose }: { target: MealFormTarget; t
           </button>
         </div>
       </form>
+
+      {picking && (
+        <LogSheet
+          title="Add another item"
+          day={day}
+          today={today}
+          apiKey={apiKey}
+          savedMeals={savedMeals}
+          onQuickAdd={addPart}
+          onEstimate={addPart}
+          onClose={() => setPicking(false)}
+        />
+      )}
     </Sheet>
   );
 }

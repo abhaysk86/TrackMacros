@@ -1,7 +1,8 @@
-import { useEffect, useState, useSyncExternalStore } from 'react';
+import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db, getApiKey, getGoals, isOnboarded } from './db';
 import { dayKey } from './lib/date';
+import { pastMeals, type PastMeal } from './lib/memory';
 import { DEFAULT_GOALS, type Goals, type Meal, type SavedMeal, type ThemePref } from './types';
 
 /** Today's day key, refreshed when the app comes back into view (so it rolls over at midnight). */
@@ -34,6 +35,13 @@ export function useMealsForDay(day: string): Meal[] {
 /** All meals from `from` to `to` inclusive. */
 export function useMealsInRange(from: string, to: string): Meal[] {
   return useLiveQuery(() => db.meals.where('day').between(from, to, true, true).toArray(), [from, to]) ?? [];
+}
+
+/** Every distinct meal logged before, newest first, leaving out frequent meals. */
+export function usePastMeals(savedMeals: SavedMeal[]): PastMeal[] {
+  const meals = useLiveQuery(() => db.meals.toArray(), []);
+  const exclude = savedMeals.map((s) => s.name).join('|');
+  return useMemo(() => pastMeals(meals ?? [], exclude ? exclude.split('|') : []), [meals, exclude]);
 }
 
 /** Frequent meals, most used first. */

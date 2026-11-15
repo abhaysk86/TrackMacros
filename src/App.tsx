@@ -14,7 +14,8 @@ import { Trends } from './screens/Trends';
 import { Welcome } from './screens/Welcome';
 import type { SavedMeal } from './types';
 
-type SheetState = { type: 'log' } | { type: 'form'; target: MealFormTarget } | null;
+// 'saved' opens the sheet to create a frequent meal instead of logging one.
+type SheetState = { type: 'log'; purpose?: 'saved' } | { type: 'form'; target: MealFormTarget } | null;
 
 export default function App() {
   const today = useToday();
@@ -41,6 +42,11 @@ export default function App() {
       setSheet(null);
     }
   }, [onboarded]);
+
+  const openProfile = () => {
+    setSheet(null);
+    setTab('profile');
+  };
 
   const quickAdd = async (saved: SavedMeal, targetDay: string) => {
     const meal = await logSavedMeal(saved, targetDay);
@@ -73,7 +79,7 @@ export default function App() {
       {tab === 'meals' && (
         <Meals
           savedMeals={savedMeals}
-          onNew={() => setSheet({ type: 'form', target: { kind: 'saved' } })}
+          onNew={() => setSheet({ type: 'log', purpose: 'saved' })}
           onEdit={(saved) => setSheet({ type: 'form', target: { kind: 'saved', saved } })}
         />
       )}
@@ -81,7 +87,7 @@ export default function App() {
 
       <BottomNav tab={tab} onTab={setTab} onLog={() => setSheet({ type: 'log' })} />
 
-      {sheet?.type === 'log' && (
+      {sheet?.type === 'log' && sheet.purpose !== 'saved' && (
         <LogSheet
           day={logDay}
           today={today}
@@ -89,15 +95,29 @@ export default function App() {
           savedMeals={savedMeals}
           onManual={() => setSheet({ type: 'form', target: { kind: 'meal', day: logDay } })}
           onEstimate={(draft) => setSheet({ type: 'form', target: { kind: 'meal', day: draft.day, draft } })}
-          onOpenProfile={() => {
-            setSheet(null);
-            setTab('profile');
-          }}
+          onOpenProfile={openProfile}
           onQuickAdd={(s) => void quickAdd(s, logDay)}
           onClose={closeSheet}
         />
       )}
-      {sheet?.type === 'form' && <MealForm target={sheet.target} today={today} onClose={closeSheet} />}
+      {sheet?.type === 'log' && sheet.purpose === 'saved' && (
+        <LogSheet
+          title="New frequent meal"
+          hideFrequent
+          day={today}
+          today={today}
+          apiKey={apiKey}
+          savedMeals={savedMeals}
+          onManual={() => setSheet({ type: 'form', target: { kind: 'saved' } })}
+          onEstimate={(draft) => setSheet({ type: 'form', target: { kind: 'saved', draft } })}
+          onOpenProfile={openProfile}
+          onQuickAdd={() => {}}
+          onClose={closeSheet}
+        />
+      )}
+      {sheet?.type === 'form' && (
+        <MealForm target={sheet.target} today={today} apiKey={apiKey} savedMeals={savedMeals} onClose={closeSheet} />
+      )}
     </div>
   );
 }

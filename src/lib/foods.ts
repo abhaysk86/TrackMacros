@@ -43,7 +43,7 @@ export function parseQuery(query: string): ParsedQuery {
 }
 
 // A typed word matches when the food text contains it, or its singular form.
-const wordMatches = (text: string, word: string) =>
+export const wordMatches = (text: string, word: string) =>
   text.includes(word) || (word.endsWith('es') && text.includes(word.slice(0, -2))) || (word.endsWith('s') && text.includes(word.slice(0, -1)));
 
 interface Scored {

@@ -1,10 +1,12 @@
 import type { Macros } from '../types';
-import { buildRequest } from '../../supabase/functions/estimate/prompt';
+import { buildRequest, type EstimateMode } from '../../supabase/functions/estimate/prompt';
 
 export interface Estimate extends Macros {
   name: string;
   day: string;
   time: string;
+  /** For a scanned label: which column the values were read from. */
+  serving?: string;
 }
 
 export type AiErrorKind = 'key' | 'quota' | 'busy' | 'network' | 'unreadable' | 'limit' | 'paused';
@@ -100,8 +102,12 @@ export function parseEstimate(raw: string, today: string, now: string): Estimate
   const day = typeof data.date === 'string' && DAY_RE.test(data.date) && data.date <= today ? data.date : today;
   const time = typeof data.time === 'string' && TIME_RE.test(data.time) ? data.time : now;
   const name = typeof data.name === 'string' && data.name.trim() ? data.name.trim().slice(0, 80) : 'Meal';
+  if (name === 'No label found' && num(data.calories) === 0) {
+    throw new AiError('unreadable', 'No nutrition label was found in that photo. Try again with the label filling the frame.');
+  }
+  const serving = typeof data.serving === 'string' && data.serving.trim() ? data.serving.trim().slice(0, 60) : undefined;
   return {
-    name, day, time,
+    name, day, time, ...(serving ? { serving } : {}),
     calories: num(data.calories), protein: num(data.protein), carbs: num(data.carbs),
     fats: num(data.fats), sugar: num(data.addedSugar),
   };
@@ -140,13 +146,13 @@ export async function fetchQuota(): Promise<Quota | null> {
 }
 
 /** Estimates a meal through the free service, which holds its own key and enforces the daily allowance. */
-export async function estimateViaProxy({ text, imageBase64, today, now }: Omit<EstimateRequest, 'apiKey'>): Promise<Estimate> {
+export async function estimateViaProxy({ text, imageBase64, today, now, mode }: Omit<EstimateRequest, 'apiKey'>): Promise<Estimate> {
   let res: Response;
   try {
     res = await fetch(PROXY_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ device: deviceId(), text, imageBase64, today, now }),
+      body: JSON.stringify({ device: deviceId(), text, imageBase64, today, now, mode }),
     });
   } catch {
     throw new AiError('network', 'No connection. Check your internet and try again.');
@@ -164,16 +170,18 @@ export async function estimateViaProxy({ text, imageBase64, today, now }: Omit<E
 
 interface EstimateRequest {
   apiKey: string;
+  /** 'label' reads a nutrition label; the default estimates a meal. */
+  mode?: EstimateMode;
   text: string;
   imageBase64?: string;
   today: string;
   now: string;
 }
 
-export async function estimateMeal({ apiKey, text, imageBase64, today, now }: EstimateRequest): Promise<Estimate> {
+export async function estimateMeal({ apiKey, text, imageBase64, today, now, mode }: EstimateRequest): Promise<Estimate> {
   // No key of their own: use the free service.
-  if (!apiKey) return estimateViaProxy({ text, imageBase64, today, now });
-  const body = JSON.stringify(buildRequest(text, today, now, imageBase64));
+  if (!apiKey) return estimateViaProxy({ text, imageBase64, today, now, mode });
+  const body = JSON.stringify(buildRequest(text, today, now, imageBase64, mode));
 
   const busy = () => new AiError('busy', 'The AI service is busy right now. Please try again in a moment.');
   let models = await resolveModels(apiKey);
