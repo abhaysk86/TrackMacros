@@ -14,7 +14,7 @@ const PRIVACY: Section[] = [
   {
     heading: 'Who we are',
     body: [
-      `TrackMacros is built and run by The Abhay Perspective. For any question about your data, write to ${CONTACT_EMAIL}.`,
+      `MealGlimpse is built and run by The Abhay Perspective. For any question about your data, write to ${CONTACT_EMAIL}.`,
     ],
   },
   {
@@ -59,7 +59,7 @@ const PRIVACY: Section[] = [
   },
   {
     heading: 'Children',
-    body: ['TrackMacros is not intended for anyone under 18.'],
+    body: ['MealGlimpse is not intended for anyone under 18.'],
   },
   {
     heading: 'Changes',
@@ -71,13 +71,13 @@ const TERMS: Section[] = [
   {
     heading: 'About these terms',
     body: [
-      `TrackMacros is provided by The Abhay Perspective. By using the app you agree to these terms. Questions: ${CONTACT_EMAIL}.`,
+      `MealGlimpse is provided by The Abhay Perspective. By using the app you agree to these terms. Questions: ${CONTACT_EMAIL}.`,
     ],
   },
   {
     heading: 'Not medical advice',
     body: [
-      'Nutrition figures in TrackMacros are estimates. AI estimates from photos and descriptions can be wrong, sometimes by a wide margin, and food list values are standard reference figures that may not match what you ate.',
+      'Nutrition figures in MealGlimpse are estimates. AI estimates from photos and descriptions can be wrong, sometimes by a wide margin, and food list values are standard reference figures that may not match what you ate.',
       'The goal calculator gives a general starting point. Nothing in the app is medical, dietary or health advice. Speak to a doctor or registered dietitian before changing your diet, especially if you are pregnant, under 18, or have a medical condition or a history of disordered eating.',
     ],
   },

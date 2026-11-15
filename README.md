@@ -1,9 +1,9 @@
-# TrackMacros
+# MealGlimpse
 
 A macro tracker that runs as an installable web app. Log meals, save the ones you eat often, and track
 calories, protein, carbs, fats and added sugar against daily goals.
 
-Live at https://trackmacros.theabhayperspective.com
+Live at https://www.mealglimpse.com (formerly TrackMacros)
 
 ## Stack
 

@@ -7,7 +7,13 @@
     <meta name="theme-color" content="#FAF6EF" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <title>TrackMacros</title>
+    <title>MealGlimpse</title>
+    <script>
+      // The app moved from its earlier address. Add ?stay to open the old address once more, e.g. to save a backup.
+      if (location.hostname === 'trackmacros.theabhayperspective.com' && !/[?&]stay\b/.test(location.search)) {
+        location.replace('https://www.mealglimpse.com/');
+      }
+    </script>
     <script>
       // Apply the saved theme before first paint to avoid a flash.
       (function () {

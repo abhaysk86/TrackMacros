@@ -1,7 +1,7 @@
 import type { Goals, Meal, SavedMeal } from '../types';
 
 export interface Backup {
-  app: 'trackmacros';
+  app: 'mealglimpse';
   version: 1;
   exportedAt: string;
   meals: Meal[];
@@ -34,10 +34,11 @@ export function parseBackup(text: string): Pick<Backup, 'meals' | 'savedMeals'> 
   try {
     data = JSON.parse(text);
   } catch {
-    throw new Error('That file is not a TrackMacros backup.');
+    throw new Error('That file is not a MealGlimpse backup.');
   }
-  if (!data || data.app !== 'trackmacros' || !Array.isArray(data.meals) || !Array.isArray(data.savedMeals)) {
-    throw new Error('That file is not a TrackMacros backup.');
+  // 'trackmacros' is the app's earlier name; backups made then are still accepted.
+  if (!data || !['mealglimpse', 'trackmacros'].includes(data.app as string) || !Array.isArray(data.meals) || !Array.isArray(data.savedMeals)) {
+    throw new Error('That file is not a MealGlimpse backup.');
   }
   const goals = data.goals as Record<string, unknown> | undefined;
   return {

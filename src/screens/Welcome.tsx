@@ -38,8 +38,8 @@ export function Welcome() {
   return (
     <div className="mx-auto flex min-h-dvh max-w-md flex-col px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[max(3rem,env(safe-area-inset-top))]">
       <Logo size={64} />
-      <h1 className="mt-5 text-[30px] font-extrabold leading-tight tracking-tight">TrackMacros</h1>
-      <p className="mt-1 text-[16px] text-muted">Snap a photo, get your macros.</p>
+      <h1 className="mt-5 text-[30px] font-extrabold leading-tight tracking-tight">MealGlimpse</h1>
+      <p className="mt-1 text-[16px] text-muted">Your macros at a glance.</p>
 
       <ul className="mt-8 flex flex-col gap-5">
         {POINTS.map(({ Icon, title, text }) => (

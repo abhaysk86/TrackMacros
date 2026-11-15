@@ -9,6 +9,7 @@ interface Setting {
   value: unknown;
 }
 
+// The database keeps its original name so existing installs keep their data.
 export const db = new Dexie('trackmacros') as Dexie & {
   meals: EntityTable<Meal, 'id'>;
   savedMeals: EntityTable<SavedMeal, 'id'>;
@@ -84,7 +85,7 @@ export const setOnboarded = () => db.settings.put({ key: 'onboarded', value: tru
 /** Everything needed to restore the app on another device. The Gemini key is left out on purpose. */
 export async function exportBackup(): Promise<Backup> {
   return {
-    app: 'trackmacros',
+    app: 'mealglimpse',
     version: 1,
     exportedAt: new Date().toISOString(),
     meals: await db.meals.toArray(),

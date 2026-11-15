@@ -33,7 +33,7 @@ export function Today({ day, today, savedMeals, onSelectDay, onQuickAdd, onEditM
     <>
       <header className="mb-3 flex items-center gap-2 text-[17px] font-extrabold tracking-tight">
         <Logo />
-        TrackMacros
+        MealGlimpse
       </header>
 
       <div className="mb-3 flex items-center justify-between gap-2">

@@ -19,6 +19,7 @@ const PRICES: Record<string, [number, number]> = { 'gemini-4-hydrogen': [1.5, 7.
 const DEFAULT_PRICE: [number, number] = [1.5, 7.5];
 
 const ALLOWED_ORIGINS = [
+  /^https:\/\/(www\.)?mealglimpse\.com$/,
   /^https:\/\/trackmacros\.theabhayperspective\.com$/,
   /^https:\/\/track-macros[a-z0-9-]*\.vercel\.app$/,
   /^http:\/\/localhost(:\d+)?$/,
@@ -32,7 +33,7 @@ const MAX_IMAGE_CHARS = 700_000; // about 500 KB of JPEG
 function cors(origin: string | null): Record<string, string> {
   const allowed = origin && ALLOWED_ORIGINS.some((re) => re.test(origin));
   return {
-    'Access-Control-Allow-Origin': allowed ? origin! : 'https://trackmacros.theabhayperspective.com',
+    'Access-Control-Allow-Origin': allowed ? origin! : 'https://www.mealglimpse.com',
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Access-Control-Allow-Headers': 'content-type, authorization, apikey',
     Vary: 'Origin',
