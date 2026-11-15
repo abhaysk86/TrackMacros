@@ -20,6 +20,8 @@ per-device and per-address daily limit and a daily and monthly spending budget, 
 counters (`supabase/migrations`). The app finds it through the `VITE_AI_PROXY_URL` build variable;
 without that variable the app asks for the user's own key instead.
 
+The same function reads nutrition labels when the request carries `mode: "label"`.
+
 Settings are edge function secrets, all optional except the key: `GEMINI_API_KEY`, `GEMINI_MODELS`,
 `DEVICE_DAILY_LIMIT` (5), `IP_DAILY_LIMIT` (20), `DAILY_BUDGET_USD` (0.4), `MONTHLY_BUDGET_USD` (10).
 

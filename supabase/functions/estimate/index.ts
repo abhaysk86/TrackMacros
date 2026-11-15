@@ -81,9 +81,10 @@ Deno.serve(async (req: Request) => {
     const body = await req.json().catch(() => null);
     const text = typeof body?.text === 'string' ? body.text.slice(0, 300) : '';
     const image = typeof body?.imageBase64 === 'string' ? body.imageBase64 : undefined;
+    const mode = body?.mode === 'label' ? 'label' : 'meal';
     if (
       !body || !DEVICE_RE.test(body.device ?? '') || !DAY_RE.test(body.today ?? '') || !TIME_RE.test(body.now ?? '') ||
-      (!text.trim() && !image) || (image && (image.length > MAX_IMAGE_CHARS || !/^[A-Za-z0-9+/=]+$/.test(image)))
+      (!text.trim() && !image) || (mode === 'label' && !image) || (image && (image.length > MAX_IMAGE_CHARS || !/^[A-Za-z0-9+/=]+$/.test(image)))
     ) {
       return fail(400, 'bad_request', 'That request could not be read.');
     }
@@ -99,7 +100,7 @@ Deno.serve(async (req: Request) => {
         : fail(429, 'limit', `You have used today's ${DEVICE_LIMIT} free AI logs. They reset tomorrow.`);
     }
 
-    const request = JSON.stringify(buildRequest(text, body.today, body.now, image));
+    const request = JSON.stringify(buildRequest(text, body.today, body.now, image, mode));
     let outOfCredit = false;
     for (const model of MODELS) {
       const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {

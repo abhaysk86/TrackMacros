@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Camera, Image as ImageIcon, KeyRound, Loader2, PencilLine, Plus } from 'lucide-react';
+import { ArrowRight, Camera, History, Image as ImageIcon, KeyRound, Loader2, PencilLine, Plus, ScanLine } from 'lucide-react';
 import { Sheet } from './Sheet';
 import { AiError, PROXY_URL, estimateMeal, fetchQuota, type Quota } from '../lib/ai';
 import type { MealDraft } from './MealForm';
+import { usePastMeals } from '../hooks';
 import { nowTime, shortDate } from '../lib/date';
 import { prepareImage } from '../lib/image';
 import { matchFood, parseQuery, searchFoods, type Food } from '../lib/foods';
 import { fmt } from '../lib/macros';
+import { searchPast, type PastMeal } from '../lib/memory';
 import type { SavedMeal } from '../types';
 
 interface LogSheetProps {
@@ -14,15 +16,27 @@ interface LogSheetProps {
   today: string;
   apiKey: string;
   savedMeals: SavedMeal[];
-  onManual: () => void;
+  /** Heading for the sheet; defaults to "Log a meal". */
+  title?: string;
+  /** Leave out the frequent meals list, e.g. when creating a new frequent meal. */
+  hideFrequent?: boolean;
+  /** Shows the "Enter numbers yourself" link when given. */
+  onManual?: () => void;
   onQuickAdd: (saved: SavedMeal) => void;
   onEstimate: (draft: MealDraft) => void;
-  onOpenProfile: () => void;
+  /** Shows an "Add key" link when AI logging is unavailable. */
+  onOpenProfile?: () => void;
   onClose: () => void;
 }
 
-/** The single entry point for logging: photo, text, a frequent meal, or manual entry. */
-export function LogSheet({ day, today, apiKey, savedMeals, onManual, onQuickAdd, onEstimate, onOpenProfile, onClose }: LogSheetProps) {
+/**
+ * The single entry point for adding food: a meal photo, a nutrition label, text,
+ * the food list, something logged before, a frequent meal, or manual entry.
+ * It is also used to pick an extra item for a combined meal.
+ */
+export function LogSheet({
+  day, today, apiKey, savedMeals, title, hideFrequent, onManual, onQuickAdd, onEstimate, onOpenProfile, onClose,
+}: LogSheetProps) {
   const [text, setText] = useState('');
   const [busy, setBusy] = useState<{ thumb?: string } | null>(null);
   const [error, setError] = useState('');
@@ -42,6 +56,8 @@ export function LogSheet({ day, today, apiKey, savedMeals, onManual, onQuickAdd,
   }, [apiKey]);
 
   const galleryInput = useRef<HTMLInputElement>(null);
+  const labelInput = useRef<HTMLInputElement>(null);
+  const past = searchPast(usePastMeals(savedMeals), text);
 
   const query = text.trim().toLowerCase();
   const matches = query ? savedMeals.filter((s) => s.name.toLowerCase().includes(query)) : savedMeals;
@@ -61,7 +77,15 @@ export function LogSheet({ day, today, apiKey, savedMeals, onManual, onQuickAdd,
     });
   };
 
-  const estimate = async (description: string, file?: File) => {
+  // Something logged before comes back with the numbers confirmed last time; no AI is used.
+  const pickPast = (meal: PastMeal) =>
+    onEstimate({
+      name: meal.name, calories: meal.calories, protein: meal.protein, carbs: meal.carbs, fats: meal.fats, sugar: meal.sugar,
+      day, time: nowTime(), source: 'memory',
+      note: `Your numbers from ${shortDate(meal.day)}, not a new estimate. Change anything that was different this time.`,
+    });
+
+  const estimate = async (description: string, file?: File, mode: 'meal' | 'label' = 'meal') => {
     if (!aiAvailable) {
       setNeedsKey(true);
       return;
@@ -70,10 +94,17 @@ export function LogSheet({ day, today, apiKey, savedMeals, onManual, onQuickAdd,
     try {
       const image = file ? await prepareImage(file) : undefined;
       setBusy({ thumb: image?.thumb });
-      const result = await estimateMeal({ apiKey, text: description, imageBase64: image?.base64, today, now: nowTime() });
+      const result = await estimateMeal({ apiKey, mode, text: description, imageBase64: image?.base64, today, now: nowTime() });
       // With no date in the text, the meal belongs to the day being viewed.
       const draftDay = day !== today && result.day === today ? day : result.day;
-      onEstimate({ ...result, day: draftDay, thumb: image?.thumb });
+      if (mode === 'label') {
+        onEstimate({
+          ...result, day, time: nowTime(), thumb: image?.thumb, source: 'label',
+          note: `Read from the label${result.serving ? `: values are ${result.serving}` : ''}. Check them against the pack, and use the portion buttons if you had more or less.`,
+        });
+      } else {
+        onEstimate({ ...result, day: draftDay, thumb: image?.thumb });
+      }
     } catch (e) {
       setBusy(null);
       setError(e instanceof AiError || e instanceof Error ? e.message : 'Something went wrong. Please try again.');
@@ -97,6 +128,12 @@ export function LogSheet({ day, today, apiKey, savedMeals, onManual, onQuickAdd,
     if (file) void estimate(text, file);
   };
 
+  const onLabelFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    if (file) void estimate(text, file, 'label');
+  };
+
   if (busy) {
     return (
       <Sheet title="Estimating your meal" onClose={onClose}>
@@ -110,18 +147,23 @@ export function LogSheet({ day, today, apiKey, savedMeals, onManual, onQuickAdd,
   }
 
   return (
-    <Sheet title={day === today ? 'Log a meal' : `Log a meal for ${shortDate(day)}`} onClose={onClose}>
+    <Sheet title={title ?? (day === today ? 'Log a meal' : `Log a meal for ${shortDate(day)}`)} onClose={onClose}>
       <input ref={cameraInput} type="file" accept="image/*" capture="environment" className="hidden" onChange={onFile} />
       <input ref={galleryInput} type="file" accept="image/*" className="hidden" onChange={onFile} data-testid="gallery-input" />
+      <input ref={labelInput} type="file" accept="image/*" className="hidden" onChange={onLabelFile} data-testid="label-input" />
 
-      <div className="grid grid-cols-2 gap-2.5">
-        <button onClick={() => (aiAvailable ? cameraInput.current?.click() : setNeedsKey(true))} className="rounded-[18px] bg-accent px-3 py-3.5 text-center text-[13.5px] font-bold text-white">
-          <Camera className="mx-auto mb-1" size={24} />
-          Take a photo
+      <div className="grid grid-cols-3 gap-2">
+        <button onClick={() => (aiAvailable ? cameraInput.current?.click() : setNeedsKey(true))} className="rounded-[18px] bg-accent px-2 py-3 text-center text-[13px] font-bold text-white">
+          <Camera className="mx-auto mb-1" size={23} />
+          Take photo
         </button>
-        <button onClick={() => (aiAvailable ? galleryInput.current?.click() : setNeedsKey(true))} className="rounded-[18px] border border-line bg-surface px-3 py-3.5 text-center text-[13.5px] font-bold">
-          <ImageIcon className="mx-auto mb-1 text-accent-ink" size={24} />
-          Choose a photo
+        <button onClick={() => (aiAvailable ? galleryInput.current?.click() : setNeedsKey(true))} className="rounded-[18px] border border-line bg-surface px-2 py-3 text-center text-[13px] font-bold">
+          <ImageIcon className="mx-auto mb-1 text-accent-ink" size={23} />
+          Choose photo
+        </button>
+        <button onClick={() => (aiAvailable ? labelInput.current?.click() : setNeedsKey(true))} className="rounded-[18px] border border-line bg-surface px-2 py-3 text-center text-[13px] font-bold">
+          <ScanLine className="mx-auto mb-1 text-accent-ink" size={23} />
+          Scan label
         </button>
       </div>
 
@@ -156,7 +198,9 @@ export function LogSheet({ day, today, apiKey, savedMeals, onManual, onQuickAdd,
         <div role="alert" className="mt-2.5 flex items-center gap-3 rounded-xl bg-accent-soft px-3.5 py-2.5 text-[13px]">
           <KeyRound size={18} className="shrink-0 text-accent-ink" />
           <span className="flex-1">Photo and text logging need a Gemini key.</span>
-          <button onClick={onOpenProfile} className="shrink-0 font-bold text-accent-ink underline">Add key</button>
+          {onOpenProfile && (
+            <button onClick={onOpenProfile} className="shrink-0 font-bold text-accent-ink underline">Add key</button>
+          )}
         </div>
       )}
 
@@ -185,19 +229,44 @@ export function LogSheet({ day, today, apiKey, savedMeals, onManual, onQuickAdd,
         </section>
       )}
 
+      {past.length > 0 && (
+        <section aria-label="Meals you have logged before">
+          <h3 className="mb-1 mt-4 text-sm font-bold">You've logged before</h3>
+          <ul>
+            {past.map((m) => (
+              <li key={m.name} className="border-b border-line last:border-0">
+                <button onClick={() => pickPast(m)} className="flex w-full items-center gap-2 py-2 text-left">
+                  <History size={15} className="shrink-0 text-muted" />
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate text-[14px] font-semibold">{m.name}</span>
+                    <span className="block text-[11.5px] text-muted">Last logged {shortDate(m.day)}</span>
+                  </span>
+                  <span className="shrink-0 text-xs text-muted">{fmt(m.calories)} kcal</span>
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-accent-soft text-accent-ink">
+                    <Plus size={17} strokeWidth={2.4} />
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       <div className="mb-1 mt-4 flex items-baseline justify-between">
-        <h3 className="text-sm font-bold">Frequent meals</h3>
-        <button onClick={onManual} className="flex items-center gap-1 text-xs font-semibold text-accent-ink">
-          <PencilLine size={13} /> Enter numbers yourself
-        </button>
+        <h3 className="text-sm font-bold">{hideFrequent ? '' : 'Frequent meals'}</h3>
+        {onManual && (
+          <button onClick={onManual} className="flex items-center gap-1 text-xs font-semibold text-accent-ink">
+            <PencilLine size={13} /> Enter numbers yourself
+          </button>
+        )}
       </div>
-      {savedMeals.length === 0 ? (
+      {hideFrequent ? null : savedMeals.length === 0 ? (
         <p className="py-2 text-[13px] leading-relaxed text-muted">
           Meals you save appear here, ready to log in one tap.
         </p>
       ) : matches.length === 0 ? (
         <p className="py-2 text-[13px] text-muted">
-          No frequent meal matches.{foods.length === 0 && ' Tap the arrow to estimate it.'}
+          No frequent meal matches.{foods.length === 0 && past.length === 0 && ' Tap the arrow to estimate it.'}
         </p>
       ) : (
         <ul>

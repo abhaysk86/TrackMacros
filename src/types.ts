@@ -16,7 +16,7 @@ export interface Meal extends Macros {
   day: string;
   /** Local time of day, HH:mm (24-hour). */
   time: string;
-  source: 'manual' | 'saved' | 'ai' | 'library';
+  source: 'manual' | 'saved' | 'ai' | 'library' | 'label' | 'memory';
   /** Small JPEG data URL of the meal photo, if one was taken. */
   thumb?: string;
   createdAt: number;

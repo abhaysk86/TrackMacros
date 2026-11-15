@@ -5,6 +5,9 @@ import { parseEstimate, pickModels } from './ai';
 import { isValidProfile, suggestGoals, type BodyProfile } from './goals';
 import { parseBackup } from './backup';
 import { FOODS, matchFood, parseQuery, searchFoods } from './foods';
+import { pastMeals, searchPast } from './memory';
+import { buildRequest } from '../../supabase/functions/estimate/prompt';
+import type { Meal } from '../types';
 
 describe('date helpers', () => {
   it('builds a local day key', () => {
@@ -219,5 +222,50 @@ describe('food library', () => {
     expect(matchFood('2 rotis')).toMatchObject({ food: { name: 'Roti' }, quantity: 2 });
     expect(matchFood('rajma')).toMatchObject({ food: { name: 'Rajma curry' } });
     expect(searchFoods('chole').map((f) => f.name)).toContain('Chole');
+  });
+});
+
+describe('food memory', () => {
+  const meal = (name: string, createdAt: number, calories: number, day = '2026-11-10'): Meal => ({
+    id: `${name}-${createdAt}`, name, day, time: '13:00', source: 'ai', createdAt, calories, protein: 10, carbs: 20, fats: 5, sugar: 1,
+  });
+  const meals = [
+    meal('Veg thali', 1, 650),
+    meal('Veg thali', 5, 700, '2026-11-14'),
+    meal('Masala omelette, 2 toast', 3, 390),
+    meal('Standard Coffee', 4, 91),
+  ];
+
+  it('keeps the latest version of each meal, newest first, without frequent meals', () => {
+    const past = pastMeals(meals, ['standard coffee']);
+    expect(past.map((p) => p.name)).toEqual(['Veg thali', 'Masala omelette, 2 toast']);
+    expect(past[0]).toMatchObject({ calories: 700, day: '2026-11-14' });
+  });
+  it('finds past meals by any of their words, ignoring quantity and plurals', () => {
+    const past = pastMeals(meals);
+    expect(searchPast(past, 'thali').map((p) => p.name)).toEqual(['Veg thali']);
+    expect(searchPast(past, '2 omelettes')[0].name).toBe('Masala omelette, 2 toast');
+    expect(searchPast(past, 'toast omelette')).toHaveLength(1);
+    expect(searchPast(past, 'biryani')).toEqual([]);
+    expect(searchPast(past, 'v')).toEqual([]);
+  });
+});
+
+describe('nutrition labels', () => {
+  it('asks the model to read the label, not estimate, in label mode', () => {
+    const label = buildRequest('', '2026-11-15', '09:00', 'AAAA', 'label');
+    const meal = buildRequest('dal', '2026-11-15', '09:00');
+    expect(label.contents[0].parts[0].text).toContain('Do not estimate');
+    expect(meal.contents[0].parts[0].text).toContain('nutrition expert');
+    expect(label.contents[0].parts).toHaveLength(2);
+  });
+  it('carries the serving the values were read from', () => {
+    const e = parseEstimate(JSON.stringify({ name: 'Premix coffee', calories: 60, protein: 1, carbs: 11, fats: 1, addedSugar: 8, date: '2026-11-15', time: '09:00', serving: 'per serving (14 g)' }), '2026-11-15', '09:00');
+    expect(e.serving).toBe('per serving (14 g)');
+    expect(e.sugar).toBe(8);
+  });
+  it('reports a photo with no label', () => {
+    const none = JSON.stringify({ name: 'No label found', calories: 0, protein: 0, carbs: 0, fats: 0, addedSugar: 0, date: '2026-11-15', time: '09:00' });
+    expect(() => parseEstimate(none, '2026-11-15', '09:00')).toThrow(/No nutrition label/);
   });
 });
