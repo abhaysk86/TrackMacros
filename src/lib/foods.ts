@@ -15,6 +15,12 @@ export interface Food extends Macros {
 
 export const FOODS = foodsJson as Food[];
 
+/** The weight of one serving in grams (or millilitres), read from a label such as "1 large (50 g)" or "100 g". */
+export function servingGrams(food: Food): number | undefined {
+  const match = /\((\d+(?:\.\d+)?) (?:g|ml)\)$/.exec(food.serving) ?? /^(\d+(?:\.\d+)?) (?:g|ml)$/.exec(food.serving);
+  return match ? Number(match[1]) : undefined;
+}
+
 const haystack = (f: Food) => [f.name, f.brand ?? '', ...(f.aliases ?? [])].join(' ').toLowerCase();
 
 const NUMBER_WORDS: Record<string, number> = {

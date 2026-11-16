@@ -6,7 +6,7 @@ import type { MealDraft } from './MealForm';
 import { usePastMeals } from '../hooks';
 import { nowTime, shortDate } from '../lib/date';
 import { prepareImage } from '../lib/image';
-import { matchFood, parseQuery, searchFoods, type Food } from '../lib/foods';
+import { matchFood, parseQuery, searchFoods, servingGrams, type Food } from '../lib/foods';
 import { fmt } from '../lib/macros';
 import { searchPast, type PastMeal } from '../lib/memory';
 import type { SavedMeal } from '../types';
@@ -68,7 +68,9 @@ export function LogSheet({
     // Amounts the portion buttons cover are preselected; others are multiplied in.
     const onButtons = [0.5, 1, 1.5, 2, 3].includes(quantity);
     const times = onButtons ? 1 : quantity;
+    const grams = servingGrams(food);
     onEstimate({
+      ...(grams ? { grams: grams * times } : {}),
       name: food.brand && !food.name.includes(food.brand) ? `${food.brand} ${food.name}` : food.name,
       calories: food.calories * times, protein: food.protein * times, carbs: food.carbs * times,
       fats: food.fats * times, sugar: food.sugar * times,
@@ -81,7 +83,7 @@ export function LogSheet({
   const pickPast = (meal: PastMeal) =>
     onEstimate({
       name: meal.name, calories: meal.calories, protein: meal.protein, carbs: meal.carbs, fats: meal.fats, sugar: meal.sugar,
-      day, time: nowTime(), source: 'memory',
+      day, time: nowTime(), source: 'memory', ...(meal.grams ? { grams: meal.grams } : {}),
       note: `Your numbers from ${shortDate(meal.day)}, not a new estimate. Change anything that was different this time.`,
     });
 
@@ -103,7 +105,10 @@ export function LogSheet({
           note: `Read from the label${result.serving ? `: values are ${result.serving}` : ''}. Check them against the pack, and use the portion buttons if you had more or less.`,
         });
       } else {
-        onEstimate({ ...result, day: draftDay, thumb: image?.thumb });
+        onEstimate({
+          ...result, day: draftDay, thumb: image?.thumb,
+          ...(result.grams ? { note: `AI estimate for about ${Math.round(result.grams)} g. Change the grams if you had a different amount. Nothing is logged until you add it.` } : {}),
+        });
       }
     } catch (e) {
       setBusy(null);

@@ -7,6 +7,8 @@ export interface Estimate extends Macros {
   time: string;
   /** For a scanned label: which column the values were read from. */
   serving?: string;
+  /** The weight in grams the figures refer to, when the AI could judge it. */
+  grams?: number;
 }
 
 export type AiErrorKind = 'key' | 'quota' | 'busy' | 'network' | 'unreadable' | 'limit' | 'paused';
@@ -106,8 +108,9 @@ export function parseEstimate(raw: string, today: string, now: string): Estimate
     throw new AiError('unreadable', 'No nutrition label was found in that photo. Try again with the label filling the frame.');
   }
   const serving = typeof data.serving === 'string' && data.serving.trim() ? data.serving.trim().slice(0, 60) : undefined;
+  const grams = num(data.grams);
   return {
-    name, day, time, ...(serving ? { serving } : {}),
+    name, day, time, ...(serving ? { serving } : {}), ...(grams > 0 && grams < 5000 ? { grams } : {}),
     calories: num(data.calories), protein: num(data.protein), carbs: num(data.carbs),
     fats: num(data.fats), sugar: num(data.addedSugar),
   };
