@@ -21,6 +21,8 @@ export interface MealDraft extends Macros {
   note?: string;
   /** Portion to preselect; the values given are for one portion. */
   portion?: number;
+  /** Weight in grams that the values refer to, when known. */
+  grams?: number;
 }
 
 export type MealFormTarget =
@@ -75,6 +77,11 @@ export function MealForm({ target, today, apiKey, savedMeals, onClose }: MealFor
   const [portion, setPortion] = useState(startPortion);
   const [saveAsFrequent, setSaveAsFrequent] = useState(false);
 
+  // When the weight behind the values is known, the amount can be set in grams as well as by portion.
+  const startGrams = target.kind === 'meal' ? (target.meal?.grams ?? draft?.grams) : draft?.grams;
+  const [baseGrams, setBaseGrams] = useState<number | null>(startGrams && startGrams > 0 ? startGrams : null);
+  const [gramsText, setGramsText] = useState(baseGrams ? String(Math.round(baseGrams * startPortion)) : '');
+
   // `base` holds the values at 1x so switching portions never accumulates rounding drift.
   const base = useRef<Record<MacroKey, number>>({
     calories: initial?.calories ?? 0, protein: initial?.protein ?? 0, carbs: initial?.carbs ?? 0,
@@ -91,6 +98,18 @@ export function MealForm({ target, today, apiKey, savedMeals, onClose }: MealFor
   };
 
   const onPortion = (next: number) => {
+    setPortion(next);
+    setText(Object.fromEntries(KEYS.map((k) => [k, String(Math.round(base.current[k] * next))])) as Record<MacroKey, string>);
+    if (baseGrams) setGramsText(String(Math.round(baseGrams * next)));
+  };
+
+  // Typing a weight rescales every number to that weight.
+  const onGrams = (raw: string) => {
+    const cleaned = raw.replace(/[^\d.]/g, '');
+    setGramsText(cleaned);
+    const grams = Number(cleaned);
+    if (!baseGrams || !(grams > 0)) return;
+    const next = grams / baseGrams;
     setPortion(next);
     setText(Object.fromEntries(KEYS.map((k) => [k, String(Math.round(base.current[k] * next))])) as Record<MacroKey, string>);
   };
@@ -117,6 +136,7 @@ export function MealForm({ target, today, apiKey, savedMeals, onClose }: MealFor
     for (const k of KEYS) base.current[k] += added.macros[k] / portion;
     if (!name.trim() || name === autoName(current)) setName(autoName(next));
     setParts(next);
+    setBaseGrams(null); // a combined meal no longer has one meaningful weight
     showTotals();
     setPicking(false);
   };
@@ -139,12 +159,16 @@ export function MealForm({ target, today, apiKey, savedMeals, onClose }: MealFor
     if (!canSave) return;
     const cleanName = name.trim();
     const values = macros();
+    const loggedGrams = baseGrams ? Math.round(baseGrams * portion) : undefined;
     if (target.kind === 'meal') {
       if (target.meal) {
-        await updateMeal(target.meal.id, { ...values, name: cleanName, day, time });
+        await updateMeal(target.meal.id, { ...values, name: cleanName, day, time, ...(loggedGrams ? { grams: loggedGrams } : {}) });
         toast('Meal updated');
       } else {
-        await addMeal({ ...values, name: cleanName, day, time, source: draft ? (draft.source ?? 'ai') : 'manual', thumb: draft?.thumb });
+        await addMeal({
+          ...values, name: cleanName, day, time, source: draft ? (draft.source ?? 'ai') : 'manual', thumb: draft?.thumb,
+          ...(loggedGrams ? { grams: loggedGrams } : {}),
+        });
         if (saveAsFrequent) await addSavedMeal(cleanName, values);
         toast(day === today ? `${cleanName} added` : `${cleanName} added to ${shortDate(day)}`);
       }
@@ -238,15 +262,26 @@ export function MealForm({ target, today, apiKey, savedMeals, onClose }: MealFor
         )}
 
         {(isMeal || !existing) && (
-          <div className="grid grid-cols-5 rounded-xl bg-line p-[3px] text-center text-[13px] font-semibold" role="group" aria-label="Portion">
-            {PORTIONS.map((p) => (
-              <button
-                key={p.value} type="button" onClick={() => onPortion(p.value)} aria-pressed={portion === p.value}
-                className={`rounded-[9px] py-1.5 ${portion === p.value ? 'bg-surface text-ink shadow-sm' : 'text-muted'}`}
-              >
-                {p.label}
-              </button>
-            ))}
+          <div className="flex items-stretch gap-2">
+            <div className="grid flex-1 grid-cols-5 rounded-xl bg-line p-[3px] text-center text-[13px] font-semibold" role="group" aria-label="Portion">
+              {PORTIONS.map((p) => (
+                <button
+                  key={p.value} type="button" onClick={() => onPortion(p.value)} aria-pressed={Math.abs(portion - p.value) < 0.001}
+                  className={`rounded-[9px] py-1.5 ${Math.abs(portion - p.value) < 0.001 ? 'bg-surface text-ink shadow-sm' : 'text-muted'}`}
+                >
+                  {p.label}
+                </button>
+              ))}
+            </div>
+            {baseGrams && (
+              <label className="flex w-[84px] shrink-0 items-center gap-1 rounded-xl border border-line bg-surface px-2 focus-within:border-accent">
+                <input
+                  inputMode="decimal" value={gramsText} onChange={(e) => onGrams(e.target.value)} aria-label="Amount in grams"
+                  enterKeyHint="done" className="w-full min-w-0 bg-transparent text-right text-base font-bold outline-none"
+                />
+                <span className="text-[12px] font-semibold text-muted">g</span>
+              </label>
+            )}
           </div>
         )}
 

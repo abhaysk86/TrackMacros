@@ -24,7 +24,7 @@ db.version(1).stores({
 
 const newId = () => crypto.randomUUID();
 
-export type MealInput = Macros & Pick<Meal, 'name' | 'day' | 'time' | 'source' | 'thumb'>;
+export type MealInput = Macros & Pick<Meal, 'name' | 'day' | 'time' | 'source' | 'thumb' | 'grams'>;
 
 export async function addMeal(input: MealInput): Promise<Meal> {
   const meal: Meal = { ...input, id: newId(), createdAt: Date.now() };

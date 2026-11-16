@@ -4,7 +4,7 @@ import { progress, scaleMacros, sumMacros } from './macros';
 import { parseEstimate, pickModels } from './ai';
 import { isValidProfile, suggestGoals, type BodyProfile } from './goals';
 import { parseBackup } from './backup';
-import { FOODS, matchFood, parseQuery, searchFoods } from './foods';
+import { FOODS, matchFood, parseQuery, searchFoods, servingGrams } from './foods';
 import { pastMeals, searchPast } from './memory';
 import { buildRequest } from '../../supabase/functions/estimate/prompt';
 import type { Meal } from '../types';
@@ -267,5 +267,26 @@ describe('nutrition labels', () => {
   it('reports a photo with no label', () => {
     const none = JSON.stringify({ name: 'No label found', calories: 0, protein: 0, carbs: 0, fats: 0, addedSugar: 0, date: '2026-11-15', time: '09:00' });
     expect(() => parseEstimate(none, '2026-11-15', '09:00')).toThrow(/No nutrition label/);
+  });
+});
+
+describe('amounts in grams', () => {
+  it('keeps the weight the AI assumed, and ignores missing or absurd ones', () => {
+    const reply = (grams: unknown) => JSON.stringify({ name: 'Moong dal', calories: 180, protein: 11, carbs: 26, fats: 4, addedSugar: 0, date: '2026-11-16', time: '13:00', grams });
+    expect(parseEstimate(reply(150), '2026-11-16', '13:00').grams).toBe(150);
+    expect(parseEstimate(reply(0), '2026-11-16', '13:00').grams).toBeUndefined();
+    expect(parseEstimate(reply(undefined), '2026-11-16', '13:00').grams).toBeUndefined();
+    expect(parseEstimate(reply(90000), '2026-11-16', '13:00').grams).toBeUndefined();
+  });
+  it('reads serving weights from the food list', () => {
+    const byName = (name: string) => FOODS.find((f) => f.name === name)!;
+    expect(servingGrams(byName('Boiled egg'))).toBe(50);
+    expect(servingGrams(byName('Coca-Cola'))).toBe(300);
+    expect(servingGrams(byName('Pav bhaji'))).toBe(100);
+    expect(servingGrams(byName('Dal'))).toBeUndefined();
+  });
+  it('asks the AI for a weight in both modes', () => {
+    expect(buildRequest('dal', '2026-11-16', '13:00').contents[0].parts[0].text).toContain('"grams"');
+    expect(buildRequest('', '2026-11-16', '13:00', 'AAAA', 'label').contents[0].parts[0].text).toContain('"grams"');
   });
 });

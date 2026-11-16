@@ -7,6 +7,8 @@ export interface PastMeal extends Macros {
   name: string;
   /** The day it was last logged. */
   day: string;
+  /** The weight logged that time, when it was known. */
+  grams?: number;
 }
 
 /**
@@ -24,7 +26,7 @@ export function pastMeals(meals: Meal[], exclude: string[] = []): PastMeal[] {
   }
   return [...latest.values()]
     .sort((a, b) => b.createdAt - a.createdAt)
-    .map((m) => ({ ...pickMacros(m), name: m.name, day: m.day }));
+    .map((m) => ({ ...pickMacros(m), name: m.name, day: m.day, ...(m.grams ? { grams: m.grams } : {}) }));
 }
 
 /** Past meals whose name contains every word typed. */

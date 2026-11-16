@@ -12,6 +12,7 @@ export const RESPONSE_SCHEMA = {
     addedSugar: { type: 'NUMBER', description: 'grams of added sugar only, not natural sugar' },
     date: { type: 'STRING', description: 'YYYY-MM-DD the meal was eaten' },
     time: { type: 'STRING', description: 'HH:mm, 24-hour, the meal was eaten' },
+    grams: { type: 'NUMBER', description: 'Total weight in grams of the food the figures refer to (millilitres for drinks); 0 if it cannot be judged' },
     serving: { type: 'STRING', description: 'For a nutrition label only: which column was read, e.g. "per serving (30 g)" or "per 100 g"' },
   },
   required: ['name', 'calories', 'protein', 'carbs', 'fats', 'addedSugar', 'date', 'time'],
@@ -32,6 +33,7 @@ Do this:
 2. Estimate calories, protein, carbs, fats and ADDED sugar (sugar added in cooking or processing; not sugar naturally in fruit or milk) for that portion.
 3. Work out when it was eaten. If the user gives a day or time ("yesterday", "at 8am", "on the 10th"), resolve it against the current date and time. A named meal with no time means a typical time for it (breakfast 08:30, lunch 13:00, dinner 20:00). Otherwise use the current date and time. Never return a future date.
 4. Give a short, plain name for the meal.
+5. In "grams", give your best estimate of the total weight of the food the figures refer to (millilitres for a drink).
 
 Round every number to a whole number. Reply with JSON only.`;
 
@@ -46,6 +48,7 @@ Do this:
 3. In "serving", say which column you read and its size, for example "per serving (30 g)" or "per 100 g".
 4. In "name", give the product name if it is visible. Otherwise use "Packaged food".
 5. Use the current date and time for "date" and "time".
+6. In "grams", give the weight the values refer to: the serving size if you read the per-serving column, or 100 if you read the per 100 g column.
 
 If the photo does not show a nutrition label, set every number to 0 and "name" to "No label found".
 Round every number to a whole number. Reply with JSON only.`;
